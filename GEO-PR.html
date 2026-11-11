@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GEO para clínicas de medicina estética en Puerto Rico | Clinic Management Tech</title>
+<meta name="description" content="GEO para clínicas de medicina estética en Puerto Rico: valor desde el mes 1, visibilidad medida en ChatGPT, Gemini y Claude, cuestionario de arranque, KPIs y planes.">
+<meta name="theme-color" content="#F8F3EC">
+<meta property="og:title" content="GEO para clínicas de medicina estética en Puerto Rico">
+<meta property="og:description" content="Que ChatGPT, Gemini y Claude recomienden tu clínica en Puerto Rico. Entregas desde el mes 1 y resultados que crecen cada mes.">
+<meta property="og:url" content="https://clinicmanagementech.com/geo.html">
+<link rel="canonical" href="https://clinicmanagementech.com/geo.html">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"GEO para clínicas de medicina estética","serviceType":"Generative Engine Optimization (GEO)","areaServed":{"@type":"Place","name":"Puerto Rico"},"availableLanguage":["es","en"],"provider":{"@type":"Organization","name":"Clinic Management Tech","url":"https://clinicmanagementech.com"},"audience":{"@type":"Audience","audienceType":"Clínicas de medicina estética y med spas"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+/* Language: ?lang=es|en > saved choice > browser language */
+(function () {
+  var q = (location.search.match(/[?&]lang=(es|en)/) || [])[1], saved = null;
+  try { saved = localStorage.getItem('cmt-lang'); } catch (e) {}
+  var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+  var lang = q || saved || (/^es\b/i.test(nav) ? 'es' : 'en');
+  if (q) { try { localStorage.setItem('cmt-lang', q); } catch (e) {} }
+  window.CMT_LANG = lang === 'en' ? 'en' : 'es';
+  document.documentElement.lang = window.CMT_LANG;
+})();
+</script>
+<style>
+:root{
+  /* Clinic Management Tech palette */
+  --porcelain:#F8F3EC; --white:#FFFFFF; --ink:#211A18; --warm-gray:#665954;
+  --burgundy:#713C47; --wine:#3F2127; --terracotta:#934633; --terracotta-deco:#C36A55;
+  --bronze:#80512E; --champagne:#F0D28B; --teal:#2E645E; --rose:#F6E0D3;
+  --line-light:#DFD2C4; --line-dark:#8E6068;
+  /* roles (older names kept so every rule maps to the palette) */
+  --cream:var(--porcelain); --cream-2:var(--rose); --paper:var(--white);
+  --gold:var(--terracotta); --gold-2:var(--champagne); --gold-3:var(--bronze); --gold-soft:rgba(147,70,51,.10);
+  --ink-2:var(--warm-gray); --muted:var(--warm-gray);
+  --dark:var(--burgundy); --dark-2:var(--wine); --dark-line:var(--line-dark);
+  --line:var(--line-light); --ok:var(--teal);
+  --grad-gold:linear-gradient(135deg,#7E4553 0%,#713C47 55%,#62323D 100%);
+  --r:22px; --ease:cubic-bezier(.2,.8,.2,1);
+  --shadow:0 30px 70px -30px rgba(63,33,39,.35);
+  --head:"Belleza",Manrope,sans-serif; --serif:"EB Garamond",Georgia,serif; --ui:Manrope,system-ui,sans-serif;
+  --mono:Manrope,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{font-family:var(--ui);margin:0;letter-spacing:-.01em}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* brand + buttons */
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand .logo{width:30px;height:42px}
+.sep{width:1px;height:34px;background:var(--gold);opacity:.6}
+.wordmark{font-family:var(--ui);font-weight:500;font-size:11px;letter-spacing:.32em;line-height:1.35;text-transform:uppercase}
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--ui);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:16px 28px;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s,background .25s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn-gold{background:var(--grad-gold);color:#fff;box-shadow:0 14px 30px -12px rgba(128,81,46,.65)}
+.btn-gold:hover:not(:disabled){box-shadow:0 18px 40px -12px rgba(128,81,46,.8);transform:translateY(-1px)}
+.btn-line{border:1.5px solid var(--gold);color:var(--gold-3);background:transparent}
+.btn-line:hover{background:var(--gold-soft)}
+.btn-light{background:var(--cream);color:var(--ink)}
+.btn-light:hover{background:#fff}
+.btn svg{width:16px;height:16px}
+
+/* nav */
+.pagebar{position:fixed;left:0;top:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad-gold);z-index:60;pointer-events:none}
+.nav{position:sticky;top:0;z-index:40;background:rgba(248,243,236,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
+.nav-links{display:flex;gap:24px;font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.nav-links a{text-decoration:none;color:var(--ink-2);position:relative;white-space:nowrap}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1.5px;background:var(--gold);transition:right .3s var(--ease)}
+.nav-links a:hover::after{right:0}
+.nav .btn{padding:12px 20px;font-size:11.5px}
+.burger{display:none;background:none;border:0;width:42px;height:42px;cursor:pointer;color:var(--ink)}
+@media (max-width:1140px){
+  .nav-links{position:fixed;inset:76px 0 auto 0;flex-direction:column;gap:0;background:var(--cream);border-bottom:1px solid var(--line);padding:8px 20px 18px;transform:translateY(-130%);transition:transform .35s var(--ease);z-index:-1}
+  .nav-links a{padding:14px 0;border-bottom:1px solid var(--line)}
+  .nav-links.open{transform:none}
+  .burger{display:grid;place-items:center}
+  .nav .btn{display:none}
+}
+
+/* section primitives */
+section{position:relative}
+.pad{padding:110px 0}
+@media (max-width:700px){.pad{padding:76px 0}}
+.center{text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--ui);font-weight:600;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-3)}
+.eyebrow::before,.eyebrow.both::after{content:"";width:34px;height:1px;background:var(--gold)}
+.h-sec{font-weight:900;text-transform:uppercase;font-size:clamp(28px,4.4vw,48px);line-height:1.04;letter-spacing:-.015em;margin:18px 0 16px;text-wrap:balance}
+.h-sec em,.g{font-style:normal;color:var(--gold)}
+.lead{font-size:clamp(16px,1.6vw,18px);color:var(--ink-2);max-width:62ch}
+.center .lead{margin-left:auto;margin-right:auto}
+.fine{font-size:12px;color:var(--muted);font-style:italic;margin:14px 0 0}
+.dark{background:var(--dark);color:var(--cream);overflow:hidden}
+.dark .h-sec{color:var(--cream)}
+.dark .lead{color:rgba(248,243,236,.84)}
+.dark .eyebrow{color:var(--gold-2)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+.faq{max-width:820px;margin:50px auto 0;display:grid;gap:12px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--ui);font-weight:700;font-size:16px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;font-weight:400;color:var(--gold);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0;padding:0 24px 22px;color:var(--ink-2);font-size:15px}
+
+/* ============ CTA / FORM ============ */
+.cta{padding:20px 0 110px}
+.cta-box{background:var(--dark);border-radius:34px;padding:60px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center;color:var(--cream)}
+.cta-box .h-sec{color:var(--cream)}
+.df-f input:focus,.df-f select:focus{border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+footer{border-top:1px solid var(--line);padding:44px 0 50px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer nav{display:flex;gap:22px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--gold-3)}
+footer .wordmark{font-size:10px;color:var(--ink)}
+.lang{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--paper);margin-left:auto}
+.lang button{appearance:none;border:0;background:none;font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.08em;padding:6px 10px;border-radius:999px;color:var(--muted);cursor:pointer}
+.lang button.on{background:var(--ink);color:var(--cream)}
+@media (min-width:1141px){.lang{margin-left:0}}
+/* palette + type: Belleza titles · EB Garamond editorial · Manrope UI */
+h1,h2,h3,h4,.h-sec{font-family:var(--head);font-weight:400;font-synthesis:none;letter-spacing:0}
+.h-sec{text-transform:none;line-height:1.05;font-size:clamp(30px,4.6vw,54px)}
+.h-sec em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--terracotta)}
+.lead,.faq details p{font-family:var(--serif);font-size:clamp(18px,1.7vw,21px);line-height:1.5}
+.eyebrow{color:var(--bronze);font-weight:700}
+.eyebrow::before,.eyebrow.both::after{background:var(--terracotta-deco)}
+.btn-gold{background:var(--burgundy);box-shadow:0 14px 30px -14px rgba(113,60,71,.7)}
+.btn-gold:hover:not(:disabled){background:#62323D;box-shadow:0 18px 40px -14px rgba(113,60,71,.8)}
+.btn-line{border-color:var(--burgundy);color:var(--burgundy)}
+.btn-line:hover{background:rgba(113,60,71,.06)}
+.btn-light{background:var(--porcelain);color:var(--burgundy)}
+.pagebar{background:var(--teal)}
+.lang button.on{background:var(--burgundy);color:#fff}
+.nav{background:rgba(248,243,236,.9)}
+.nav-links a{color:var(--ink)}
+.nav-links a::after{background:var(--terracotta)}
+.dark,.cta-box{background:var(--burgundy);color:var(--porcelain)}
+.dark .h-sec em,.cta-box .h-sec em{color:var(--champagne)}
+.dark .eyebrow,.cta-box .eyebrow{color:var(--champagne)}
+.dark .eyebrow::before,.cta-box .eyebrow::before{background:var(--champagne)}
+.dark .lead,.cta-box .lead{color:rgba(248,243,236,.88)}
+.cta-box .btn-gold{background:var(--porcelain);color:var(--burgundy)}
+footer{background:var(--wine);color:rgba(248,243,236,.82);border-top:0}
+footer .wordmark{color:var(--porcelain)}
+footer a:hover{color:var(--champagne)}
+footer .sep{background:var(--champagne)}
+/* "Diagnosticar mi clínica": solid, calm, no animation */
+.btn-diag{flex:none;background:var(--terracotta);color:#fff;padding:13px 22px;font-size:11.5px;letter-spacing:.12em;box-shadow:none}
+.btn-diag:hover{background:#7E3B2B}
+@media (max-width:1140px){.nav .btn-diag{display:inline-flex}}
+.lang-m{display:none}
+@media (min-width:1141px) and (max-width:1340px){.nav-links{gap:16px;font-size:11px}.nav .wrap{gap:12px}}
+@media (max-width:640px){
+  .nav .btn-diag{padding:10px 13px;font-size:10px;letter-spacing:.08em;margin-left:auto}
+  .nav .wordmark,.nav .brand .sep{display:none}
+  .nav .wrap > .lang{display:none}
+  .lang-m{display:flex;align-self:flex-start;margin:14px 0 4px}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+/* GEO page */
+.geo-page main{overflow-x:clip}
+.g-head{max-width:760px;margin-bottom:44px}
+.g-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.g-head .lead{margin-top:6px}
+.g-rose{background:linear-gradient(180deg,var(--rose),var(--porcelain))}
+.g-dark{background:var(--burgundy)}
+.g-dark .g-head .lead,.g-dark p{color:rgba(248,243,236,.88)}
+.sub-h{font-family:var(--head);font-weight:400;font-size:24px;margin:56px 0 18px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:#fff;border:1px solid var(--line-light)}
+.seg button{appearance:none;border:0;background:none;font:inherit;font-family:var(--ui);font-weight:700;font-size:13px;padding:9px 16px;border-radius:999px;color:var(--warm-gray);cursor:pointer}
+.seg button.on{background:var(--burgundy);color:#fff}
+.center-seg{display:flex;width:max-content;max-width:100%;margin:0 auto 40px;flex-wrap:wrap;justify-content:center}
+
+/* hero: sticky, scroll-driven */
+.hx{position:relative;height:calc(var(--n,6) * 55vh + 100vh);--p:0}
+.hx-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 0 46px;overflow:hidden}
+.hx-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hx-bg i{position:absolute;border-radius:50%;filter:blur(10px)}
+.hx-bg i:first-child{width:62vmax;height:62vmax;right:-18vmax;top:-22vmax;background:radial-gradient(circle,rgba(246,224,211,.95),transparent 65%);transform:translate3d(calc(var(--p) * -12vmax),calc(var(--p) * 10vmax),0)}
+.hx-bg i:last-child{width:44vmax;height:44vmax;left:-16vmax;bottom:-24vmax;background:radial-gradient(circle,rgba(113,60,71,.10),transparent 65%);transform:translate3d(calc(var(--p) * 10vmax),calc(var(--p) * -8vmax),0)}
+.hx-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:56px;align-items:center;width:100%}
+.hx-copy h1{font-family:var(--head);font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:1.04;margin:16px 0 14px;letter-spacing:0}
+.hx-lead{font-family:var(--serif);font-size:clamp(17px,1.6vw,20px);line-height:1.45;color:var(--warm-gray);margin:0 0 18px;max-width:46ch}
+.hx-copy h1 em{display:block;font-family:var(--serif);font-style:italic;color:var(--terracotta)}
+.hx-nums{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.hx-nums div{border:1px solid var(--line-light);background:rgba(255,255,255,.72);backdrop-filter:blur(6px);border-radius:18px;padding:12px 14px}
+.hx-nums b{display:block;font-family:var(--head);font-weight:400;font-size:clamp(30px,3.4vw,44px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.hx-nums span{display:block;font-size:12px;line-height:1.3;color:var(--warm-gray);margin-top:6px}
+.hx-nums .hx-zero{background:var(--burgundy);border-color:var(--burgundy)}
+.hx-nums .hx-zero b{color:var(--champagne);font-size:clamp(38px,4.4vw,58px)}
+.hx-nums .hx-zero span{color:rgba(248,243,236,.9)}
+.hx-rail{list-style:none;display:flex;gap:6px;padding:0;margin:0 0 6px;flex-wrap:wrap}
+.hx-rail button{appearance:none;border:0;background:none;cursor:pointer;padding:4px 0;display:grid;gap:6px;font:inherit;text-align:left;color:var(--warm-gray)}
+.hx-rail i{display:block;width:58px;height:3px;border-radius:3px;background:var(--line-light);position:relative;overflow:hidden}
+.hx-rail i::after{content:"";position:absolute;inset:0;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+.hx-rail .done i::after,.hx-rail .on i::after{transform:none}
+.hx-rail span{font-size:10.5px;font-weight:700;letter-spacing:.06em;white-space:nowrap}
+.hx-rail .on span{color:var(--burgundy)}
+.hx-chat{background:#fff;border:1px solid var(--line-light);border-radius:26px;box-shadow:0 40px 90px -40px rgba(63,33,39,.45);overflow:hidden;transform:perspective(1200px) rotateX(calc((.5 - var(--p)) * 4deg)) translateY(calc(var(--p) * -14px));transition:box-shadow .5s}
+.hx-chat.mine{box-shadow:0 40px 90px -36px rgba(113,60,71,.7),0 0 0 2px var(--burgundy)}
+.hx-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line-light);background:var(--porcelain)}
+.hx-av{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--terracotta);color:#fff;font-weight:800;font-size:13px}
+.hx-top b{display:block;font-size:14px;line-height:1.1}
+.hx-top small{font-size:11.5px;color:var(--warm-gray)}
+.hx-step{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--bronze);font-variant-numeric:tabular-nums}
+.hx-body{padding:16px 18px 18px;min-height:420px;display:flex;flex-direction:column}
+.hx-q{align-self:flex-end;max-width:90%;background:var(--rose);color:var(--ink);padding:11px 15px;border-radius:18px 18px 4px 18px;font-size:15px;min-height:44px}
+.hx-caret{display:inline-block;width:2px;height:1em;background:var(--burgundy);margin-left:2px;vertical-align:-2px;animation:hx-blink 1s steps(2) infinite}
+@keyframes hx-blink{50%{opacity:0}}
+.hx-meta{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--warm-gray);margin:14px 0 8px;min-height:18px}
+.hx-meta svg{width:15px;height:15px;color:var(--teal)}
+.hx-list{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.hx-list li{display:grid;grid-template-columns:1fr auto;gap:1px 10px;align-items:center;padding:9px 12px;border-radius:13px;border:1px solid var(--line-light);animation:hx-row .5s var(--ease) both;animation-delay:calc(var(--k) * 70ms)}
+@keyframes hx-row{from{opacity:0;transform:translateY(10px);filter:blur(4px)}}
+.hx-list .d{font-size:11.5px;font-weight:700;color:var(--teal)}
+.hx-list .tt{grid-column:1;font-size:13.5px;line-height:1.3}
+.hx-list .ty{grid-row:1/3;grid-column:2;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--rose);color:var(--bronze);white-space:nowrap}
+.hx-list .ty.abroad,.hx-list .ty.article,.hx-list .ty.school{background:#F1E9E1;color:var(--warm-gray)}
+.hx-list .ty.other{background:var(--burgundy);color:#fff}
+.hx-foot{margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13.5px;min-height:46px}
+.hx-foot .pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;padding:7px 12px;border-radius:999px;animation:hx-row .5s var(--ease) both;animation-delay:.4s}
+.hx-foot .fr{background:#F1E9E1;color:var(--ink)}
+.hx-foot .you{background:var(--burgundy);color:#fff}
+.hx-foot svg{width:16px;height:16px;flex:none}
+.hx-foot > svg{width:22px;height:22px;color:var(--burgundy)}
+.hx-foot > span{flex:1;min-width:0;animation:hx-row .5s var(--ease) both;animation-delay:.4s}
+.hx-foot b{color:var(--burgundy)}
+.mine .hx-foot{border-top:1px dashed var(--burgundy)}
+.hx-note .sm{display:none}
+@media (max-width:640px){.hx-note .sm{display:inline}}
+.hx-note{max-width:1180px;margin:14px auto 0;padding:0 20px;font-size:11.5px;color:var(--warm-gray);width:100%}
+.hx-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:grid;justify-items:center;gap:4px;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);opacity:calc(1 - var(--p) * 6)}
+.hx-hint i{width:1px;height:26px;background:linear-gradient(var(--bronze),transparent);animation:hx-drop 1.8s var(--ease) infinite}
+@keyframes hx-drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* load-in */
+.hx-in,.hx-chat{opacity:0;translate:0 22px;filter:blur(6px);transition:opacity .9s var(--ease),translate .9s var(--ease),filter .9s var(--ease),box-shadow .5s}
+.hx-ready .hx-in,.hx-ready .hx-chat{opacity:1;translate:none;filter:none}
+.hx-ready .hx-copy .hx-in:nth-child(2){transition-delay:.08s}.hx-ready .hx-copy .hx-in:nth-child(3){transition-delay:.16s}.hx-ready .hx-copy .hx-in:nth-child(4){transition-delay:.24s}.hx-ready .hx-copy .hx-in:nth-child(5){transition-delay:.32s}.hx-ready .hx-copy .hx-in:nth-child(6){transition-delay:.4s}.hx-ready .hx-chat{transition-delay:.2s}
+
+/* scroll motion: reversible reveals, word titles, parallax, nav */
+.rv{filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.rv.in{filter:none}
+.h-sec.rv{opacity:1;transform:none;filter:none}
+.h-sec .w{display:inline-block;opacity:0;transform:translateY(.45em);filter:blur(4px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease);transition-delay:calc(var(--i) * 45ms)}
+.h-sec.in .w{opacity:1;transform:none;filter:none}
+.g-head,.chart-box,.bubble,.qz-side,.m1-curve{translate:0 var(--py,0)}
+.nav{transition:transform .45s var(--ease),border-color .3s}
+.nav.hide{transform:translateY(-100%)}
+@media (prefers-reduced-motion:reduce){
+  .hx-in,.hx-chat,.h-sec .w,.rv{opacity:1!important;translate:none!important;transform:none!important;filter:none!important;transition:none!important}
+  .hx-list li,.hx-foot .pill,.hx-foot > span,.hx-caret,.hx-hint i{animation:none}
+}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.why-c{background:#fff;border:1px solid var(--line-light);border-radius:var(--r);padding:26px}
+.why-c .ic,.cp .ic{width:44px;height:44px;border-radius:13px;background:var(--rose);color:var(--burgundy);display:grid;place-items:center;margin-bottom:14px}
+.why-c .ic svg,.cp .ic svg{width:22px;height:22px}
+.why-c h3{font-size:22px;margin:0 0 8px}
+.why-c p{margin:0;color:var(--warm-gray);font-size:15px}
+.why-c .src{margin-top:12px;font-size:12.5px}
+.why-c .src a{color:var(--terracotta);font-weight:600}
+
+/* how */
+.pillars4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pil{border:1px solid var(--line-dark);border-radius:var(--r);padding:24px;background:rgba(255,255,255,.04)}
+.pil .n{font-family:var(--head);font-size:40px;color:var(--champagne);line-height:1}
+.pil h3{font-size:24px;color:#F8F3EC;margin:12px 0 8px}
+.pil p{margin:0;font-size:14.5px}
+.process{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.process::before{content:"";position:absolute;left:10%;right:10%;top:22px;border-top:1px dashed rgba(240,210,139,.5)}
+.process li{text-align:center;padding:0 10px;position:relative}
+.process span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--champagne);color:var(--wine);font-weight:800}
+.process b{display:block;font-family:var(--head);font-weight:400;font-size:20px;color:#F8F3EC}
+.process p{margin:6px 0 0;font-size:13.5px}
+
+/* opportunities */
+.opp{background:#fff;border:1px solid var(--line-light);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.opp-ctrl{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pills button{appearance:none;border:1px solid var(--line-light);background:var(--porcelain);font:inherit;font-size:13px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer;color:var(--ink)}
+.pills button.on{background:var(--burgundy);border-color:var(--burgundy);color:#fff}
+.op-h,.op-r{display:grid;grid-template-columns:1fr 130px 90px;gap:12px;align-items:center;padding:12px 8px}
+.op-h{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze);border-bottom:1px solid var(--line-light)}
+.op-r + .op-r{border-top:1px solid var(--line-light)}
+.op-r .q{font-family:var(--serif);font-size:18px}
+.op-r .c{font-size:13px;color:var(--warm-gray)}
+.op-r .i{font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;justify-self:start}
+.op-r .i.alta{background:rgba(46,100,94,.12);color:var(--teal)}
+.op-r .i.media{background:var(--rose);color:var(--bronze)}
+.opp-types{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ot{background:#fff;border:1px solid var(--line-light);border-radius:18px;padding:18px}
+.ot-h{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ot-h b{font-family:var(--head);font-weight:400;font-size:19px}
+.ot-h span{font-weight:800;color:var(--teal)}
+.ot i{display:block;height:6px;border-radius:6px;background:var(--line-light);margin:10px 0;overflow:hidden;position:relative}
+.ot i::after{content:"";position:absolute;inset:0;width:0;background:var(--teal);border-radius:6px;transition:width 1.2s var(--ease)}
+.ot.go i::after{width:var(--v)}
+.ot p{margin:0;font-size:14px;color:var(--warm-gray)}
+
+/* month 1 */
+.g-m1{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.m1-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dg{background:#fff;border:1px solid var(--line-light);border-radius:18px;padding:18px;display:grid;grid-template-columns:auto 1fr;gap:14px}
+.dg .ic{width:44px;height:44px;border-radius:13px;background:var(--rose);color:var(--burgundy);display:grid;place-items:center}
+.dg .ic svg{width:22px;height:22px}
+.dg .wk{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:2px}
+.dg b{font-family:var(--head);font-weight:400;font-size:18px}
+.dg p{margin:4px 0 0;font-size:13.5px;color:var(--warm-gray)}
+.m1-curve{margin-top:22px;padding:16px 18px;border-radius:16px;background:#fff;border:1px solid var(--line-light);display:grid;gap:10px}
+.m1-curve b{font-family:var(--head);font-weight:400;font-size:20px}
+.m1-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.m1-steps div{border-radius:12px;padding:10px;background:var(--porcelain);font-size:13px;color:var(--ink)}
+.m1-steps span{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--bronze)}
+.m1-steps i{display:block;height:5px;border-radius:5px;background:var(--line-light);margin-top:8px;overflow:hidden}
+.m1-steps i::after{content:"";display:block;height:100%;width:var(--w);background:var(--teal);border-radius:5px}
+
+/* reviews */
+.rev{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:rv}
+.rev-s{background:#fff;border:1px solid var(--line-light);border-radius:18px;padding:18px;position:relative}
+.rev-s .t{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.rev-s b{display:block;font-family:var(--head);font-weight:400;font-size:19px;line-height:1.2}
+.rev-s p{margin:6px 0 0;font-size:13.5px;color:var(--warm-gray)}
+.rev-msg{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.bubble{background:#fff;border:1px solid var(--line-light);border-radius:20px;padding:18px}
+.bubble .from{font-size:12px;font-weight:700;color:var(--warm-gray);margin-bottom:8px}
+.bubble .txt{background:#E7F3EF;border-radius:14px 14px 14px 4px;padding:12px 14px;font-size:14.5px;line-height:1.5}
+.stars{display:flex;gap:6px;margin-top:10px}
+.stars span{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--porcelain);border:1px solid var(--line-light);font-size:13px;font-weight:800;color:var(--ink)}
+.rev-rules{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.rev-rules li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:14.5px;color:var(--ink)}
+.rev-rules svg{width:20px;height:20px;color:var(--teal);margin-top:1px}
+
+/* plan timeline */
+.tl{position:relative;max-width:820px;margin:0 auto;padding-left:60px}
+.tl-line{position:absolute;left:21px;top:8px;bottom:8px;width:2px;background:var(--line-light);border-radius:2px}
+.tl-line i{position:absolute;left:0;top:0;width:100%;height:0;background:var(--teal);border-radius:2px;transition:height .15s linear}
+.tl-i{position:relative;padding:0 0 26px}
+.tl-i .dot{position:absolute;left:-60px;top:0;width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid var(--line-light);display:grid;place-items:center;font-weight:800;color:var(--warm-gray);transition:all .35s}
+.tl-i.on .dot{background:var(--teal);border-color:var(--teal);color:#fff}
+.tl-c{background:#fff;border:1px solid var(--line-light);border-radius:18px;padding:18px 20px;opacity:.55;transform:translateX(8px);transition:opacity .4s,transform .4s,box-shadow .4s}
+.tl-i.on .tl-c{opacity:1;transform:none;box-shadow:0 18px 36px -28px rgba(63,33,39,.5)}
+.tl-c .tl-m{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta)}
+.tl-c h3{font-size:22px;margin:4px 0 8px}
+.tl-c ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14.5px;color:var(--warm-gray)}
+
+/* KPIs */
+.kpi-feature{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.kf{position:relative;text-align:center;padding:22px;border:1px solid var(--line-dark);border-radius:var(--r);background:rgba(255,255,255,.04)}
+.kf svg{width:130px;height:130px;transform:rotate(-90deg)}
+.kf circle{fill:none;stroke-width:10}
+.kf .trk{stroke:rgba(248,243,236,.15)}
+.kf .bar{stroke:var(--champagne);stroke-linecap:round;transition:stroke-dashoffset 1.6s var(--ease)}
+.kf-c{position:absolute;left:0;right:0;top:66px;display:flex;justify-content:center;align-items:baseline;color:#F8F3EC}
+.kf-c b{font-family:var(--head);font-weight:400;font-size:38px}
+.kf-c span{font-size:16px;margin-left:2px}
+.kf p{margin:10px 0 0;color:#F8F3EC;font-weight:600}
+.kf small{display:block;font-weight:400;font-size:12px;color:rgba(248,243,236,.75)}
+.kpi-tbl{background:#fff;color:var(--ink);border-radius:20px;padding:6px 18px;overflow-x:auto}
+.kt-h,.kt-r{display:grid;grid-template-columns:1.1fr 1.6fr .8fr .8fr;gap:14px;align-items:start;padding:12px 0;min-width:680px}
+.kt-h{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze);border-bottom:1px solid var(--line-light)}
+.kt-r + .kt-r{border-top:1px solid var(--line-light)}
+.kt-r b{font-family:var(--head);font-weight:400;font-size:17px}
+.kt-r span{font-size:14px;color:var(--ink)}
+.kt-r small{display:block;margin-top:3px;font-size:12px;color:var(--warm-gray)}
+.kt-r .t{font-weight:700;color:var(--teal)}
+.g-dark .kpi-tbl p{color:var(--warm-gray)}
+.g-dark .fine{color:rgba(248,243,236,.75)}
+
+/* tools */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tg{background:#fff;border:1px solid var(--line-light);border-radius:18px;padding:20px}
+.tg h3{font-size:19px;margin:0 0 12px}
+.chips-x{display:flex;flex-wrap:wrap;gap:6px}
+.chips-x span{font-size:13px;padding:7px 12px;border-radius:999px;background:var(--porcelain);border:1px solid var(--line-light)}
+
+/* results */
+.g-res{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.res-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.res-list li{background:#fff;border:1px solid var(--line-light);border-radius:16px;padding:14px 16px;font-size:15px}
+.res-list b{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);margin-bottom:4px}
+.chart-box{background:#fff;border:1px solid var(--line-light);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.cb-h{display:flex;gap:18px;font-size:13px;font-weight:600;margin-bottom:6px}
+.cb-h i{display:inline-block;width:18px;height:3px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.cb-h .l1{background:var(--teal)}.cb-h .l2{background:var(--burgundy)}
+#res-chart{width:100%;height:auto}
+#res-chart .grid line{stroke:var(--line-light);stroke-dasharray:3 4}
+#res-chart text{font-size:11px;fill:var(--warm-gray);font-family:var(--ui)}
+#res-chart .grid text{text-anchor:end}
+#res-chart .xl text{text-anchor:middle}
+#res-chart path{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+#res-chart .c1{stroke:var(--teal)}
+#res-chart .c2{stroke:var(--burgundy);stroke-dasharray:0}
+
+/* pricing */
+.plans3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.pl{position:relative;background:#fff;border:1px solid var(--line-light);border-radius:24px;padding:28px 24px;display:flex;flex-direction:column;gap:6px}
+.pl.pop{border:2px solid var(--burgundy);box-shadow:0 30px 60px -36px rgba(113,60,71,.7);transform:translateY(-8px)}
+.pl-b{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--burgundy);color:#fff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.pl h3{font-size:28px;margin:0}
+.pl .for{margin:0;font-size:13.5px;color:var(--warm-gray)}
+.price{display:flex;align-items:baseline;gap:4px;margin:14px 0 2px}
+.price b{font-family:var(--head);font-weight:400;font-size:46px;line-height:1;color:var(--burgundy)}
+.price span{color:var(--warm-gray)}
+.price s{font-size:16px;color:var(--warm-gray);margin-left:6px}
+.pl-off{display:inline-block;align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;padding:4px 10px;border-radius:999px;background:rgba(46,100,94,.12);color:var(--teal)}
+.pl-tot{margin:0 0 12px;font-size:12.5px;color:var(--warm-gray)}
+.pl .big{font-family:var(--head);font-size:30px;color:var(--burgundy);line-height:1;margin:10px 0 0}
+.pl .big small{font-family:var(--ui);font-size:13px;color:var(--warm-gray);margin-left:6px}
+.pl ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:8px;font-size:14px}
+.pl li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.pl li::before{content:"✓";color:var(--teal);font-weight:800}
+.pl .btn{margin-top:auto;width:100%}
+.cmp{margin-top:36px;background:#fff;border:1px solid var(--line-light);border-radius:20px;padding:8px 18px;overflow-x:auto}
+.cmp-h,.cmp-r{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:10px;align-items:center;padding:10px 0;min-width:620px}
+.cmp-h{font-family:var(--head);font-size:19px;border-bottom:1px solid var(--line-light)}
+.cmp-h span,.cmp-r span:not(:first-child){text-align:center}
+.cmp-cat{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);padding:16px 0 4px;min-width:620px}
+.cmp-r{font-size:14px;border-top:1px solid var(--line-light)}
+.cmp-r .y{color:var(--teal);font-weight:800}
+.cmp-r .n{color:var(--line-dark)}
+
+/* ROI */
+.g-roi{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+.roi{background:#fff;color:var(--ink);border-radius:24px;padding:24px;display:grid;gap:14px}
+.roi label{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--ink)}
+.roi select{font:inherit;font-size:15px;padding:11px 12px;border-radius:12px;border:1px solid var(--line-light);background:#fff;color:var(--ink)}
+.roi input[type=range]{accent-color:var(--burgundy)}
+.roi output{font-family:var(--head);font-size:20px;color:var(--burgundy)}
+.roi-out{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:6px;border-top:1px solid var(--line-light)}
+.roi-out div{background:var(--porcelain);border-radius:14px;padding:12px}
+.roi-out span{display:block;font-size:11.5px;color:var(--warm-gray)}
+.roi-out b{font-family:var(--head);font-weight:400;font-size:24px}
+.roi-out .ok b{color:var(--teal)}
+.roi-out .lo b{color:var(--terracotta)}
+.roi-out p{grid-column:1/-1;margin:4px 0 0;font-size:15px;color:var(--ink)}
+.roi .fine{color:var(--warm-gray);margin:0}
+
+/* GEO intake questionnaire */
+.qz{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+.qz>*,.hx-grid>*,.g-m1>*,.g-res>*,.g-roi>*,.opp,.rev-msg>*{min-width:0}
+.qz-steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.qz-steps button{appearance:none;border:1px solid var(--line-light);background:#fff;font:inherit;font-size:12.5px;font-weight:700;padding:8px 13px;border-radius:999px;color:var(--warm-gray);cursor:pointer;display:flex;gap:6px;align-items:center}
+.qz-steps button i{font-style:normal;font-size:11px;background:var(--porcelain);border-radius:999px;padding:1px 7px}
+.qz-steps button.on{background:var(--burgundy);border-color:var(--burgundy);color:#fff}
+.qz-steps button.on i{background:rgba(255,255,255,.18)}
+.qz-card{background:#fff;border:1px solid var(--line-light);border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+.qz-q{padding:16px 0;border-top:1px solid var(--line-light)}
+.qz-q:first-child{border-top:0;padding-top:0}
+.qz-q h3{font-family:var(--ui);font-weight:700;font-size:15.5px;letter-spacing:0;margin:0 0 4px;color:var(--ink)}
+.qz-q .hint{display:block;font-size:12.5px;color:var(--warm-gray);margin-bottom:10px}
+.qz-q .multi{font-size:11px;font-weight:700;color:var(--bronze);margin-left:6px}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opts button{appearance:none;border:1px solid var(--line-light);background:var(--porcelain);font:inherit;font-size:13.5px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer;color:var(--ink);transition:background .2s,border-color .2s}
+.opts button:hover{border-color:var(--burgundy)}
+.opts button.on{background:var(--burgundy);border-color:var(--burgundy);color:#fff}
+.qz-in{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qz-in label{display:grid;gap:5px;font-size:12.5px;font-weight:700;color:var(--ink)}
+.qz-in input{font:inherit;font-size:15px;padding:11px 13px;border-radius:12px;border:1px solid var(--line-light);background:#fff;color:var(--ink);outline:0;width:100%}
+.qz-in input:focus{border-color:var(--burgundy);box-shadow:0 0 0 4px rgba(113,60,71,.12)}
+.qz-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.qz-side{position:sticky;top:96px;background:var(--burgundy);color:var(--porcelain);border-radius:24px;padding:22px}
+.qz-side h3{font-size:24px;color:var(--porcelain);margin:0 0 4px}
+.qz-side .sub{margin:0 0 14px;font-size:13.5px;color:rgba(248,243,236,.85)}
+.qz-meter{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.qz-meter i{flex:1;height:8px;border-radius:8px;background:rgba(248,243,236,.18);overflow:hidden}
+.qz-meter i::after{content:"";display:block;height:100%;width:var(--w,0%);background:var(--champagne);border-radius:8px;transition:width .4s var(--ease)}
+.qz-meter b{font-family:var(--head);font-weight:400;font-size:26px;color:var(--porcelain);min-width:56px;text-align:right}
+.qz-list{list-style:none;padding:0;margin:0;display:grid;gap:8px;max-height:420px;overflow:auto}
+.qz-list li{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.45;color:var(--porcelain)}
+.qz-list li b{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--champagne);margin-bottom:2px}
+.qz-list .empty{background:none;border-style:dashed;color:rgba(248,243,236,.8)}
+.qz-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.qz-acts .btn{padding:12px 10px;font-size:11px;letter-spacing:.08em;width:100%}
+.qz-acts .btn-light{grid-column:1/-1}
+.qz-acts .btn-ghost{background:transparent;color:var(--porcelain);border:1px solid rgba(248,243,236,.5)}
+.qz-ok{min-height:1.2em;font-size:12.5px;color:var(--champagne);margin:8px 0 0}
+
+/* compliance + cta */
+.comp{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cp{background:#fff;border:1px solid var(--line-light);border-radius:18px;padding:20px}
+.cp b{display:block;font-family:var(--head);font-weight:400;font-size:19px}
+.cp p{margin:6px 0 0;font-size:14px;color:var(--warm-gray)}
+.g-cta{grid-template-columns:1.2fr .8fr}
+.g-cta-btns{display:grid;gap:12px;justify-items:stretch}
+.g-cta-btns .btn{width:100%}
+.geo-page .cta{padding-top:90px}
+
+@media (max-width:980px){
+  .g-m1,.g-res,.g-roi,.qz{grid-template-columns:1fr;gap:34px}
+  .hx{height:calc(var(--n,6) * 50vh + 100vh)}
+  .hx-grid{grid-template-columns:1fr;gap:14px}
+  .hx-stage{padding:80px 0 30px;justify-content:flex-start}
+  .hx-copy h1{font-size:clamp(26px,6.6vw,40px);margin:8px 0 8px}
+  .hx-lead{font-size:15px;margin-bottom:10px}
+  .hx-nums{margin-bottom:10px}
+  .hx-rail,.hx-copy .g-ctas,.hx-hint{display:none}
+  .hx-body{min-height:0}
+  .hx-note{margin-top:10px}
+  .qz-side{position:static}
+  .rev{grid-template-columns:1fr 1fr}
+  .rev-msg{grid-template-columns:1fr}
+  .pillars4{grid-template-columns:1fr 1fr}
+  .process{grid-template-columns:1fr;gap:16px}.process::before{display:none}
+  .process li{display:grid;grid-template-columns:44px 1fr;text-align:left;gap:4px 14px}.process span{margin:0;grid-row:span 2}
+  .opp-types,.tools,.plans3,.kpi-feature{grid-template-columns:1fr}
+  .comp{grid-template-columns:1fr 1fr}
+  .pl.pop{transform:none}
+  .g-cta{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .why,.m1-grid,.pillars4,.comp,.rev,.qz-in{grid-template-columns:1fr}
+  .m1-steps{grid-template-columns:1fr}
+  .qz-card{padding:18px}
+  .qz-steps{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -20px 14px;padding:0 20px 4px}
+  .qz-steps button{flex:none}
+  .op-h{display:none}
+  .op-r{grid-template-columns:1fr auto;gap:6px}
+  .op-r .c{grid-column:1;grid-row:2}
+  .op-r .i{grid-row:1/3;grid-column:2;align-self:center}
+  .op-r .q{font-size:16.5px}
+  .roi-out{grid-template-columns:1fr 1fr}
+  .tl{padding-left:52px}.tl-i .dot{left:-52px;width:38px;height:38px}.tl-line{left:18px}
+  .hx-nums{gap:6px}.hx-nums div{padding:9px 10px;border-radius:14px}.hx-nums span{font-size:10.5px}
+  .hx-list li:nth-child(n+4){display:none}
+  .mine .hx-list li:nth-child(5){display:grid}
+  .hx-q{font-size:14px}
+  .hx-body{padding:12px 14px 14px}
+  .hx-top{padding:10px 14px}
+  .hx-note .lg{display:none}
+  .hx-foot{flex-wrap:nowrap}.hx-foot .pill{font-size:11px;padding:6px 10px;white-space:nowrap}
+}
+@media (max-width:640px){
+  .pills{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px 4px}
+  .pills button{flex:none}
+  .opp{padding:16px}
+}
+</style>
+</head>
+<body class="geo-page">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2.5h7.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/></symbol>
+    <symbol id="i-face" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-6.5 3.3-6.5 8 0 5 3 10 6.5 10s6.5-5 6.5-10c0-4.7-2.5-8-6.5-8z"/><path d="M9 10.5c.6-.4 1.4-.4 2 0M13 10.5c.6-.4 1.4-.4 2 0M12 12v3M10.5 17.5c.9.5 2.1.5 3 0"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17 9 11.5l3.5 3.5 8-8"/><path d="M15 7h5.5v5.5"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12.5H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V20H4z"/><path d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.4-3.6 4.2-5.2 7.5-5.2s6.1 1.6 7.5 5.2"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="8.5" r="3.3"/><path d="M3 19.5c1-3 3.3-4.5 6-4.5s5 1.5 6 4.5M15.5 5.5a3.2 3.2 0 0 1 0 6.2M17.5 15.3c1.7.6 2.9 2 3.5 4.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16.3 9.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14"/><path d="M21 3 14.5 21l-4.5-7-7-4.5z"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l3 3-3 3"/><path d="M4 11V9a3 3 0 0 1 3-3h13M7 21l-3-3 3-3"/><path d="M20 13v2a3 3 0 0 1-3 3H4"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+  </defs>
+</svg>
+<div class="pagebar" id="pagebar"></div>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Clinic Management Tech, inicio" data-en-label="Clinic Management Tech, home"><i class="logo"></i><span class="sep"></span><span class="wordmark">Clinic<br>Management<br>Tech</span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Principal" data-en-label="Main">
+      <a href="#como" data-en="How we work">Cómo trabajamos</a>
+      <a href="#mes-1" data-en="Month 1">Mes 1</a>
+      <a href="#plan" data-en="Plan">Plan</a>
+      <a href="#resenas" data-en="Reviews">Reseñas</a>
+      <a href="#cuestionario" data-en="Questionnaire">Cuestionario</a>
+      <a href="#precios" data-en="Pricing">Precios</a>
+      <a href="index.html" data-en="Platform">Plataforma</a>
+      <div class="lang lang-m" role="group" aria-label="Idioma" data-en-label="Language"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma" data-en-label="Language"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>
+    <a class="btn btn-diag" href="diagnostico.html" data-en="Diagnose my clinic">Diagnosticar mi clínica</a>
+    <button class="burger" id="burger" aria-label="Abrir menú" data-en-label="Open menu" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+  </div>
+</header>
+
+<main id="geo-root"></main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><i class="logo" style="width:26px;height:36px"></i><span class="sep"></span><span class="wordmark">Clinic<br>Management<br>Tech</span></a>
+    <nav aria-label="Pie de página" data-en-label="Footer"><a href="index.html" data-en="Platform">Plataforma</a><a href="#plan" data-en="Plan">Plan</a><a href="#cuestionario" data-en="Questionnaire">Cuestionario</a><a href="#precios" data-en="Pricing">Precios</a><a href="diagnostico.html" data-en="Diagnose my clinic">Diagnosticar mi clínica</a></nav>
+    <span>© <span id="yr"></span> Clinic Management Tech</span>
+  </div>
+</footer>
+
+<script>
+/* Clinic Management Tech · GEO para clínicas de medicina estética en Puerto Rico
+   Contenido en español e inglés: S('español', 'English'). Edita precios en PLANS y contactos en CFG. */
+(() => {
+  'use strict';
+  const CFG = { EMAIL: '', WHATSAPP: '' }; // e.g. EMAIL: 'hola@clinicmanagementech.com', WHATSAPP: '17875550000'
+  const lang = window.CMT_LANG === 'en' ? 'en' : 'es';
+  const S = (es, en) => (lang === 'es' ? es : en);
+  const $ = (q, r = document) => r.querySelector(q);
+  const $$ = (q, r = document) => [...r.querySelectorAll(q)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ico = (id) => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
+  const usd = (n) => '$' + Math.round(n).toLocaleString('en-US');
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+  const root = $('#geo-root');
+
+  /* ----- page chrome: title, meta, nav/footer labels, language switch ----- */
+  document.title = S('GEO para clínicas de medicina estética en Puerto Rico | Clinic Management Tech', 'GEO for aesthetic medicine clinics in Puerto Rico | Clinic Management Tech');
+  const md = $('meta[name="description"]');
+  if (md) md.content = S('GEO para clínicas de medicina estética en Puerto Rico: valor desde el mes 1, visibilidad medida en ChatGPT, Gemini y Claude, cuestionario de arranque, KPIs y planes.', 'GEO for aesthetic medicine clinics in Puerto Rico: value from month 1, visibility measured on ChatGPT, Gemini and Claude, onboarding questionnaire, KPIs and plans.');
+  if (lang === 'en') $$('[data-en]').forEach((el) => { el.textContent = el.dataset.en; });
+  $$('[data-en-label]').forEach((el) => { if (lang === 'en') el.setAttribute('aria-label', el.dataset.enLabel); });
+  $$('[data-lang]').forEach((b) => {
+    b.classList.toggle('on', b.dataset.lang === lang);
+    b.setAttribute('aria-pressed', b.dataset.lang === lang);
+    b.addEventListener('click', () => {
+      if (b.dataset.lang === lang) return;
+      try { localStorage.setItem('cmt-lang', b.dataset.lang); } catch (e) {}
+      const u = new URL(location.href); u.searchParams.set('lang', b.dataset.lang); location.href = u.toString();
+    });
+  });
+
+  /* ===================================================== data */
+  // Prospect this page is prepared for.
+  const CLIENT = { town: 'Carolina' }; // searches and defaults use this town
+  // Real searches run with Claude's web search on 10 Nov 2026 (no account, no location).
+  // Each step: query, links returned, Fresha links, a selection of results in order [domain, title, type].
+  const TYPE = { dir: S('Directorio', 'Directory'), news: S('Noticia', 'News'), abroad: S('Otro país', 'Other country'), school: S('Escuela', 'School'), other: S('Otro negocio', 'Other business'), site: S('Sitio propio', 'Own site'), article: S('Artículo', 'Article') };
+  const HX = [
+    { tag: S('Bótox · EN', 'Botox · EN'), q: 'best med spa Botox Carolina Puerto Rico', n: 17, fr: 12, r: [
+      ['fresha.com', S('Medspas en San Juan', 'Medspas in San Juan'), 'dir'],
+      ['fresha.com', S('Medspas en Oriente, San Juan', 'Medspas in Oriente, San Juan'), 'dir'],
+      ['fresha.com', S('Medspas en Parque Isla Verde, Carolina', 'Medspas in Parque Isla Verde, Carolina'), 'dir'],
+      ['booksy.com', 'Skinology Med Spa · Carolina', 'dir'],
+      ['mexiconewsdaily.com', S('Los mejores med spas de Puerto Vallarta', 'Puerto Vallarta’s best med spas'), 'abroad']] },
+    { tag: S('Rellenos · ES', 'Fillers · ES'), q: 'dónde ponerse bótox o relleno de labios en Carolina Puerto Rico', n: 15, fr: 0, r: [
+      ['realself.com', 'Alma M. Cruz, MD · Carolina', 'dir'],
+      ['biote.com', S('Proveedores de terapia hormonal · Isla Verde', 'Hormone therapy providers · Isla Verde'), 'dir'],
+      ['yocale.com', 'Numed Medical Aesthetics Center', 'dir'],
+      ['empiremedicaltraining.com', S('Curso de rellenos de labios en Puerto Rico', 'Lip filler course in Puerto Rico'), 'school'],
+      ['fda.gov', S('Qué hacer y qué no con los rellenos dérmicos', 'Dermal filler do’s and don’ts'), 'article']] },
+    { tag: S('Skincare · EN', 'Skincare · EN'), q: 'facial skincare Isla Verde Carolina Puerto Rico hydrafacial', n: 15, fr: 10, r: [
+      ['fresha.com', S('Faciales en Frailes, Guaynabo', 'Facials in Frailes, Guaynabo'), 'dir'],
+      ['fresha.com', S('Faciales en Bayola, San Juan', 'Facials in Bayola, San Juan'), 'dir'],
+      ['sites.google.com', S('Spa estético · servicios y precios', 'Aesthetics spa · services and rates'), 'site'],
+      ['fresha.com', S('Faciales en Quintas de Country Club, Carolina', 'Facials in Quintas de Country Club, Carolina'), 'dir'],
+      ['garzablancaresort.com', S('HydraFacial en Puerto Vallarta', 'HydraFacial in Puerto Vallarta'), 'abroad']] },
+    { tag: S('Melasma · ES', 'Melasma · ES'), q: 'tratamiento para melasma y manchas Carolina Puerto Rico', n: 17, fr: 0, r: [
+      ['imfarmacias.es', S('Tipos de manchas en la piel', 'Types of skin spots'), 'abroad'],
+      ['observador.cr', S('Cómo reducir las manchas en la piel', 'How to reduce skin spots'), 'abroad'],
+      ['farmatodo.com.co', S('Melasma: tratamiento y recomendaciones', 'Melasma: treatment and tips'), 'abroad'],
+      ['topdoctors.mx', S('¿Qué hago si tengo melasma?', 'What to do about melasma'), 'abroad'],
+      ['extra.ec', S('Tratamientos para el melasma', 'Melasma treatments'), 'abroad']] },
+    { tag: S('Clínica · ES', 'Clinic · ES'), q: 'clínica de medicina estética en Carolina Puerto Rico', n: 12, fr: 1, r: [
+      ['metro.pr', S('Médicos rechazan limitar prácticas estéticas', 'Doctors oppose limiting aesthetic practice'), 'news'],
+      ['evolus.com', 'La Médica Clinic · Dra. Mónica Molina', 'dir'],
+      ['doctoralia.es', S('Terapeuta en Molina de Segura, España', 'Therapist in Molina de Segura, Spain'), 'abroad'],
+      ['biote.com', S('Proveedor de terapia hormonal · Villa Carolina', 'Hormone therapy provider · Villa Carolina'), 'dir'],
+      ['doctoralia.es', S('Clínica de medicina estética en España', 'Aesthetic clinic in Spain'), 'abroad']] }
+  ];
+  const HX_TOTAL = HX.reduce((t, h) => t + h.n, 0), HX_FR = HX.reduce((t, h) => t + h.fr, 0);
+
+  const WHY = [
+    { ic: 'i-chat', t: S('Tus pacientes ya le preguntan a la IA', 'Your patients already ask AI'),
+      d: S('Antes de escribir por WhatsApp, comparan clínicas en ChatGPT, Gemini o Claude. La IA responde con pocos nombres. Si no estás ahí, no te consideran.', 'Before messaging on WhatsApp, they compare clinics in ChatGPT, Gemini or Claude. AI answers with a few names. If you are not there, you are not considered.') },
+    { ic: 'i-globe', t: S('Hoy ganan los directorios', 'Today, directories win'),
+      d: S(`En ${HX.length} búsquedas sobre estética y skincare en Carolina, ${HX_FR} de ${HX_TOTAL} enlaces fueron Fresha. El resto: Booksy, RealSelf, cursos y clínicas de otros países.`, `In ${HX.length} searches about aesthetics and skincare in Carolina, ${HX_FR} of ${HX_TOTAL} links were Fresha. The rest: Booksy, RealSelf, courses and clinics abroad.`) },
+    { ic: 'i-check', t: S('La confianza será decisiva', 'Trust will decide'),
+      d: S('El Senado evalúa el P. del S. 971 para regular servicios estéticos y DACO reconoció quejas por publicidad engañosa. Las clínicas que demuestren licencias y médicos responsables tendrán ventaja, también ante la IA.', 'The Senate is reviewing Bill P. del S. 971 to regulate aesthetic services, and DACO acknowledged complaints about misleading ads. Clinics that show licenses and responsible physicians will stand out, also to AI.'),
+      src: [['AmSpa · P. del S. 971', 'https://www.americanmedspa.org/news/puerto-rico-senate-considers-comprehensive-regulation-of-aesthetic-and-med-spa-services/'], ['Metro PR · DACO', 'https://www.metro.pr/noticias/2026/03/17/daco-admite-falta-de-intervencion-en-comercios-que-ofrecen-servicios-esteticos-con-publicidad-enganosa/']] },
+    { ic: 'i-spark', t: S('La IA cita sitios web, no solo anuncios', 'AI cites websites, not just ads'),
+      d: S('En un estudio de BrightLocal, el 58% de las fuentes que ChatGPT citó en búsquedas locales fueron sitios de los propios negocios. ChatGPT parte de resultados de Bing; Gemini, del índice de Google.', 'In a BrightLocal study, 58% of the sources ChatGPT cited in local searches were the businesses’ own websites. ChatGPT starts from Bing results; Gemini, from Google’s index.'),
+      src: [['BrightLocal', 'https://brightlocal.com/research/uncovering-chatgpt-search-sources/'], ['Search Engine Land', 'https://searchengineland.com/how-does-chatgpt-conduct-local-searches-454894']] }
+  ];
+
+  const PILLARS = [
+    { n: '01', t: S('Encontrable', 'Findable'), d: S('Que Google, Bing y los rastreadores de IA lean tu sitio: indexación, velocidad, datos estructurados y acceso para GPTBot, OAI-SearchBot, ClaudeBot y Googlebot.', 'Google, Bing and AI crawlers can read your site: indexing, speed, structured data and access for GPTBot, OAI-SearchBot, ClaudeBot and Googlebot.') },
+    { n: '02', t: S('Entendible', 'Understandable'), d: S('Cada tratamiento, médico, precio orientativo y municipio explicado en páginas claras que una IA puede resumir y citar.', 'Every treatment, doctor, price range and town explained on clear pages that AI can summarize and cite.') },
+    { n: '03', t: S('Confiable', 'Trustworthy'), d: S('Licencias médicas visibles, médicos con nombre, reseñas reales y menciones en medios de Puerto Rico.', 'Visible medical licenses, named doctors, real reviews and mentions in Puerto Rico media.') },
+    { n: '04', t: S('Recomendable', 'Recommendable'), d: S('Respuestas directas a las preguntas reales de tus pacientes, en español y en inglés, para cada municipio que atiendes.', 'Direct answers to your patients’ real questions, in Spanish and English, for every town you serve.') }
+  ];
+  const PROCESS = [
+    [S('Medir', 'Measure'), S('En la semana 1 vemos dónde apareces en ChatGPT, Gemini y Claude.', 'In week 1 we see where you appear on ChatGPT, Gemini and Claude.')],
+    [S('Corregir', 'Fix'), S('Desde la semana 1 arreglamos fichas, datos y base técnica.', 'From week 1 we fix listings, data and technical base.')],
+    [S('Publicar', 'Publish'), S('Cada mes publicamos el contenido de tu plan.', 'Every month we publish your plan’s content.')],
+    [S('Amplificar', 'Amplify'), S('Reseñas automáticas, directorios y menciones.', 'Automated reviews, directories and mentions.')],
+    [S('Ajustar', 'Adjust'), S('Repetimos las mismas preguntas cada mes y ajustamos.', 'We repeat the same questions every month and adjust.')]
+  ];
+
+  const TOWNS = [
+    { n: 'San Juan · Condado', en: true }, { n: 'Guaynabo', en: false }, { n: 'Dorado', en: true },
+    { n: 'Carolina · Isla Verde', en: true }, { n: 'Bayamón', en: false }, { n: 'Caguas', en: false },
+    { n: 'Ponce', en: false }, { n: 'Mayagüez', en: false }, { n: 'Humacao · Palmas del Mar', en: true }
+  ];
+  const HOME = Math.max(0, TOWNS.findIndex((t) => t.n.startsWith(CLIENT.town)));
+  const PROMPTS = [
+    ['tx', 'alta', '¿Dónde me pongo bótox en {t}?', 'Where can I get Botox in {t}?'],
+    ['tx', 'alta', 'Mejor clínica para relleno de labios en {t}', 'Best clinic for lip filler in {t}'],
+    ['price', 'alta', '¿Cuánto cuesta el ácido hialurónico en {t}?', 'How much does hyaluronic filler cost in {t}?'],
+    ['trust', 'alta', 'Médico licenciado para tratamientos estéticos en {t}', 'Licensed doctor for aesthetic treatments in {t}'],
+    ['cond', 'media', 'Tratamiento para melasma cerca de {t}', 'Melasma treatment near {t}'],
+    ['comp', 'media', 'Morpheus8 o láser CO2: ¿qué clínica en {t} lo hace bien?', 'Morpheus8 or CO2 laser: which clinic in {t} does it well?'],
+    ['tour', 'media', 'Med spa en {t} para turistas', 'Med spa in {t} for tourists'],
+    ['cond', 'media', 'Clínica para manchas y acné en {t} con dermatólogo', 'Clinic for dark spots and acne in {t} with a dermatologist']
+  ];
+  const CAT = { tx: S('Tratamiento', 'Treatment'), price: S('Precio', 'Price'), trust: S('Confianza', 'Trust'), cond: S('Condición', 'Condition'), comp: S('Comparativa', 'Comparison'), tour: S('Turismo', 'Tourism') };
+  const OPP_TYPES = [
+    [S('Tratamiento + municipio', 'Treatment + town'), S('“Bótox en Guaynabo”. Hoy la responden directorios: espacio libre para tu sitio.', '“Botox in Guaynabo”. Directories answer it today: room for your site.'), 92],
+    [S('Precio', 'Price'), S('Las IA buscan rangos claros. Casi ninguna clínica los publica: ventaja inmediata.', 'AI looks for clear ranges. Almost no clinic publishes them: instant advantage.'), 84],
+    [S('Confianza y licencia', 'Trust and license'), S('“Médico licenciado”, “seguro”. Con la nueva regulación, esta búsqueda crece.', '“Licensed doctor”, “safe”. With new regulation, this search grows.'), 80],
+    [S('Condición de piel', 'Skin condition'), S('Melasma, acné, flacidez: la paciente describe el problema, no el tratamiento.', 'Melasma, acne, laxity: the patient describes the problem, not the treatment.'), 72],
+    [S('Inglés y turismo', 'English and tourism'), S('Residentes de EE. UU., turistas y diáspora en San Juan, Dorado y Palmas del Mar.', 'Mainland residents, tourists and diaspora in San Juan, Dorado and Palmas del Mar.'), 68],
+    [S('Comparativas', 'Comparisons'), S('“Morpheus8 vs. láser”, “Sculptra vs. Radiesse”. Contenido que pocas clínicas tienen.', '“Morpheus8 vs. laser”, “Sculptra vs. Radiesse”. Content few clinics have.'), 61]
+  ];
+
+  const M1 = [
+    { ic: 'i-chat', w: S('Semana 1', 'Week 1'), t: S('Diagnóstico y línea base', 'Diagnosis and baseline'), d: S('Hacemos tus preguntas reales a ChatGPT, Gemini y Claude y te mostramos quién aparece hoy en tu lugar.', 'We ask ChatGPT, Gemini and Claude your real questions and show you who appears in your place today.') },
+    { ic: 'i-globe', w: S('Semanas 1–2', 'Weeks 1–2'), t: S('Fichas corregidas', 'Listings fixed'), d: S('Google, Apple, Bing Places y Yelp con el mismo nombre, dirección, horario y tratamientos.', 'Google, Apple, Bing Places and Yelp with the same name, address, hours and treatments.') },
+    { ic: 'i-doc', w: S('Semana 2', 'Week 2'), t: S('Base técnica lista', 'Technical base ready'), d: S('Schema médico, robots.txt abierto a las IA, Search Console y Bing Webmaster Tools.', 'Medical schema, robots.txt open to AI, Search Console and Bing Webmaster Tools.') },
+    { ic: 'i-bell', w: S('Semana 2', 'Week 2'), t: S('Reseñas automáticas activas', 'Automated reviews live'), d: S('Cada paciente recibe la solicitud de reseña después de su visita.', 'Every patient gets the review request after their visit.') },
+    { ic: 'i-spark', w: S('Semanas 2–4', 'Weeks 2–4'), t: S('Primeros contenidos publicados', 'First content published'), d: S('Los 10, 24 o 60 contenidos del mes, según tu plan, revisados por tu médico.', 'The month’s 10, 24 or 60 pieces, depending on your plan, reviewed by your doctor.') },
+    { ic: 'i-trend', w: S('Semana 4', 'Week 4'), t: S('Primer reporte', 'First report'), d: S('Qué se publicó, qué se indexó y el punto de partida para medir cada mes.', 'What was published, what was indexed and the starting point to measure every month.') }
+  ];
+
+  const PLAN6 = [
+    { m: S('Mes 1', 'Month 1'), t: S('Arranque con entregas', 'Kick-off with deliverables'), i: [S('Diagnóstico en ChatGPT, Gemini y Claude (semana 1)', 'Diagnosis on ChatGPT, Gemini and Claude (week 1)'), S('Fichas, schema y acceso de bots de IA corregidos', 'Listings, schema and AI bot access fixed'), S('Reseñas automáticas activas y primeros contenidos publicados', 'Automated reviews live and first content published')] },
+    { m: S('Mes 2', 'Month 2'), t: S('Contenido por tratamiento', 'Content by treatment'), i: [S('Páginas de tus tratamientos principales con rangos de precio', 'Pages for your main treatments with price ranges'), S('Página de cada médico con su licencia', 'A page for each doctor with their license'), S('Primeras páginas indexadas en Google y Bing', 'First pages indexed in Google and Bing')] },
+    { m: S('Mes 3', 'Month 3'), t: S('Municipios e idiomas', 'Towns and languages'), i: [S('Páginas por municipio', 'Pages by town'), S('Contenido en inglés para turismo', 'English content for tourism'), S('Primera comparación contra la línea base', 'First comparison against the baseline')] },
+    { m: S('Mes 4', 'Month 4'), t: S('Reputación', 'Reputation'), i: [S('Reseñas creciendo cada semana', 'Reviews growing every week'), S('Respuesta a todas las reseñas', 'Replies to every review'), S('Casos con autorización HIPAA', 'Cases with HIPAA authorization')] },
+    { m: S('Mes 5', 'Month 5'), t: S('Autoridad', 'Authority'), i: [S('Directorios médicos y de salud', 'Medical and health directories'), S('Menciones en medios y aliados de Puerto Rico', 'Mentions in Puerto Rico media and partners'), S('Comparativas de tratamientos', 'Treatment comparisons')] },
+    { m: S('Mes 6', 'Month 6'), t: S('Medición y ajuste', 'Measure and adjust'), i: [S('Reporte contra la línea base', 'Report against the baseline'), S('Nuevas prioridades por tratamiento y municipio', 'New priorities by treatment and town'), S('Plan para los meses 7 a 12', 'Plan for months 7 to 12')] }
+  ];
+  const PLAN12 = [
+    { m: S('Mes 1', 'Month 1'), t: S('Arranque con entregas', 'Kick-off with deliverables'), i: [S('Diagnóstico, fichas, base técnica, reseñas automáticas y primeros contenidos', 'Diagnosis, listings, technical base, automated reviews and first content')] },
+    { m: S('Meses 2–6', 'Months 2–6'), t: S('Contenido, municipios y reputación', 'Content, towns and reputation'), i: [S('Todo el plan de 6 meses', 'The full 6-month plan')] },
+    { m: S('Meses 7–8', 'Months 7–8'), t: S('Segunda ola de contenido', 'Second content wave'), i: [S('Guías y comparativas de tratamientos', 'Treatment guides and comparisons'), S('Nuevos municipios', 'New towns'), S('Versión completa en inglés', 'Full English version')] },
+    { m: S('Meses 9–10', 'Months 9–10'), t: S('Video y autoridad', 'Video and authority'), i: [S('Videos cortos en YouTube con tus médicos', 'Short YouTube videos with your doctors'), S('Entrevistas y menciones en medios', 'Interviews and media mentions'), S('Alianzas con hoteles y bodas', 'Partnerships with hotels and weddings')] },
+    { m: S('Meses 11–12', 'Months 11–12'), t: S('Escala y defensa', 'Scale and defend'), i: [S('Temporadas: verano, bodas, fiestas', 'Seasons: summer, weddings, holidays'), S('Defensa de marca ante competidores', 'Brand defense against competitors'), S('Plan del segundo año', 'Year-two plan')] }
+  ];
+
+  // [name, how, tool, 6-month target, 12-month target, gauge value or null]
+  const KPIS = [
+    [S('Presencia en respuestas de IA', 'Presence in AI answers'), S('% de preguntas del set donde ChatGPT, Gemini o Claude mencionan tu clínica', '% of questions where ChatGPT, Gemini or Claude mention your clinic'), 'Profound · Peec AI · Otterly.AI', '30–40%', '50–65%', 60],
+    [S('Top 5 en ChatGPT, Gemini y Claude', 'Top 5 in ChatGPT, Gemini and Claude'), S('% de preguntas donde estás entre las 5 primeras recomendaciones', '% of questions where you are among the first 5 recommendations'), S('Muestreo mensual en las 3 IA', 'Monthly sampling on the 3 AIs'), '20–30%', '40–50%', 45],
+    [S('Citas a tu sitio', 'Citations to your site'), S('Respuestas de las 3 IA que enlazan tu dominio', 'Answers from the 3 AIs that link to your domain'), 'Semrush AI Toolkit · Ahrefs Brand Radar', S('×3 vs. base', '×3 vs. baseline'), S('×6 vs. base', '×6 vs. baseline'), null],
+    [S('Contenido indexado', 'Indexed content'), S('Páginas publicadas que Google y Bing ya indexaron', 'Published pages that Google and Bing have indexed'), 'Search Console · Bing Webmaster Tools', '≥80%', '≥90%', null],
+    [S('Rastreo de bots de IA', 'AI crawler activity'), S('Visitas de GPTBot, OAI-SearchBot, ClaudeBot y Googlebot', 'Visits from GPTBot, OAI-SearchBot, ClaudeBot and Googlebot'), S('Logs del servidor', 'Server logs'), S('Creciendo mes a mes', 'Growing monthly'), S('Estable y creciendo', 'Stable and growing'), null],
+    [S('Tráfico desde IA', 'Traffic from AI'), S('Sesiones desde chatgpt.com, gemini.google.com y claude.ai', 'Sessions from chatgpt.com, gemini.google.com and claude.ai'), 'GA4 · Looker Studio', S('Medible y creciendo', 'Measurable and growing'), S('Canal propio en el reporte', 'Its own channel in the report'), null],
+    [S('Acciones en Google', 'Actions on Google'), S('Llamadas, rutas y clics desde tu ficha', 'Calls, directions and clicks from your profile'), 'Google Business Profile', '+20–35%', '+40–60%', null],
+    [S('Reseñas', 'Reviews'), S('Solicitudes enviadas, reseñas nuevas y promedio', 'Requests sent, new reviews and average rating'), S('Consola Clinic Management Tech', 'Clinic Management Tech console'), S('+40 · ≥4.8★', '+40 · ≥4.8★'), S('+100 · ≥4.8★', '+100 · ≥4.8★'), null],
+    [S('Precisión de la IA', 'AI accuracy'), S('Respuestas con dirección, horario, médicos y tratamientos correctos', 'Answers with correct address, hours, doctors and treatments'), S('Revisión manual', 'Manual review'), '≥90%', '≥95%', 95],
+    [S('Pacientes nuevos desde IA', 'New patients from AI'), S('Reservas con origen IA u orgánico registradas en la consola', 'Bookings from AI or organic, recorded in the console'), S('Consola Clinic Management Tech', 'Clinic Management Tech console'), S('Medido por mes', 'Measured monthly'), S('El KPI de negocio', 'The business KPI'), null]
+  ];
+
+  const TOOLS = [
+    [S('Visibilidad en IA', 'AI visibility'), ['Profound', 'Peec AI', 'Otterly.AI', 'Semrush AI Toolkit', 'Ahrefs Brand Radar', S('Muestreo en ChatGPT, Gemini y Claude', 'Sampling on ChatGPT, Gemini and Claude')]],
+    [S('Búsqueda e indexación', 'Search and indexing'), ['Google Search Console', 'Bing Webmaster Tools', 'IndexNow', 'Rich Results Test', 'Schema Markup Validator']],
+    [S('Presencia local', 'Local presence'), ['Google Business Profile', 'Apple Business Connect', 'Bing Places', 'Yelp', 'BrightLocal']],
+    [S('Analítica web', 'Web analytics'), ['GA4', 'Looker Studio', 'Microsoft Clarity', S('Logs del servidor', 'Server logs')]],
+    [S('Trabajo en conjunto', 'Working together'), ['GitHub', 'Google Drive', 'Dropbox', S('Correo', 'Email'), 'WhatsApp']],
+    [S('Operación', 'Operations'), [S('Consola Clinic Management Tech: reseñas automáticas y origen de cada reserva', 'Clinic Management Tech console: automated reviews and source of every booking')]]
+  ];
+
+  // Monthly prices in USD. 12-month commitment = 20% off the monthly price.
+  const DISC = 0.2;
+  const PLANS = [
+    { id: 'esencial', n: S('Esencial', 'Essential'), price: 1200, setup: 1500, content: 10, for: S('1 sede · 1 municipio', '1 location · 1 town'),
+      pts: [S('10 contenidos al mes', '10 pieces of content a month'), S('60 preguntas medidas en ChatGPT, Gemini y Claude', '60 questions measured on ChatGPT, Gemini and Claude'), S('Fichas en Google, Apple, Bing y Yelp', 'Google, Apple, Bing and Yelp listings'), S('Reseñas automáticas tras cada visita', 'Automated reviews after every visit'), S('Reporte mensual', 'Monthly report')] },
+    { id: 'crecimiento', n: S('Crecimiento', 'Growth'), price: 2400, setup: 2500, content: 24, pop: true, for: S('1–2 sedes · 3 municipios · bilingüe', '1–2 locations · 3 towns · bilingual'),
+      pts: [S('24 contenidos al mes, en español e inglés', '24 pieces a month, Spanish and English'), S('120 preguntas medidas en las 3 IA', '120 questions measured on the 3 AIs'), S('Reseñas automáticas y respuesta a cada reseña', 'Automated reviews and a reply to every review'), S('Menciones en medios de Puerto Rico', 'Puerto Rico media mentions'), S('Medición quincenal y reunión mensual', 'Bi-weekly tracking and monthly meeting')] },
+    { id: 'autoridad', n: S('Autoridad', 'Authority'), price: 4200, setup: 3500, content: 60, for: S('Varias sedes · toda la isla · turismo', 'Multiple locations · island-wide · tourism'),
+      pts: [S('60 contenidos al mes, incluidos 4 videos', '60 pieces a month, including 4 videos'), S('200 preguntas medidas en las 3 IA', '200 questions measured on the 3 AIs'), S('Reseñas automáticas por sede', 'Automated reviews per location'), S('PR digital mensual y alianzas', 'Monthly digital PR and partnerships'), S('Medición semanal y estratega dedicado', 'Weekly tracking and dedicated strategist')] }
+  ];
+  const Y = '✓', N = '—';
+  const COMPARE = [
+    [S('Desde el mes 1', 'From month 1'), [
+      [S('Diagnóstico y línea base (incluido)', 'Diagnosis and baseline (included)'), Y, Y, Y],
+      [S('Fichas y base técnica corregidas', 'Listings and technical base fixed'), Y, Y, Y],
+      [S('Reseñas automáticas activas', 'Automated reviews live'), Y, Y, Y],
+      [S('Primer reporte', 'First report'), Y, Y, Y]]],
+    [S('Medición', 'Measurement'), [
+      [S('IA medidas', 'AIs measured'), 'ChatGPT · Gemini · Claude', 'ChatGPT · Gemini · Claude', 'ChatGPT · Gemini · Claude'],
+      [S('Preguntas medidas (ES/EN)', 'Questions measured (ES/EN)'), '60', '120', '200'],
+      [S('Clínicas competidoras analizadas', 'Competitor clinics analyzed'), '5', '10', '20'],
+      [S('Frecuencia', 'Frequency'), S('Mensual', 'Monthly'), S('Quincenal', 'Bi-weekly'), S('Semanal', 'Weekly')],
+      [S('Panel GA4 + Search Console + Bing', 'GA4 + Search Console + Bing dashboard'), Y, Y, Y]]],
+    [S('Contenido', 'Content'), [
+      [S('Contenidos al mes', 'Pieces per month'), '10', '24', '60'],
+      [S('Bilingüe (español e inglés)', 'Bilingual (Spanish and English)'), S('Opcional', 'Optional'), Y, Y],
+      [S('Páginas de médicos con licencia', 'Doctor pages with license'), Y, Y, Y],
+      [S('Videos para YouTube', 'YouTube videos'), N, N, S('4 al mes', '4 a month')]]],
+    [S('Presencia local', 'Local presence'), [
+      [S('Google, Apple, Bing Places y Yelp', 'Google, Apple, Bing Places and Yelp'), Y, Y, Y],
+      [S('Directorios médicos', 'Medical directories'), '3', '6', '10'],
+      [S('Municipios', 'Towns'), '1', '3', S('Toda la isla', 'Island-wide')]]],
+    [S('Reseñas y autoridad', 'Reviews and authority'), [
+      [S('Solicitud automática tras cada visita', 'Automatic request after every visit'), Y, Y, Y],
+      [S('Encuesta y alerta si un paciente no quedó conforme', 'Survey and alert if a patient was unhappy'), Y, Y, Y],
+      [S('Respuesta a reseñas', 'Review replies'), N, Y, Y],
+      [S('Menciones en medios de Puerto Rico', 'Puerto Rico media mentions'), N, S('1 por trimestre', '1 per quarter'), S('1 al mes', '1 a month')]]],
+    [S('Soporte', 'Support'), [
+      [S('Reunión de resultados', 'Results meeting'), S('Trimestral', 'Quarterly'), S('Mensual', 'Monthly'), S('Quincenal', 'Bi-weekly')],
+      [S('Canal por WhatsApp o correo', 'WhatsApp or email channel'), Y, Y, Y],
+      [S('Estratega dedicado', 'Dedicated strategist'), N, N, Y]]]
+  ];
+
+  const FAQ = [
+    [S('¿Qué es GEO y en qué se diferencia del SEO?', 'What is GEO and how is it different from SEO?'), S('El SEO busca posiciones en Google. GEO (Generative Engine Optimization) busca que ChatGPT, Gemini y Claude mencionen y recomienden tu clínica cuando responden. Comparten bases técnicas, pero GEO exige contenido que la IA pueda citar y señales de confianza que confirmen lo que dices.', 'SEO aims for Google rankings. GEO (Generative Engine Optimization) aims for ChatGPT, Gemini and Claude to mention and recommend your clinic in their answers. They share technical foundations, but GEO needs content AI can cite and trust signals that confirm what you say.')],
+    [S('¿Qué veo en el primer mes?', 'What do I see in the first month?'), S('Entregables publicados: diagnóstico con tu línea base, fichas corregidas, base técnica, reseñas automáticas funcionando y los primeros contenidos de tu plan. La presencia en las respuestas de la IA crece mes a mes; lo que haces en el mes 1 es lo que la IA empieza a leer.', 'Published deliverables: diagnosis with your baseline, fixed listings, technical base, automated reviews running and your plan’s first content. Presence in AI answers grows month by month; what you do in month 1 is what AI starts reading.')],
+    [S('¿Por qué medimos solo ChatGPT, Gemini y Claude?', 'Why do we measure only ChatGPT, Gemini and Claude?'), S('Para medir bien: las mismas preguntas, en los mismos tres asistentes, cada mes. El trabajo de base (sitio, fichas, reseñas) también ayuda en Google y en otros buscadores.', 'To measure well: the same questions, on the same three assistants, every month. The groundwork (site, listings, reviews) also helps on Google and other search engines.')],
+    [S('¿Pueden garantizar el primer lugar en ChatGPT?', 'Can you guarantee first place in ChatGPT?'), S('No. Nadie controla lo que responde una IA, y las respuestas cambian. Mejoramos las señales en las que se basa y medimos cada mes cuánto apareces y en qué posición.', 'No. Nobody controls what an AI answers, and answers change. We improve the signals it relies on and measure every month how often you appear and in which position.')],
+    [S('¿Las reseñas automáticas van solo a pacientes satisfechos?', 'Do automated reviews go only to happy patients?'), S('La solicitud va a todos los pacientes después de su visita: Google no permite pedir reseñas solo a quienes quedaron satisfechos. Quien tuvo una mala experiencia puede escribir directo a la clínica y el gerente recibe una alerta para resolverlo.', 'The request goes to every patient after their visit: Google does not allow asking only happy patients. Anyone who had a bad experience can write straight to the clinic, and the manager gets an alert to fix it.')],
+    [S('¿Cómo trabajan con mi sitio y mi equipo?', 'How do you work with my site and team?'), S('Como prefieras: GitHub con ramas y pull requests que tú apruebas, acceso de editor a tu CMS, o enviando los cambios a tu agencia. Los archivos se comparten en Google Drive, Dropbox o por correo. Nunca pedimos contraseñas: usamos accesos delegados.', 'However you prefer: GitHub with branches and pull requests you approve, editor access to your CMS, or sending changes to your agency. Files are shared on Google Drive, Dropbox or email. We never ask for passwords: we use delegated access.')],
+    [S('¿Podemos publicar antes y después?', 'Can we publish before and afters?'), S('Sí, con autorización escrita de la paciente conforme a HIPAA, sin promesas de resultados y con el médico responsable identificado.', 'Yes, with the patient’s written HIPAA authorization, without promising results and naming the responsible physician.')]
+  ];
+
+  /* ----- GEO intake questionnaire: each option can carry a next step ----- */
+  const o = (es, en, aes, aen) => ({ l: S(es, en), a: aes ? S(aes, aen) : '' });
+  const QZ = [
+    { g: S('Tu clínica', 'Your clinic'), inputs: true, qs: [
+      { id: 'sedes', q: S('¿Cuántas sedes tienen?', 'How many locations?'), opts: [o('1', '1'), o('2–3', '2–3', 'Una ficha y una página por sede, con datos propios.', 'One listing and one page per location, with its own data.'), o('4 o más', '4 or more', 'Una ficha y una página por sede, con datos propios.', 'One listing and one page per location, with its own data.')] },
+      { id: 'towns', multi: true, q: S('¿Qué municipios atienden?', 'Which towns do you serve?'), hint: S('Cada municipio es una lista de recomendaciones distinta.', 'Each town is a different list of recommendations.'), opts: TOWNS.map((t) => o(t.n, t.n)).concat([o('Otro', 'Other')]), fn: (sel) => sel.length ? [S('Páginas por municipio: ', 'Pages by town: ') + sel.join(', ') + '.'] : [] },
+      { id: 'idiomas', q: S('¿En qué idiomas atienden?', 'Which languages do you serve in?'), opts: [o('Español', 'Spanish', 'Medimos también en inglés si atienden zonas turísticas.', 'We also measure in English if you serve tourist areas.'), o('Inglés', 'English'), o('Ambos', 'Both', 'Contenido y medición en español e inglés.', 'Content and measurement in Spanish and English.')] },
+      { id: 'tx', multi: true, q: S('¿Qué tratamientos quieren que la IA recomiende primero?', 'Which treatments should AI recommend first?'), opts: [o('Bótox y neuromoduladores', 'Botox and neuromodulators'), o('Rellenos · ácido hialurónico', 'Fillers · hyaluronic acid'), o('Láser e IPL', 'Laser and IPL'), o('Morpheus8 · radiofrecuencia', 'Morpheus8 · radiofrequency'), o('Melasma y manchas', 'Melasma and dark spots'), o('Acné', 'Acne'), o('Bioestimuladores', 'Biostimulators'), o('Corporal', 'Body'), o('Skincare y productos', 'Skincare and products')], fn: (sel) => sel.length ? [S('Primeros contenidos: ', 'First content: ') + sel.join(', ') + '.'] : [] }
+    ] },
+    { g: S('Dominio y sitio', 'Domain and site'), qs: [
+      { id: 'dom', q: S('¿Quién administra el dominio?', 'Who manages the domain?'), hint: S('Lo necesitamos para verificar Search Console y Bing y revisar el DNS.', 'We need it to verify Search Console and Bing and review DNS.'), opts: [
+        o('In-house', 'In-house', 'Dominio: acceso delegado; la clínica sigue siendo dueña.', 'Domain: delegated access; the clinic remains the owner.'),
+        o('Un tercero (agencia o freelance)', 'A third party (agency or freelancer)', 'Dominio: confirmamos que está a nombre de la clínica y pedimos un contacto técnico.', 'Domain: we confirm it is in the clinic’s name and ask for a technical contact.'),
+        o('Ni idea', 'No idea', 'Dominio: lo localizamos por WHOIS y te guiamos para que quede a nombre de la clínica.', 'Domain: we find it via WHOIS and guide you to put it in the clinic’s name.')] },
+      { id: 'reg', q: S('¿Dónde está registrado?', 'Where is it registered?'), opts: [
+        o('GoDaddy', 'GoDaddy', 'GoDaddy: nos invitas con Delegate Access, sin compartir contraseña.', 'GoDaddy: invite us with Delegate Access, no password shared.'),
+        o('Cloudflare', 'Cloudflare', 'Cloudflare: nos agregas como miembro con permisos de DNS y revisamos que no bloquee GPTBot, OAI-SearchBot ni ClaudeBot.', 'Cloudflare: add us as a member with DNS permissions; we check it is not blocking GPTBot, OAI-SearchBot or ClaudeBot.'),
+        o('Porkbun', 'Porkbun', 'Porkbun: hacemos los cambios de DNS contigo en una llamada corta.', 'Porkbun: we make the DNS changes with you on a short call.'),
+        o('Namecheap', 'Namecheap', 'Namecheap: nos compartes acceso al dominio con Share Access.', 'Namecheap: share domain access with us via Share Access.'),
+        o('Otro', 'Other', 'Registrador: confirmamos si permite usuarios delegados; si no, lo hacemos en llamada.', 'Registrar: we check if it allows delegated users; if not, we do it on a call.'),
+        o('No sé', 'Not sure', 'Registrador: lo identificamos en el diagnóstico.', 'Registrar: we identify it during the diagnosis.')] },
+      { id: 'cms', q: S('¿En qué plataforma está el sitio web?', 'What platform is the website on?'), opts: [
+        o('WordPress', 'WordPress', 'WordPress: usuario propio con rol de Editor o Administrador.', 'WordPress: our own user with Editor or Administrator role.'),
+        o('Wix', 'Wix', 'Wix: acceso de colaborador; schema con código personalizado.', 'Wix: collaborator access; schema via custom code.'),
+        o('Squarespace', 'Squarespace', 'Squarespace: acceso de colaborador; schema por inyección de código.', 'Squarespace: contributor access; schema via code injection.'),
+        o('Webflow', 'Webflow', 'Webflow: acceso al workspace; schema en custom code.', 'Webflow: workspace access; schema in custom code.'),
+        o('Código propio (HTML, JS, React, Next.js)', 'Custom code (HTML, JS, React, Next.js)', 'Código propio: confirmamos que el contenido llega renderizado desde el servidor; muchas IA no ejecutan JavaScript.', 'Custom code: we confirm content is server-rendered; many AI crawlers do not run JavaScript.'),
+        o('Otro', 'Other', 'Plataforma: revisamos cómo agregar datos estructurados.', 'Platform: we check how to add structured data.'),
+        o('No tenemos sitio', 'We have no website', 'Sin sitio: es lo primero que la IA necesita; te proponemos un sitio base.', 'No website: it is the first thing AI needs; we propose a base site.')] },
+      { id: 'shop', q: S('¿Tienen tienda en línea?', 'Do you have an online store?'), opts: [
+        o('Shopify', 'Shopify', 'Shopify: cuenta de colaborador; schema Product con precio y disponibilidad.', 'Shopify: collaborator account; Product schema with price and availability.'),
+        o('WooCommerce', 'WooCommerce', 'WooCommerce: schema Product y feed de Google Merchant Center.', 'WooCommerce: Product schema and Google Merchant Center feed.'),
+        o('JS a medida', 'Custom JS', 'Tienda a medida: JSON-LD de producto en el código, renderizado en el servidor.', 'Custom store: product JSON-LD in the code, server-rendered.'),
+        o('Otro', 'Other', 'Tienda: revisamos si exporta un feed de productos.', 'Store: we check if it exports a product feed.'),
+        o('No vendemos en línea', 'We don’t sell online')] },
+      { id: 'bots', q: S('¿Sabes si el sitio bloquea bots de IA?', 'Do you know if the site blocks AI bots?'), hint: S('Un robots.txt o un firewall pueden impedir que ChatGPT o Claude lean tu sitio.', 'A robots.txt or firewall can stop ChatGPT or Claude from reading your site.'), opts: [
+        o('Sí, los bloquea', 'Yes, it blocks them', 'Bots: abrimos el acceso a GPTBot, OAI-SearchBot, ClaudeBot y Googlebot.', 'Bots: we open access to GPTBot, OAI-SearchBot, ClaudeBot and Googlebot.'),
+        o('No', 'No', 'Bots: lo verificamos en los logs del servidor.', 'Bots: we verify it in the server logs.'),
+        o('No sé', 'Not sure', 'Bots: revisamos robots.txt y el firewall en la semana 1.', 'Bots: we check robots.txt and the firewall in week 1.')] }
+    ] },
+    { g: S('Google y medición', 'Google and measurement'), qs: [
+      { id: 'gbp', q: S('Google Business Profile', 'Google Business Profile'), opts: [
+        o('Somos propietarios', 'We are owners', 'Google Business Profile: nos agregas como Administrador; tú sigues como propietario.', 'Google Business Profile: add us as Manager; you remain the owner.'),
+        o('Lo maneja un tercero', 'A third party manages it', 'Google Business Profile: que la propiedad vuelva a la clínica y nos agreguen como Administrador.', 'Google Business Profile: ownership goes back to the clinic and we are added as Manager.'),
+        o('No existe o no sé', 'None or not sure', 'Google Business Profile: lo reclamamos o creamos y verificamos en el mes 1.', 'Google Business Profile: we claim or create and verify it in month 1.')] },
+      { id: 'tools', multi: true, q: S('¿Qué herramientas ya tienen?', 'Which tools do you already have?'), opts: [o('Google Search Console', 'Google Search Console'), o('GA4', 'GA4'), o('Bing Webmaster Tools', 'Bing Webmaster Tools'), o('Google Tag Manager', 'Google Tag Manager'), o('Ninguna o no sé', 'None or not sure')],
+        fn: (sel, all) => { const need = ['Google Search Console', 'GA4', 'Bing Webmaster Tools'].filter((t) => !sel.includes(t)); const out = []; const have = sel.filter((t) => all.slice(0, 4).map((x) => x.l).includes(t)); if (have.length) out.push(S('Acceso de usuario en: ', 'User access on: ') + have.join(', ') + '.'); if (need.length) out.push(S('Configuramos en la semana 1: ', 'We set up in week 1: ') + need.join(', ') + S(' (ChatGPT parte de resultados de Bing).', ' (ChatGPT starts from Bing results).')); out.push(S('GA4: canal propio para chatgpt.com, gemini.google.com y claude.ai.', 'GA4: its own channel for chatgpt.com, gemini.google.com and claude.ai.')); return out; } },
+      { id: 'dirs', multi: true, q: S('¿En qué otras fichas aparecen?', 'Which other listings do you have?'), opts: [o('Apple Business Connect', 'Apple Business Connect'), o('Bing Places', 'Bing Places'), o('Yelp', 'Yelp'), o('Fresha', 'Fresha'), o('Booksy', 'Booksy'), o('Doctoralia', 'Doctoralia'), o('Facebook e Instagram', 'Facebook and Instagram'), o('Ninguna', 'None')],
+        fn: (sel) => { const out = []; const miss = ['Apple Business Connect', 'Bing Places', 'Yelp'].filter((t) => !sel.includes(t)); if (miss.length) out.push(S('Creamos o reclamamos: ', 'We create or claim: ') + miss.join(', ') + '.'); const d = ['Fresha', 'Booksy', 'Doctoralia'].filter((t) => sel.includes(t)); if (d.length) out.push(d.join(', ') + S(': alineamos nombre, dirección y tratamientos; hoy estos directorios dominan los resultados.', ': we align name, address and treatments; today these directories dominate results.')); return out; } }
+    ] },
+    { g: S('Confianza y reseñas', 'Trust and reviews'), qs: [
+      { id: 'lic', q: S('¿Cada médico tiene página con su licencia visible?', 'Does each doctor have a page with a visible license?'), opts: [o('Sí', 'Yes'), o('Algunos', 'Some', 'Páginas de médicos con nombre, especialidad y licencia de Puerto Rico.', 'Doctor pages with name, specialty and Puerto Rico license.'), o('No', 'No', 'Páginas de médicos con nombre, especialidad y licencia de Puerto Rico.', 'Doctor pages with name, specialty and Puerto Rico license.')] },
+      { id: 'ba', q: S('¿Tienen antes y después con autorización HIPAA firmada?', 'Do you have before & afters with signed HIPAA authorization?'), opts: [o('Sí', 'Yes', 'Antes y después: carpeta compartida con fotos y autorizaciones.', 'Before & after: shared folder with photos and authorizations.'), o('Algunas', 'Some', 'Antes y después: autorización HIPAA en la consola antes de publicar.', 'Before & after: HIPAA authorization in the console before publishing.'), o('No', 'No', 'Antes y después: autorización HIPAA en la consola antes de publicar.', 'Before & after: HIPAA authorization in the console before publishing.')] },
+      { id: 'book', q: S('¿Cómo agendan los pacientes?', 'How do patients book?'), opts: [
+        o('Consola Clinic Management Tech', 'Clinic Management Tech console', 'Reservas: el origen de cada cita (IA, Google, Instagram) queda en la consola.', 'Bookings: the source of every appointment (AI, Google, Instagram) is stored in the console.'),
+        o('Fresha, Booksy o Vagaro', 'Fresha, Booksy or Vagaro', 'Reservas: enlaces con UTM para medir las citas que llegan desde la IA.', 'Bookings: UTM links to measure appointments coming from AI.'),
+        o('Teléfono o WhatsApp', 'Phone or WhatsApp', 'Reservas: pregunta “¿Cómo nos encontraste?” en cada cita.', 'Bookings: a “How did you find us?” question on every appointment.'),
+        o('Otro', 'Other', 'Reservas: definimos cómo registrar el origen de cada cita.', 'Bookings: we define how to record each appointment’s source.')] },
+      { id: 'revch', multi: true, q: S('¿Por dónde enviamos la solicitud de reseña?', 'Where do we send the review request?'), hint: S('Se envía a todos los pacientes después de la visita.', 'It goes to every patient after the visit.'), opts: [o('WhatsApp', 'WhatsApp'), o('SMS', 'SMS'), o('Correo', 'Email')],
+        fn: (sel) => sel.length ? [S('Reseñas automáticas por ', 'Automated reviews via ') + sel.join(', ') + S(', unas 2 horas después de la visita, con un recordatorio.', ', about 2 hours after the visit, with one reminder.')] : [] }
+    ] },
+    { g: S('Trabajo en conjunto', 'Working together'), qs: [
+      { id: 'work', multi: true, q: S('¿Cómo trabajamos los cambios del sitio?', 'How do we handle site changes?'), opts: [
+        o('GitHub', 'GitHub', 'GitHub: acceso de colaborador; trabajamos en una rama y cada cambio llega como pull request para que lo apruebes.', 'GitHub: collaborator access; we work on a branch and every change arrives as a pull request for you to approve.'),
+        o('GitLab o Bitbucket', 'GitLab or Bitbucket', 'GitLab/Bitbucket: rama propia y merge requests que tú apruebas.', 'GitLab/Bitbucket: our own branch and merge requests you approve.'),
+        o('Acceso al CMS', 'CMS access', 'CMS: usuario propio con rol de editor; nunca contraseñas compartidas.', 'CMS: our own editor user; never shared passwords.'),
+        o('Lo publica nuestra agencia', 'Our agency publishes it', 'Agencia: enviamos cambios listos (texto, HTML y JSON-LD) y validamos tras publicar.', 'Agency: we send ready changes (text, HTML and JSON-LD) and validate after publishing.')] },
+      { id: 'files', multi: true, q: S('¿Dónde compartimos fotos, licencias y documentos?', 'Where do we share photos, licenses and documents?'), opts: [o('Google Drive', 'Google Drive'), o('Dropbox', 'Dropbox'), o('OneDrive o SharePoint', 'OneDrive or SharePoint'), o('Correo', 'Email')],
+        fn: (sel) => sel.length ? [S('Archivos: carpeta compartida en ', 'Files: shared folder on ') + sel.join(', ') + S(' con licencias, fotos autorizadas, precios y logos.', ' with licenses, authorized photos, prices and logos.')] : [] },
+      { id: 'comm', multi: true, q: S('¿Por dónde nos comunicamos?', 'How do we communicate?'), opts: [o('Correo', 'Email'), o('WhatsApp', 'WhatsApp'), o('Slack', 'Slack'), o('Microsoft Teams', 'Microsoft Teams')],
+        fn: (sel) => sel.length ? [S('Día a día por ', 'Day to day via ') + sel.join(', ') + '.'] : [] },
+      { id: 'appr', q: S('¿Quién aprueba el contenido médico?', 'Who approves medical content?'), opts: [o('Director médico', 'Medical director'), o('Cada médico', 'Each doctor'), o('Gerente o dueño', 'Manager or owner')],
+        fn: (sel) => sel.length ? [S('Aprobación: borrador → ', 'Approval: draft → ') + sel[0] + S(' aprueba → publicamos.', ' approves → we publish.')] : [] }
+    ] }
+  ];
+  const ALLQ = QZ.flatMap((g) => g.qs);
+
+  /* ===================================================== render */
+  const sec = (id, cls, inner) => `<section id="${id}" class="${cls}">${inner}</section>`;
+  const head = (eyebrow, title, em, lead, center) => `<div class="g-head${center ? ' center' : ''}"><span class="eyebrow${center ? ' both' : ''} rv">${eyebrow}</span><h2 class="h-sec rv d1">${title} <em>${em}</em></h2>${lead ? `<p class="lead rv d2">${lead}</p>` : ''}</div>`;
+
+  root.innerHTML = [
+    // HERO
+    `<section id="top" class="hx" style="--n:${HX.length}"><div class="hx-stage"><div class="hx-bg" aria-hidden="true"><i></i><i></i></div>
+      <div class="wrap hx-grid">
+        <div class="hx-copy">
+          <span class="eyebrow hx-in">${S('GEO · Estética y skincare · Puerto Rico', 'GEO · Aesthetics and skincare · Puerto Rico')}</span>
+          <h1 class="hx-in">${S('Que la IA recomiende', 'Make AI recommend')} <em>${S('tu clínica y skincare en Puerto Rico.', 'your clinic and skincare in Puerto Rico.')}</em></h1>
+          <p class="hx-lead hx-in">${S('Le preguntamos a Claude por bótox, rellenos, faciales y melasma en Carolina. Esto fue lo que encontró.', 'We asked Claude about Botox, fillers, facials and melasma in Carolina. This is what it found.')}</p>
+          <div class="hx-nums hx-in">
+            <div class="hx-zero"><b>¿?</b><span>${S('veces que apareció tu clínica', 'times your clinic showed up')}</span></div>
+            <div><b id="hx-seen">0</b><span>${S('resultados revisados', 'results reviewed')}</span></div>
+            <div><b id="hx-fr">0</b><span>${S('enlaces a Fresha', 'links to Fresha')}</span></div>
+          </div>
+          <ol class="hx-rail hx-in" aria-label="${S('Búsquedas', 'Searches')}">${HX.map((h, i) => `<li><button type="button" data-i="${i}"><i></i><span>${esc(h.tag)}</span></button></li>`).join('')}</ol>
+          <div class="g-ctas hx-in"><a class="btn btn-gold" href="#mes-1">${S('Cambiemos esto desde el mes 1', 'Let’s change this from month 1')} ${ico('i-arrow')}</a><a class="btn btn-line" href="#precios">${S('Ver planes', 'See plans')}</a></div>
+        </div>
+        <div class="hx-chat" id="hx-chat">
+          <div class="hx-top"><span class="hx-av">C</span><div><b>Claude</b><small>${S('búsqueda web · 10 nov 2026', 'web search · Nov 10, 2026')}</small></div><span class="hx-step" id="hx-step"></span></div>
+          <div class="hx-body">
+            <div class="hx-q"><span id="hx-q"></span><i class="hx-caret"></i></div>
+            <div class="hx-meta" id="hx-meta"></div>
+            <ul class="hx-list" id="hx-list"></ul>
+            <div class="hx-foot" id="hx-foot"></div>
+          </div>
+        </div>
+      </div>
+      <p class="hx-note"><span class="sm">${S('Búsquedas reales con la búsqueda web de Claude · 10 nov 2026 · selección en orden.', 'Real searches with Claude’s web search · Nov 10, 2026 · selection in order.')}</span><span class="lg">${S('Búsquedas reales hechas con la búsqueda web de Claude el 10 de noviembre de 2026, sin cuenta ni ubicación. Se muestra una selección de los resultados, en su orden. Los resultados cambian con el tiempo; en la semana 1 medimos tus preguntas en ChatGPT, Gemini y Claude.', 'Real searches run with Claude’s web search on November 10, 2026, with no account or location. A selection of results is shown, in order. Results change over time; in week 1 we measure your questions on ChatGPT, Gemini and Claude.')}</span></p>
+      <div class="hx-hint" aria-hidden="true"><span>${S('Desliza', 'Scroll')}</span><i></i></div>
+    </div></section>`,
+
+    // WHY NOW
+    sec('porque', 'pad', `<div class="wrap">${head(S('Por qué ahora', 'Why now'), S('Puerto Rico está cambiando', 'Puerto Rico is changing'), S('cómo elige clínica.', 'how it picks a clinic.'), '', true)}
+      <div class="why">${WHY.map((w, i) => `<article class="why-c rv d${i % 3}"><span class="ic">${ico(w.ic)}</span><h3>${w.t}</h3><p>${w.d}</p>${w.src ? `<p class="src">${w.src.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join(' · ')}</p>` : ''}</article>`).join('')}</div></div>`),
+
+    // HOW WE WORK
+    sec('como', 'pad dark g-dark', `<div class="wrap">${head(S('Cómo lo trabajamos', 'How we work'), S('Cuatro condiciones para que', 'Four conditions for AI'), S('la IA te recomiende.', 'to recommend you.'), S('Una IA solo recomienda lo que puede encontrar, entender, verificar y relacionar con la pregunta.', 'AI only recommends what it can find, understand, verify and match to the question.'))}
+      <div class="pillars4">${PILLARS.map((p, i) => `<div class="pil rv d${i % 3}"><span class="n">${p.n}</span><h3>${p.t}</h3><p>${p.d}</p></div>`).join('')}</div>
+      <ol class="process">${PROCESS.map(([t, d], i) => `<li class="rv d${i % 3}"><span>${i + 1}</span><b>${t}</b><p>${d}</p></li>`).join('')}</ol></div>`),
+
+    // MONTH 1
+    sec('mes-1', 'pad g-rose', `<div class="wrap g-m1">
+      <div>${head(S('Mes 1', 'Month 1'), S('Valor desde el primer mes,', 'Value from the first month,'), S('resultados que crecen cada mes.', 'results that grow every month.'), S('El diagnóstico está incluido y se hace en la semana 1, mientras ya corregimos y publicamos.', 'The diagnosis is included and done in week 1, while we are already fixing and publishing.'))}
+        <div class="m1-curve rv"><b>${S('Cómo crecen los resultados', 'How results grow')}</b>
+          <div class="m1-steps"><div><span>${S('Mes 1', 'Month 1')}</span>${S('Base lista y contenido publicado', 'Base ready and content published')}<i style="--w:25%"></i></div><div><span>${S('Meses 2–3', 'Months 2–3')}</span>${S('Datos correctos e indexación', 'Correct data and indexing')}<i style="--w:55%"></i></div><div><span>${S('Meses 4–12', 'Months 4–12')}</span>${S('Más presencia en las respuestas', 'More presence in answers')}<i style="--w:100%"></i></div></div></div></div>
+      <div class="m1-grid">${M1.map((d, i) => `<div class="dg rv d${i % 3}"><span class="ic">${ico(d.ic)}</span><div><span class="wk">${d.w}</span><b>${d.t}</b><p>${d.d}</p></div></div>`).join('')}</div></div>`),
+
+    // OPPORTUNITIES
+    sec('oportunidades', 'pad', `<div class="wrap">${head(S('Identificar oportunidades', 'Finding opportunities'), S('Las preguntas que hacen', 'The questions your patients'), S('tus pacientes.', 'are asking.'), S('Elige tu municipio y el idioma: estas son preguntas típicas que medimos en ChatGPT, Gemini y Claude.', 'Pick your town and language: these are typical questions we measure on ChatGPT, Gemini and Claude.'))}
+      <div class="opp rv">
+        <div class="opp-ctrl"><div class="pills" id="towns">${TOWNS.map((t, i) => `<button type="button" data-t="${i}" class="${i === HOME ? 'on' : ''}">${t.n}</button>`).join('')}</div>
+          <div class="seg" id="lang-seg"><button type="button" data-l="es">Español</button><button type="button" data-l="en">English</button></div></div>
+        <div class="opp-tbl" id="opp-tbl"></div>
+      </div>
+      <h3 class="sub-h rv">${S('Dónde está la oportunidad', 'Where the opportunity is')}</h3>
+      <div class="opp-types">${OPP_TYPES.map(([t, d, v], i) => `<div class="ot rv d${i % 3}"><div class="ot-h"><b>${t}</b><span>${v}</span></div><i style="--v:${v}%"></i><p>${d}</p></div>`).join('')}</div>
+      <p class="fine">${S('Puntaje de oportunidad orientativo según demanda y competencia típicas; se calcula con tus datos en la semana 1.', 'Indicative opportunity score based on typical demand and competition; calculated with your data in week 1.')}</p></div>`),
+
+    // PLAN
+    sec('plan', 'pad', `<div class="wrap">${head(S('El plan', 'The plan'), S('Entregas desde el mes 1,', 'Deliverables from month 1,'), S('resultados que se acumulan.', 'results that compound.'), '', true)}
+      <div class="seg center-seg rv" id="plan-seg"><button type="button" data-p="6" class="on">${S('Plan de 6 meses', '6-month plan')}</button><button type="button" data-p="12">${S('Plan de 12 meses', '12-month plan')}</button></div>
+      <div class="tl" id="tl"><span class="tl-line"><i id="tl-fill"></i></span><div id="tl-items"></div></div></div>`),
+
+    // REVIEWS
+    sec('resenas', 'pad g-rose', `<div class="wrap">${head(S('Reseñas automáticas', 'Automated reviews'), S('Cada visita termina con', 'Every visit ends with'), S('una solicitud de reseña.', 'a review request.'), S('La consola la envía sola. Los pacientes contentos dejan su reseña en Google; si alguien no quedó conforme, la clínica se entera primero.', 'The console sends it on its own. Happy patients leave their review on Google; if someone was unhappy, the clinic hears it first.'))}
+      <div class="rev">${[
+        [S('Al cerrar', 'At checkout'), S('Visita cerrada', 'Visit closed'), S('La consola registra la visita y el tratamiento.', 'The console records the visit and treatment.')],
+        [S('+2 horas', '+2 hours'), S('Mensaje automático', 'Automatic message'), S('Por WhatsApp, SMS o correo, sin datos clínicos.', 'By WhatsApp, SMS or email, with no clinical data.')],
+        [S('Encuesta', 'Survey'), S('¿Cómo fue tu experiencia?', 'How was your experience?'), S('Todos ven el enlace a Google y pueden escribir directo a la clínica.', 'Everyone sees the Google link and can write straight to the clinic.')],
+        [S('Alerta', 'Alert'), S('Aviso al gerente', 'Manager alert'), S('Una calificación baja avisa para resolver el caso en el día.', 'A low score alerts the manager to fix it the same day.')],
+        [S('+3 días', '+3 days'), S('Recordatorio y respuesta', 'Reminder and reply'), S('Un solo recordatorio; respondemos cada reseña.', 'One reminder only; we reply to every review.')]
+      ].map(([t, b, p], i) => `<div class="rev-s rv d${i % 3}"><span class="t">${t}</span><b>${b}</b><p>${p}</p></div>`).join('')}</div>
+      <div class="rev-msg">
+        <div class="bubble rv"><div class="from">WhatsApp · ${S('tu clínica', 'your clinic')}</div><div class="txt">${S('Hola {nombre}, gracias por tu visita de hoy. ¿Cómo fue tu experiencia? Tu reseña en Google ayuda a otras pacientes. Si algo no salió bien, respóndenos aquí y el equipo te contacta.', 'Hi {name}, thanks for your visit today. How was your experience? Your Google review helps other patients. If something did not go well, reply here and the team will contact you.')}</div>
+          <div class="stars" aria-hidden="true">${[1, 2, 3, 4, 5].map((n) => `<span>${n}★</span>`).join('')}</div></div>
+        <ul class="rev-rules rv d1">${[
+          S('Se envía a todos los pacientes, sin filtrar: Google no permite pedir reseñas solo a quienes quedaron satisfechos.', 'Sent to every patient, unfiltered: Google does not allow asking only happy patients.'),
+          S('Sin incentivos ni reseñas falsas (regla de la FTC de 2024).', 'No incentives or fake reviews (2024 FTC rule).'),
+          S('Sin datos clínicos en el mensaje (HIPAA) y con opción de darse de baja.', 'No clinical data in the message (HIPAA) and an opt-out option.'),
+          S('Medimos solicitudes enviadas, reseñas nuevas y promedio cada mes.', 'We track requests sent, new reviews and average rating every month.')
+        ].map((t) => `<li>${ico('i-check')}<span>${t}</span></li>`).join('')}</ul></div></div>`),
+
+    // KPIS
+    sec('kpis', 'pad dark g-dark', `<div class="wrap">${head(S('KPIs', 'KPIs'), S('Lo que medimos', 'What we measure'), S('cada mes.', 'every month.'), S('Las mismas preguntas, en ChatGPT, Gemini y Claude, cada mes. Así se ve el avance sin depender de una respuesta suelta.', 'The same questions, on ChatGPT, Gemini and Claude, every month. That is how progress shows without depending on a single answer.'))}
+      <div class="kpi-feature rv">${KPIS.filter((k) => k[5] !== null).map((k) => `<div class="kf"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="trk"/><circle cx="60" cy="60" r="50" class="bar" data-v="${k[5]}" stroke-dasharray="314.16" stroke-dashoffset="314.16"/></svg><div class="kf-c"><b data-to="${k[5]}">0</b><span>%</span></div><p>${k[0]}<small>${S('meta a 12 meses', '12-month target')}</small></p></div>`).join('')}</div>
+      <div class="kpi-tbl rv"><div class="kt-h"><span>KPI</span><span>${S('Cómo se mide', 'How it is measured')}</span><span>${S('Mes 6', 'Month 6')}</span><span>${S('Mes 12', 'Month 12')}</span></div>
+        ${KPIS.map(([n, h, tool, a, b]) => `<div class="kt-r"><span><b>${n}</b></span><span>${h}<small>${tool}</small></span><span class="t">${a}</span><span class="t">${b}</span></div>`).join('')}</div>
+      <p class="fine">${S('Metas de referencia para una clínica que parte con poca presencia. Se ajustan a tu línea base y a tu competencia; no son garantías.', 'Reference targets for a clinic starting with little presence. They are adjusted to your baseline and competitors; they are not guarantees.')}</p></div>`),
+
+    // TOOLS
+    sec('herramientas', 'pad', `<div class="wrap">${head(S('Herramientas', 'Tools'), S('Medición independiente,', 'Independent measurement,'), S('no promesas.', 'not promises.'), '', true)}
+      <div class="tools">${TOOLS.map(([g, list], i) => `<div class="tg rv d${i % 3}"><h3>${g}</h3><div class="chips-x">${list.map((x) => `<span>${x}</span>`).join('')}</div></div>`).join('')}</div>
+      <p class="fine center">${S('Las marcas pertenecen a sus dueños. Usamos la combinación que mejor encaja con cada plan.', 'Brands belong to their owners. We use the combination that best fits each plan.')}</p></div>`),
+
+    // RESULTS
+    sec('resultados', 'pad g-rose', `<div class="wrap g-res">
+      <div>${head(S('Resultados esperados', 'Expected results'), S('Una curva que sube', 'A curve that climbs'), S('mes a mes.', 'month after month.'), S('El mes 1 deja la base trabajando; el contenido y la reputación empujan la presencia en las respuestas con los meses.', 'Month 1 gets the base working; content and reputation push presence in answers over the months.'))}
+        <ul class="res-list rv"><li><b>${S('Mes 1', 'Month 1')}</b>${S('Fichas y datos corregidos, contenidos publicados y reseñas automáticas funcionando.', 'Listings and data fixed, content published and automated reviews running.')}</li><li><b>${S('Meses 2–3', 'Months 2–3')}</b>${S('Datos correctos en las IA y primeras páginas indexadas.', 'Correct data in the AIs and first pages indexed.')}</li><li><b>${S('Meses 4–6', 'Months 4–6')}</b>${S('Primeras apariciones en el top 5 para tus tratamientos principales.', 'First top-5 appearances for your main treatments.')}</li><li><b>${S('Meses 7–12', 'Months 7–12')}</b>${S('Presencia estable en español e inglés y pacientes medibles desde la IA.', 'Stable presence in Spanish and English and measurable patients from AI.')}</li></ul></div>
+      <div class="chart-box rv d1"><div class="cb-h"><span><i class="l1"></i>${S('Presencia en respuestas', 'Presence in answers')}</span><span><i class="l2"></i>Top 5</span></div>
+        <svg viewBox="0 0 520 300" id="res-chart" role="img" aria-label="${S('Curva ilustrativa de presencia y top 5 en 12 meses', 'Illustrative 12-month curve for presence and top 5')}">
+          <g class="grid">${[0, 25, 50, 75].map((v) => `<line x1="40" x2="510" y1="${260 - v * 3}" y2="${260 - v * 3}"/><text x="32" y="${264 - v * 3}">${v}%</text>`).join('')}</g>
+          <g class="xl">${[0, 3, 6, 9, 12].map((m) => `<text x="${40 + m * 39}" y="285">${m === 0 ? S('Base', 'Base') : S('Mes ', 'Mo ') + m}</text>`).join('')}</g>
+          <path class="c1" d="${[6, 9, 13, 18, 25, 31, 36, 41, 46, 50, 54, 57, 60].map((y, i) => `${i ? 'L' : 'M'}${40 + i * 39},${260 - y * 3}`).join(' ')}"/>
+          <path class="c2" d="${[0, 2, 4, 8, 13, 19, 24, 29, 33, 37, 40, 43, 45].map((y, i) => `${i ? 'L' : 'M'}${40 + i * 39},${260 - y * 3}`).join(' ')}"/>
+        </svg><p class="fine">${S('Curva ilustrativa basada en las metas de referencia; no es una proyección garantizada.', 'Illustrative curve based on the reference targets; not a guaranteed projection.')}</p></div></div>`),
+
+    // QUESTIONNAIRE
+    sec('cuestionario', 'pad', `<div class="wrap">${head(S('Cuestionario GEO', 'GEO questionnaire'), S('Lo que necesitamos', 'What we need'), S('para empezar en la semana 1.', 'to start in week 1.'), S('Responde lo que sepas; “no sé” también es una respuesta. Al final tienes tu checklist de arranque para enviárnosla.', 'Answer what you know; “not sure” is an answer too. At the end you get your kick-off checklist to send us.'))}
+      <div class="qz rv">
+        <div><div class="qz-steps" id="qz-steps" role="tablist"></div><div class="qz-card" id="qz-card"></div></div>
+        <aside class="qz-side" aria-live="polite"><h3>${S('Tu checklist de arranque', 'Your kick-off checklist')}</h3><p class="sub">${S('Se arma con tus respuestas.', 'Built from your answers.')}</p>
+          <div class="qz-meter"><i id="qz-bar"></i><b id="qz-pct">0%</b></div>
+          <ul class="qz-list" id="qz-list"></ul>
+          <div class="qz-acts"><button type="button" class="btn btn-light" id="qz-mail">${S('Enviar por correo', 'Send by email')}</button><button type="button" class="btn btn-ghost" id="qz-wa">WhatsApp</button><button type="button" class="btn btn-ghost" id="qz-copy">${S('Copiar', 'Copy')}</button></div>
+          <p class="qz-ok" id="qz-ok"></p></aside>
+      </div></div>`),
+
+    // PRICING
+    sec('precios', 'pad g-rose', `<div class="wrap">${head(S('Planes y precios', 'Plans and pricing'), S('Elige el ritmo', 'Choose the pace'), S('de tu clínica.', 'for your clinic.'), '', true)}
+      <div class="seg center-seg rv" id="term-seg"><button type="button" data-term="6" class="on">${S('Mensual · mínimo 6 meses', 'Monthly · 6-month minimum')}</button><button type="button" data-term="12">${S('Compromiso de 12 meses · 20% menos', '12-month commitment · 20% off')}</button></div>
+      <div class="plans3" id="plans3"></div>
+      <div class="cmp rv"><div class="cmp-h"><span></span>${PLANS.map((p) => `<span>${p.n}</span>`).join('')}</div>
+        ${COMPARE.map(([cat, rows]) => `<div class="cmp-cat">${cat}</div>${rows.map(([f, ...v]) => `<div class="cmp-r"><span>${f}</span>${v.map((x) => `<span class="${x === Y ? 'y' : x === N ? 'n' : ''}">${x}</span>`).join('')}</div>`).join('')}`).join('')}</div>
+      <p class="fine center">${S('Precios por mes en USD, sin IVU. Un contenido es una página de tratamiento o municipio, un artículo, un bloque de preguntas frecuentes, una publicación en Google Business Profile o un video, revisado por tu médico. Propuesta sujeta a cotización.', 'Monthly prices in USD, before IVU. A piece of content is a treatment or town page, an article, an FAQ block, a Google Business Profile post or a video, reviewed by your doctor. Proposal subject to quote.')}</p></div>`),
+
+    // INVESTMENT / ROI
+    sec('inversion', 'pad dark g-dark', `<div class="wrap g-roi">
+      <div>${head(S('Inversión', 'Investment'), S('Cuántos pacientes al mes', 'How many patients a month'), S('cubren tu plan.', 'cover your plan.'), S('Mueve los valores con las cifras de tu clínica.', 'Move the values with your clinic’s numbers.'))}</div>
+      <div class="roi rv">
+        <label>${S('Plan', 'Plan')}<select id="r-plan">${PLANS.map((p, i) => `<option value="${i}" ${i === 1 ? 'selected' : ''}>${p.n}</option>`).join('')}</select></label>
+        <label>${S('Modalidad', 'Option')}<select id="r-term"><option value="6">${S('Mensual · mínimo 6 meses', 'Monthly · 6-month minimum')}</option><option value="12" selected>${S('12 meses · 20% menos', '12 months · 20% off')}</option></select></label>
+        <label>${S('Valor de un paciente nuevo (USD)', 'Value of a new patient (USD)')}<input type="range" id="r-val" min="200" max="3000" step="50" value="650"><output id="o-val"></output></label>
+        <label>${S('Pacientes nuevos al mes desde la IA', 'New patients a month from AI')}<input type="range" id="r-pat" min="1" max="30" step="1" value="6"><output id="o-pat"></output></label>
+        <div class="roi-out" id="roi-out"></div>
+        <p class="fine">${S('Ejemplo, no promesa. La llegada de pacientes desde la IA crece con los meses a medida que aumenta tu presencia.', 'An example, not a promise. Patients from AI grow over the months as your presence increases.')}</p>
+      </div></div>`),
+
+    // COMPLIANCE
+    sec('cumplimiento', 'pad', `<div class="wrap">${head(S('Cumplimiento', 'Compliance'), S('Visibilidad', 'Visibility'), S('sin riesgos.', 'without risk.'), '', true)}
+      <div class="comp">${[
+        [S('HIPAA', 'HIPAA'), S('Fotos y testimonios solo con autorización escrita de la paciente.', 'Photos and testimonials only with the patient’s written authorization.')],
+        [S('Sin promesas de resultados', 'No result promises'), S('Contenido informativo, revisado por el médico responsable, sin afirmaciones engañosas.', 'Informational content, reviewed by the responsible physician, with no misleading claims.')],
+        [S('Licencias visibles', 'Visible licenses'), S('Cada médico con su nombre, especialidad y licencia en Puerto Rico.', 'Every doctor with name, specialty and Puerto Rico license.')],
+        [S('Reseñas reales', 'Real reviews'), S('Solicitud a todos los pacientes, sin incentivos ni reseñas falsas.', 'Requests to every patient, no incentives or fake reviews.')]
+      ].map(([t, d], i) => `<div class="cp rv d${i % 3}"><span class="ic">${ico('i-check')}</span><b>${t}</b><p>${d}</p></div>`).join('')}</div></div>`),
+
+    // FAQ
+    sec('faq-geo', 'pad g-rose', `<div class="wrap">${head(S('Preguntas', 'Questions'), S('Lo que preguntan', 'What clinics'), S('las clínicas.', 'ask us.'), '', true)}
+      <div class="faq">${FAQ.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div>`),
+
+    // CTA
+    sec('empezar', 'cta', `<div class="wrap"><div class="cta-box g-cta">
+      <div><span class="eyebrow">${S('Empieza hoy', 'Start today')}</span><h2 class="h-sec">${S('Descubre si la IA', 'Find out if AI')} <em>${S('ya recomienda tu clínica.', 'already recommends your clinic.')}</em></h2>
+        <p class="lead">${S('Completa el cuestionario y en la semana 1 te mostramos dónde apareces en ChatGPT, Gemini y Claude.', 'Complete the questionnaire and in week 1 we show you where you appear on ChatGPT, Gemini and Claude.')}</p></div>
+      <div class="g-cta-btns"><a class="btn btn-gold" href="#cuestionario">${S('Completar el cuestionario', 'Complete the questionnaire')}</a><a class="btn btn-diag" href="diagnostico.html">${S('Diagnosticar mi clínica', 'Diagnose my clinic')}</a></div>
+    </div></div>`)
+  ].join('');
+
+  /* ===================================================== behaviour */
+  const nav = $('#nav'), bar = $('#pagebar'), links = $('#nav-links'), burger = $('#burger');
+  const onScroll = () => { nav.classList.toggle('scrolled', scrollY > 10); const mx = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${mx > 0 ? Math.min(scrollY / mx, 1) : 0})`; };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  burger.addEventListener('click', () => burger.setAttribute('aria-expanded', links.classList.toggle('open')));
+  $$('a', links).forEach((a) => a.addEventListener('click', () => { links.classList.remove('open'); burger.setAttribute('aria-expanded', false); }));
+  $('#yr').textContent = new Date().getFullYear();
+  const once = (el, fn, th = 0.25) => { if (!('IntersectionObserver' in window)) { fn(el); return; } const ob = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { fn(e.target); ob.unobserve(e.target); } }), { threshold: th }); ob.observe(el); };
+  // titles: word-by-word reveal
+  $$('.h-sec').forEach((h) => {
+    let k = 0;
+    const walk = (n) => [...n.childNodes].forEach((c) => {
+      if (c.nodeType === 3) { const f = document.createDocumentFragment(); c.textContent.split(/(\s+)/).forEach((w) => { if (!w) return; if (/^\s+$/.test(w)) { f.appendChild(document.createTextNode(w)); return; } const sp = document.createElement('span'); sp.className = 'w'; sp.style.setProperty('--i', k++); sp.textContent = w; f.appendChild(sp); }); c.replaceWith(f); }
+      else if (c.nodeType === 1) walk(c);
+    });
+    walk(h);
+  });
+  // reveal on the way down, rewind when the element drops below the viewport (scrolling up)
+  const rvObs = 'IntersectionObserver' in window && !reduce ? new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) e.target.classList.add('in');
+    else if (e.boundingClientRect.top > 0) e.target.classList.remove('in');
+  }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }) : null;
+  $$('.rv, .h-sec').forEach((el) => (rvObs ? rvObs.observe(el) : el.classList.add('in')));
+  // subtle parallax on section heads and media
+  const par = $$('.g-head, .chart-box, .bubble, .qz-side, .m1-curve');
+  let lastY = scrollY, ticking = false;
+  const frame = () => {
+    ticking = false;
+    if (!reduce) par.forEach((el) => { const r = el.getBoundingClientRect(); if (r.bottom < -100 || r.top > innerHeight + 100) return; const c = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; el.style.setProperty('--py', (c * -26).toFixed(1) + 'px'); });
+    const y = scrollY, down = y > lastY;
+    if (Math.abs(y - lastY) > 6) { nav.classList.toggle('hide', down && y > 500 && !links.classList.contains('open')); lastY = y; }
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  frame();
+
+  // hero: scroll-driven walk through the real searches (reversible up and down)
+  const hx = $('#top'), chat = $('#hx-chat');
+  let hxStep = -1, typer = 0;
+  const countTo = (el, to) => { const from = +el.textContent || 0; if (reduce || from === to) { el.textContent = to; return; } const t0 = performance.now(); const f = (now) => { const k = Math.min((now - t0) / 600, 1); el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
+  const showStep = (i) => {
+    if (i === hxStep) return; hxStep = i; const h = HX[i];
+    $$('.hx-rail button').forEach((b, k) => { b.classList.toggle('on', k === i); b.classList.toggle('done', k < i); });
+    $('#hx-step').textContent = `${i + 1} / ${HX.length}`;
+    countTo($('#hx-seen'), HX.slice(0, i + 1).reduce((t, x) => t + x.n, 0));
+    countTo($('#hx-fr'), HX.slice(0, i + 1).reduce((t, x) => t + x.fr, 0));
+    const q = $('#hx-q'); clearInterval(typer);
+    const fill = () => {
+      $('#hx-meta').innerHTML = `${ico('i-globe')}<span>${S(`Buscó en la web · ${h.n} resultados`, `Searched the web · ${h.n} results`)}</span>`;
+      $('#hx-list').innerHTML = h.r.map(([d, t, ty], k) => `<li style="--k:${k}"><span class="d">${d}</span><span class="tt">${t}</span><span class="ty ${ty}">${TYPE[ty]}</span></li>`).join('');
+      $('#hx-foot').innerHTML = `<span class="pill fr">Fresha · ${h.fr}/${h.n}</span><span class="pill you">${S('¿Tu clínica?', 'Your clinic?')} · ¿?/${h.n}</span>`;
+    };
+    $('#hx-list').innerHTML = ''; $('#hx-meta').innerHTML = ''; $('#hx-foot').innerHTML = '';
+    if (reduce) { q.textContent = h.q; fill(); return; }
+    let c = 0; q.textContent = '';
+    typer = setInterval(() => { c += 2; q.textContent = h.q.slice(0, c); if (c >= h.q.length) { clearInterval(typer); setTimeout(() => { if (hxStep === i) fill(); }, 180); } }, 16);
+  };
+  const hxScroll = () => {
+    const r = hx.getBoundingClientRect(), span = hx.offsetHeight - innerHeight;
+    const p = span > 0 ? Math.min(Math.max(-r.top / span, 0), 1) : 0;
+    hx.style.setProperty('--p', p.toFixed(3));
+    showStep(Math.min(HX.length - 1, Math.floor(p * HX.length * 0.999)));
+  };
+  $('.hx-rail').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const span = hx.offsetHeight - innerHeight; scrollTo({ top: hx.offsetTop + span * ((+b.dataset.i + 0.5) / HX.length), behavior: reduce ? 'auto' : 'smooth' }); });
+  addEventListener('scroll', hxScroll, { passive: true }); addEventListener('resize', hxScroll);
+  requestAnimationFrame(() => document.documentElement.classList.add('hx-ready'));
+  hxScroll();
+
+  // opportunities explorer
+  let town = HOME, plang = lang;
+  const renderOpp = () => {
+    const t = TOWNS[town].n.split(' · ')[0];
+    const rows = PROMPTS.filter((p) => !(p[0] === 'tour' && !TOWNS[town].en));
+    $('#opp-tbl').innerHTML = `<div class="op-h"><span>${S('Pregunta', 'Question')}</span><span>${S('Tipo', 'Type')}</span><span>${S('Intención', 'Intent')}</span></div>` +
+      rows.map((p) => `<div class="op-r"><span class="q">“${(plang === 'es' ? p[2] : p[3]).replace('{t}', t)}”</span><span class="c">${CAT[p[0]]}</span><span class="i ${p[1]}">${p[1] === 'alta' ? S('Alta', 'High') : S('Media', 'Medium')}</span></div>`).join('');
+  };
+  $('#towns').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; town = +b.dataset.t; $$('#towns button').forEach((x) => x.classList.toggle('on', x === b)); renderOpp(); });
+  $('#lang-seg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; plang = b.dataset.l; $$('#lang-seg button').forEach((x) => x.classList.toggle('on', x === b)); renderOpp(); });
+  $$('#lang-seg button').forEach((x) => x.classList.toggle('on', x.dataset.l === plang));
+  renderOpp();
+  $$('.ot').forEach((el) => once(el, (t) => t.classList.add('go')));
+
+  // plan timeline + scroll progress
+  const updateTl = () => {
+    const tl = $('#tl'), r = tl.getBoundingClientRect(), k = Math.min(Math.max((innerHeight * 0.6 - r.top) / r.height, 0), 1);
+    $('#tl-fill').style.height = (k * 100) + '%';
+    $$('.tl-i', tl).forEach((it) => it.classList.toggle('on', it.getBoundingClientRect().top < innerHeight * 0.62));
+  };
+  const renderPlan = (n) => {
+    const P = n === 12 ? PLAN12 : PLAN6;
+    $('#tl-items').innerHTML = P.map((p, i) => `<div class="tl-i"><span class="dot">${i + 1}</span><div class="tl-c"><span class="tl-m">${p.m}</span><h3>${p.t}</h3><ul>${p.i.map((x) => `<li>${x}</li>`).join('')}</ul></div></div>`).join('');
+    updateTl();
+  };
+  addEventListener('scroll', updateTl, { passive: true }); addEventListener('resize', updateTl);
+  $('#plan-seg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; $$('#plan-seg button').forEach((x) => x.classList.toggle('on', x === b)); renderPlan(+b.dataset.p); });
+  renderPlan(6);
+
+  // KPI gauges
+  $$('.kf').forEach((el) => once(el, (t) => {
+    const c = $('.bar', t), v = +c.dataset.v, b = $('b', t);
+    c.style.strokeDashoffset = String(314.16 * (1 - v / 100));
+    if (reduce) { b.textContent = v; return; }
+    const t0 = performance.now(); const step = (now) => { const k = Math.min((now - t0) / 1400, 1); b.textContent = Math.round(v * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step);
+  }, 0.4));
+
+  // results chart draw-in
+  once($('#res-chart'), () => { if (reduce) return; $$('#res-chart path').forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; p.getBoundingClientRect(); p.style.transition = 'stroke-dashoffset 2s cubic-bezier(.2,.8,.2,1)'; p.style.strokeDashoffset = 0; }); }, 0.4);
+
+  // pricing: monthly price only; 12-month commitment = 20% off
+  let term = 6;
+  const monthly = (p, t) => (t === 12 ? p.price * (1 - DISC) : p.price);
+  const renderPlans = () => {
+    $('#plans3').innerHTML = PLANS.map((p) => `<div class="pl ${p.pop ? 'pop' : ''}">${p.pop ? `<span class="pl-b">${S('Recomendado', 'Recommended')}</span>` : ''}
+        <h3>${p.n}</h3><p class="for">${p.for}</p>
+        <p class="big">${p.content}<small>${S('contenidos al mes', 'pieces a month')}</small></p>
+        <div class="price"><b>${usd(monthly(p, term))}</b><span>/${S('mes', 'mo')}</span>${term === 12 ? `<s>${usd(p.price)}</s>` : ''}</div>
+        ${term === 12 ? `<span class="pl-off">${S('20% menos con 12 meses', '20% off with 12 months')}</span>` : ''}
+        <p class="pl-tot">${S('Configuración inicial única', 'One-time setup')}: ${usd(p.setup)}</p>
+        <ul>${p.pts.map((x) => `<li>${x}</li>`).join('')}</ul>
+        <a class="btn ${p.pop ? 'btn-gold' : 'btn-line'}" href="#cuestionario" data-plan="${p.id}">${S('Quiero este plan', 'I want this plan')}</a></div>`).join('');
+  };
+  $('#term-seg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; term = +b.dataset.term; $$('#term-seg button').forEach((x) => x.classList.toggle('on', x === b)); renderPlans(); });
+  renderPlans();
+
+  // ROI calculator (monthly)
+  const roi = () => {
+    const p = PLANS[+$('#r-plan').value], t = +$('#r-term').value, val = +$('#r-val').value, pat = +$('#r-pat').value;
+    $('#o-val').textContent = usd(val); $('#o-pat').textContent = pat + ' ' + S('al mes', 'a month');
+    const m = monthly(p, t), rev = pat * val, ratio = rev / m, be = Math.ceil(m / val);
+    $('#roi-out').innerHTML = `<div><span>${S('Plan al mes', 'Plan per month')}</span><b>${usd(m)}</b></div><div><span>${S('Pacientes para cubrirlo', 'Patients to cover it')}</span><b>${be}</b></div><div><span>${S('Ingreso al mes', 'Revenue per month')}</span><b>${usd(rev)}</b></div><div class="${ratio >= 1 ? 'ok' : 'lo'}"><span>${S('Retorno', 'Return')}</span><b>${ratio.toFixed(1)}×</b></div><p>${S(`Con <b>${be} paciente${be === 1 ? '' : 's'} nuevo${be === 1 ? '' : 's'} al mes</b> desde la IA cubres el plan ${p.n}.`, `<b>${be} new patient${be === 1 ? '' : 's'} a month</b> from AI cover the ${p.n} plan.`)}</p>`;
+  };
+  ['r-plan', 'r-term', 'r-val', 'r-pat'].forEach((id) => $('#' + id).addEventListener('input', roi));
+  roi();
+
+  /* ----- questionnaire ----- */
+  const KEY = 'cmt-geo-intake';
+  const st = Object.assign({ a: {}, f: {}, step: 0 }, store.get(KEY) || {});
+  if (!st.a.towns) st.a.towns = [TOWNS[HOME].n];
+  const FIELDS = [['clinica', S('Clínica', 'Clinic'), 'text'], ['web', S('Sitio web', 'Website'), 'url'], ['nombre', S('Tu nombre', 'Your name'), 'text'], ['email', S('Correo', 'Email'), 'email']];
+  const save = () => store.set(KEY, st);
+  const sel = (q) => st.a[q.id] || [];
+  const renderSteps = () => {
+    $('#qz-steps').innerHTML = QZ.map((g, i) => { const done = g.qs.filter((q) => sel(q).length).length; return `<button type="button" role="tab" data-s="${i}" class="${i === st.step ? 'on' : ''}" aria-selected="${i === st.step}">${g.g}<i>${done}/${g.qs.length}</i></button>`; }).join('');
+  };
+  const renderCard = () => {
+    const g = QZ[st.step];
+    $('#qz-card').innerHTML = (g.inputs ? `<div class="qz-q"><div class="qz-in">${FIELDS.map(([k, l, t]) => `<label>${l}<input type="${t}" data-f="${k}" value="${esc(st.f[k] || '')}" autocomplete="${k === 'email' ? 'email' : k === 'nombre' ? 'name' : k === 'web' ? 'url' : 'organization'}"></label>`).join('')}</div></div>` : '') +
+      g.qs.map((q) => `<div class="qz-q"><h3>${q.q}${q.multi ? `<span class="multi">${S('varias opciones', 'pick several')}</span>` : ''}</h3>${q.hint ? `<span class="hint">${q.hint}</span>` : ''}<div class="opts" data-q="${q.id}" role="group">${q.opts.map((op, i) => `<button type="button" data-o="${i}" class="${sel(q).includes(op.l) ? 'on' : ''}" aria-pressed="${sel(q).includes(op.l)}">${op.l}</button>`).join('')}</div></div>`).join('') +
+      `<div class="qz-nav"><button type="button" class="btn btn-line" id="qz-prev" ${st.step === 0 ? 'disabled' : ''}>${S('Anterior', 'Back')}</button><button type="button" class="btn btn-gold" id="qz-next">${st.step === QZ.length - 1 ? S('Ver mi checklist', 'See my checklist') : S('Siguiente', 'Next')}</button></div>`;
+  };
+  const actions = () => ALLQ.flatMap((q) => {
+    const s = sel(q); if (!s.length) return [];
+    const list = q.fn ? q.fn(s, q.opts) : s.map((l) => (q.opts.find((op) => op.l === l) || {}).a).filter(Boolean);
+    return list.map((t) => [q.q.replace(/[¿?]/g, ''), t]);
+  });
+  const renderSide = () => {
+    const done = ALLQ.filter((q) => sel(q).length).length, pct = Math.round(done / ALLQ.length * 100);
+    $('#qz-bar').style.setProperty('--w', pct + '%'); $('#qz-pct').textContent = pct + '%';
+    const acts = actions();
+    $('#qz-list').innerHTML = acts.length ? acts.map(([k, t]) => `<li><b>${esc(k)}</b>${esc(t)}</li>`).join('') : `<li class="empty">${S('Elige opciones y aquí aparecen los pasos y accesos que necesitamos.', 'Pick options and the steps and access we need appear here.')}</li>`;
+  };
+  const summary = () => {
+    const L = [S('Cuestionario GEO · Clinic Management Tech', 'GEO questionnaire · Clinic Management Tech'), ''];
+    FIELDS.concat([['plan', S('Plan elegido', 'Chosen plan')]]).forEach(([k, l]) => { if (st.f[k]) L.push(`${l}: ${st.f[k]}`); });
+    QZ.forEach((g) => { L.push('', '— ' + g.g); g.qs.forEach((q) => L.push(`${q.q.replace(/[¿?]/g, '')}: ${sel(q).join(', ') || S('sin responder', 'not answered')}`)); });
+    L.push('', S('Checklist de arranque', 'Kick-off checklist')); actions().forEach(([, t]) => L.push('• ' + t));
+    return L.join('\n');
+  };
+  const refresh = () => { renderSteps(); renderSide(); save(); };
+  renderSteps(); renderCard(); renderSide();
+  $('#qz-steps').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; st.step = +b.dataset.s; renderCard(); refresh(); });
+  $('#qz-card').addEventListener('click', (e) => {
+    const b = e.target.closest('.opts button');
+    if (b) {
+      const q = ALLQ.find((x) => x.id === b.parentNode.dataset.q), l = q.opts[+b.dataset.o].l;
+      let s = sel(q).slice();
+      if (q.multi) s = s.includes(l) ? s.filter((x) => x !== l) : s.concat(l); else s = s[0] === l ? [] : [l];
+      st.a[q.id] = s;
+      $$('button', b.parentNode).forEach((x) => { const on = s.includes(q.opts[+x.dataset.o].l); x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+      refresh(); return;
+    }
+    if (e.target.closest('#qz-prev')) { st.step = Math.max(0, st.step - 1); renderCard(); refresh(); $('#cuestionario').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+    if (e.target.closest('#qz-next')) {
+      if (st.step < QZ.length - 1) { st.step++; renderCard(); refresh(); $('#cuestionario').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+      else $('.qz-side').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    }
+  });
+  $('#qz-card').addEventListener('input', (e) => { const f = e.target.dataset.f; if (f) { st.f[f] = e.target.value.trim(); save(); } });
+  const ok = (t) => { $('#qz-ok').textContent = t; setTimeout(() => { $('#qz-ok').textContent = ''; }, 3500); };
+  $('#qz-copy').addEventListener('click', () => {
+    const txt = summary();
+    const fallback = () => { const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(S('Copiado.', 'Copied.')); } catch (err) { ok(S('No se pudo copiar.', 'Could not copy.')); } ta.remove(); };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => ok(S('Copiado.', 'Copied.')), fallback); else fallback();
+  });
+  $('#qz-mail').addEventListener('click', () => { location.href = `mailto:${CFG.EMAIL}?subject=${encodeURIComponent(S('Cuestionario GEO', 'GEO questionnaire') + (st.f.clinica ? ' · ' + st.f.clinica : ''))}&body=${encodeURIComponent(summary())}`; });
+  $('#qz-wa').addEventListener('click', () => { window.open(`https://wa.me/${CFG.WHATSAPP}?text=${encodeURIComponent(summary())}`, '_blank', 'noopener'); });
+  // "I want this plan" stores the plan choice in the questionnaire summary
+  $('#plans3').addEventListener('click', (e) => { const a = e.target.closest('[data-plan]'); if (!a) return; const p = PLANS.find((x) => x.id === a.dataset.plan); st.f.plan = `${p.n} · ${term === 12 ? S('12 meses (20% menos)', '12 months (20% off)') : S('mensual', 'monthly')}`; save(); });
+})();
+</script>
+</body>
+</html>
