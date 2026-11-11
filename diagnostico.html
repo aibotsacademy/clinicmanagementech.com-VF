@@ -1,0 +1,1877 @@
+<!doctype html>
+<html lang="es">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagnóstico de tu clínica · Clinic Management Tech</title>
+<meta name="description" content="Diagnóstico gratuito: descubre si el sitio web de tu clínica está preparado para ser encontrado, comprendido y recomendado por buscadores y asistentes de IA.">
+<meta name="theme-color" content="#F8F3EC">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<!-- Only needed when this HTML is hosted OUTSIDE Apps Script: paste your Web App /exec URL here. -->
+<meta name="gas-endpoint" content="https://script.google.com/macros/s/AKfycbzZfRjQbPgz8lYak674yaOP_E6RqjpY9sACwqQ0ogIH0l-_KF2NUh7Q73HBSiDkDvdf/exec">
+<meta name="plans-url" content="./index.html#demo">
+<meta name="privacy-url" content="./politica-de-privacidad.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+
+:root{
+  /* Clinic Management Tech palette */
+  --porcelain:#F8F3EC; --ink:#211A18; --warm-gray:#665954; --burgundy:#713C47; --wine:#3F2127;
+  --terracotta:#934633; --terracotta-deco:#C36A55; --bronze:#80512E; --champagne:#F0D28B; --teal:#2E645E;
+  --rose:#F6E0D3; --line-light:#DFD2C4; --line-dark:#8E6068;
+  /* roles used by the scanner rules */
+  --bg:var(--porcelain); --bg2:#F6EDE4; --cyan:var(--terracotta); --violet:var(--burgundy); --white:var(--ink); --muted:var(--warm-gray);
+  --line:var(--line-light); --line-strong:rgba(142,96,104,.38);
+  --glass:#FFFFFF; --glass-strong:#FFFFFF;
+  --pass:var(--teal); --warn:var(--bronze); --fail:var(--terracotta); --nd:var(--line-dark); --ne:var(--warm-gray);
+  --grad:linear-gradient(120deg,#7E4553,#713C47 55%,#62323D);
+  --r:18px; --r-sm:12px;
+  --shadow:0 24px 60px -32px rgba(63,33,39,.35);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --head:"Belleza",Manrope,sans-serif; --serif:"EB Garamond",Georgia,serif; --ui:Manrope,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:var(--ui);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(60% 50% at 80% -10%,rgba(113,60,71,.22),transparent 70%),
+  radial-gradient(50% 40% at 0% 20%,rgba(147,70,51,.12),transparent 70%),
+  linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+#neural{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:.5;pointer-events:none}
+a{color:var(--cyan)}
+button,input{font:inherit}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:#FFFFFF;border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;color:var(--white);text-decoration:none;font-size:15px}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--grad);display:grid;place-items:center;box-shadow:0 0 24px rgba(147,70,51,.35)}
+.brand-mark svg{width:16px;height:16px}
+.event{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 12px;border-radius:999px;white-space:nowrap}
+@media (max-width:640px){.event{display:none}}
+
+/* views */
+.view{display:none;animation:fade .5s var(--ease)}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* hero */
+.hero{padding-top:88px;padding-bottom:56px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--cyan);padding:8px 14px;border:1px solid rgba(147,70,51,.3);border-radius:999px;background:rgba(147,70,51,.06)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1.headline{font-size:clamp(30px,5.6vw,62px);line-height:1.04;letter-spacing:-.035em;font-weight:800;margin:26px auto 20px;max-width:16ch}
+h1.headline .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:620px;margin:0 auto 38px}
+.scan-form{max-width:640px;margin:0 auto;display:flex;gap:8px;padding:8px;border-radius:20px;background:var(--glass);border:1px solid var(--line-strong);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--shadow),0 0 0 1px rgba(147,70,51,0) inset;transition:box-shadow .3s}
+.scan-form:focus-within{box-shadow:var(--shadow),0 0 0 1px rgba(147,70,51,.5),0 0 40px -10px rgba(147,70,51,.5)}
+.scan-form input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--white);font-size:17px;padding:14px 16px}
+.scan-form input::placeholder{color:#8E6068}
+.btn{appearance:none;border:0;cursor:pointer;border-radius:14px;padding:14px 22px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:transform .2s var(--ease),box-shadow .2s,opacity .2s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--grad);color:#FFFFFF;box-shadow:0 10px 30px -10px rgba(147,70,51,.6)}
+.btn-primary:hover{box-shadow:0 14px 40px -10px rgba(113,60,71,.7)}
+.btn-ghost{background:rgba(113,60,71,.04);color:var(--white);border:1px solid var(--line-strong)}
+.btn-ghost:hover{background:rgba(113,60,71,.04)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.supporting{font-size:13px;color:var(--muted);margin-top:16px}
+.form-error{color:var(--fail);font-size:14px;margin-top:12px;min-height:1px}
+.backend-note{margin:18px auto 0;max-width:640px;font-size:13px;color:var(--muted);border:1px dashed var(--line-strong);border-radius:12px;padding:10px 14px;display:none}
+.backend-note button{background:none;border:0;color:var(--cyan);cursor:pointer;padding:0;text-decoration:underline}
+@media (max-width:560px){.scan-form{flex-direction:column}.btn-primary{width:100%}}
+
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:72px 0 40px}
+.pillar{padding:20px;border-radius:var(--r);background:#FFFFFF;border:1px solid var(--line);text-align:left}
+.pillar b{display:block;font-size:14px;margin:10px 0 4px}
+.pillar p{margin:0;font-size:13px;color:var(--muted)}
+.pillar .w{font-size:12px;color:var(--cyan);font-weight:600;letter-spacing:.06em}
+@media (max-width:860px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.pillars{grid-template-columns:1fr}}
+
+/* glass card */
+.card{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow)}
+
+/* scanner */
+.scan{padding-top:72px;padding-bottom:72px}
+.scan-card{max-width:640px;margin:0 auto;padding:36px 32px}
+.scan-head{display:flex;align-items:center;gap:22px;margin-bottom:28px}
+.mini-ring{width:92px;height:92px;flex:none;position:relative}
+.mini-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.mini-ring .val{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.scan-head h2{margin:0 0 4px;font-size:22px;letter-spacing:-.02em}
+.scan-head p{margin:0;color:var(--muted);font-size:14px;word-break:break-all}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.steps li{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;color:var(--muted);transition:background .3s,color .3s;font-size:15px}
+.steps li.running{background:rgba(147,70,51,.07);color:var(--white)}
+.steps li.done{color:var(--white)}
+.steps li.error,.steps li.skipped{color:#8E6068}
+.si{width:22px;height:22px;flex:none;border-radius:50%;border:1.5px solid var(--line-strong);display:grid;place-items:center}
+.running .si{border-color:var(--cyan);border-top-color:transparent;animation:spin .9s linear infinite}
+.done .si{border:0;background:var(--grad)}
+.done .si::after{content:"";width:9px;height:5px;border:2px solid #FFFFFF;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.error .si{border-color:var(--fail)}
+.error .si::after{content:"!";color:var(--fail);font-size:12px;font-weight:700}
+@keyframes spin{to{transform:rotate(360deg)}}
+.progress{height:4px;border-radius:4px;background:rgba(142,96,104,.12);overflow:hidden;margin:24px 0 10px}
+.progress span{display:block;height:100%;width:0;background:var(--grad);transition:width .6s var(--ease)}
+.scan-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;color:var(--muted)}
+.linkbtn{background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;font-size:13px;padding:4px}
+.scan-error{display:none;margin-top:22px;padding:16px;border-radius:12px;background:rgba(147,70,51,.08);border:1px solid rgba(147,70,51,.3);font-size:14px}
+.scan-error .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.scan-error .btn{padding:10px 16px;font-size:14px}
+
+/* report */
+.report{padding-top:56px;padding-bottom:80px}
+.demo-banner{display:none;margin-bottom:22px;padding:12px 16px;border-radius:12px;background:repeating-linear-gradient(135deg,rgba(128,81,46,.12) 0 12px,rgba(128,81,46,.06) 12px 24px);border:1px solid rgba(128,81,46,.45);color:#80512E;font-size:14px;font-weight:600;text-align:center}
+.r-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px}
+.r-head h2{font-size:clamp(26px,3.6vw,40px);letter-spacing:-.03em;line-height:1.1;margin:10px 0 0;max-width:22ch}
+.r-meta{font-size:13px;color:var(--muted);text-align:right}
+.r-meta b{color:var(--white);font-weight:600;word-break:break-all}
+.overview{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px}
+@media (max-width:860px){.overview{grid-template-columns:1fr}}
+.score-card{padding:30px 24px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.ring{position:relative;width:210px;height:210px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12}
+.ring .track{stroke:rgba(142,96,104,.12)}
+.ring .bar{stroke:url(#ringGrad);stroke-linecap:round;transition:stroke-dashoffset 1.8s var(--ease)}
+.ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .num{font-size:60px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ring .of{font-size:13px;color:var(--muted);margin-top:4px}
+.tier{margin-top:18px;font-weight:700;font-size:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;margin-top:10px}
+.badge.prov{background:rgba(128,81,46,.12);color:var(--warn);border:1px solid rgba(128,81,46,.35)}
+.score-note{font-size:12px;color:var(--muted);margin-top:14px;max-width:30ch}
+.cats{padding:26px 24px;display:grid;gap:18px;align-content:center}
+.cat-row{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline}
+.cat-row .n{font-weight:600;font-size:15px}
+.cat-row .n small{color:var(--muted);font-weight:500;margin-left:6px;font-size:12px}
+.cat-row .v{font-weight:700;font-variant-numeric:tabular-nums;font-size:18px}
+.cat-row .v.na{color:var(--muted);font-size:13px;font-weight:500}
+.cat-bar{grid-column:1/-1;height:8px;border-radius:8px;background:rgba(142,96,104,.1);overflow:hidden}
+.cat-bar span{display:block;height:100%;width:0;border-radius:8px;background:var(--grad);transition:width 1.4s var(--ease)}
+.cat-cov{grid-column:1/-1;font-size:12px;color:var(--muted)}
+
+.risks{margin-top:18px;padding:18px 20px;border-radius:var(--r);background:rgba(147,70,51,.07);border:1px solid rgba(147,70,51,.35);display:none}
+.risks h3{margin:0 0 8px;font-size:15px;color:#934633}
+.risks ul{margin:0;padding-left:18px;font-size:14px}
+
+.section{margin-top:44px}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.section-h h3{margin:0;font-size:21px;letter-spacing:-.02em}
+.section-h .sum{font-size:13px;color:var(--muted)}
+.checks{padding:6px}
+.chk{display:grid;grid-template-columns:132px 1fr;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:start}
+.chk:last-child{border-bottom:0}
+.chk .l{font-weight:600;font-size:15px}
+.chk .e{font-size:13px;color:var(--muted);margin-top:2px;word-break:break-word}
+@media (max-width:560px){.chk{grid-template-columns:1fr;gap:6px}}
+.st{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap;justify-self:start}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.pass{color:var(--pass);background:rgba(46,100,94,.1)}
+.st.warn{color:var(--warn);background:rgba(128,81,46,.1)}
+.st.fail{color:var(--fail);background:rgba(147,70,51,.1)}
+.st.not_detected,.st.detected-no{color:var(--nd);background:rgba(142,96,104,.1)}
+.st.not_evaluated,.st.error{color:var(--ne);background:transparent;border:1px dashed var(--ne)}
+.st.detected{color:var(--cyan);background:rgba(147,70,51,.08)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.bots{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:14px 16px;border-top:1px solid var(--line)}
+.bot{font-size:13px;display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(113,60,71,.04)}
+.bot .k{color:var(--muted);font-size:11px}
+.bot .ok{color:var(--pass)} .bot .no{color:var(--fail)}
+
+.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:860px){.recs{grid-template-columns:1fr}}
+.rec{padding:22px;position:relative;overflow:hidden}
+.rec .idx{font-size:13px;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.1em}
+.rec h4{margin:8px 0 8px;font-size:17px;line-height:1.3;letter-spacing:-.01em}
+.rec p{margin:0;color:var(--muted);font-size:14px}
+.rec .ev{margin-top:12px;font-size:12px;color:#8E6068;border-top:1px solid var(--line);padding-top:10px}
+.locked{margin-top:14px;font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.locked svg{flex:none;margin-top:2px}
+
+.next{margin-top:44px;padding:40px 32px;text-align:center;background:linear-gradient(135deg,rgba(147,70,51,.1),rgba(113,60,71,.16));border:1px solid rgba(113,60,71,.4)}
+.next h3{font-size:clamp(22px,3vw,30px);letter-spacing:-.025em;margin:8px auto 12px;max-width:26ch;line-height:1.2}
+.next p{color:var(--muted);max-width:56ch;margin:0 auto 24px}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.limits{margin-top:30px;font-size:12px;color:var(--muted)}
+.limits summary{cursor:pointer;font-weight:600;color:var(--white);font-size:13px}
+.limits ul{padding-left:18px}
+
+/* modal */
+dialog{border:0;padding:0;background:transparent;color:var(--white);max-width:560px;width:calc(100% - 24px)}
+dialog::backdrop{background:rgba(63,33,39,.72);backdrop-filter:blur(6px)}
+.modal{padding:30px 28px;background:var(--glass-strong)}
+.modal h3{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}
+.modal .lead{color:var(--muted);font-size:14px;margin:0 0 20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.grid2{grid-template-columns:1fr}}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.02em}
+.field input{width:100%;padding:12px 14px;border-radius:12px;background:#FFFFFF;border:1px solid var(--line-strong);color:var(--white);outline:0;font-size:15px}
+.field input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(147,70,51,.15)}
+.field .err{color:var(--fail);font-size:12px;min-height:16px;display:block;margin-top:4px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin-top:10px}
+.consent input{margin-top:3px;accent-color:var(--cyan);width:16px;height:16px;flex:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.modal-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.modal-actions .btn{flex:1}
+.close-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:18px;line-height:1}
+.success{text-align:center;display:none}
+.success .check{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;background:var(--grad);display:grid;place-items:center}
+
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ---------- additions ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.toolbar .btn{padding:11px 16px;font-size:14px}
+.btn-wa{background:#25D366;color:#03210f;box-shadow:0 10px 30px -12px rgba(37,211,102,.7)}
+.btn-wa:hover{box-shadow:0 14px 34px -12px rgba(37,211,102,.9)}
+.btn svg{flex:none}
+.loading-view{padding:120px 0;text-align:center;color:var(--muted)}
+.spinner{width:40px;height:40px;border-radius:50%;border:3px solid rgba(142,96,104,.15);border-top-color:var(--cyan);animation:spin .9s linear infinite;margin:0 auto 18px}
+.cat-row .nar{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+.summary-card{margin-top:18px;padding:24px 26px;border-left:3px solid var(--cyan)}
+.summary-card .k{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--cyan)}
+.summary-card p{margin:8px 0 0;font-size:16.5px;line-height:1.6}
+.summary-card .src{font-size:11px;color:var(--muted);margin-top:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.list-card{padding:20px 22px}
+.list-card h4{margin:0 0 12px;font-size:15px;display:flex;align-items:center;gap:8px}
+.list-card ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.list-card li{font-size:14px;display:grid;grid-template-columns:18px 1fr;gap:8px}
+.list-card li b{display:block;font-weight:600}
+.list-card li span{color:var(--muted);font-size:13px}
+.ico-ok{color:var(--pass)} .ico-no{color:var(--fail)} .ico-warn{color:var(--warn)}
+.queries{padding:6px}
+.q{display:grid;grid-template-columns:1fr auto;gap:6px 14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:center}
+.q:last-child{border-bottom:0}
+.q .t{font-weight:600;font-size:15px}
+.q .r{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.lvl{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.lvl.ready{color:var(--pass);background:rgba(46,100,94,.1)} .lvl.partial{color:var(--warn);background:rgba(128,81,46,.1)} .lvl.not_ready{color:var(--fail);background:rgba(147,70,51,.1)}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+details.cat-details{margin-top:12px}
+details.cat-details>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line)}
+details.cat-details>summary::-webkit-details-marker{display:none}
+details.cat-details>summary h4{margin:0;font-size:16px}
+details.cat-details>summary .sum{font-size:12.5px;color:var(--muted)}
+details.cat-details>summary .chev{transition:transform .25s}
+details.cat-details[open]>summary .chev{transform:rotate(180deg)}
+details.cat-details .checks{margin-top:8px}
+.integral{margin-top:44px;padding:34px 30px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:center;background:linear-gradient(135deg,rgba(113,60,71,.18),rgba(147,70,51,.08));border:1px solid rgba(113,60,71,.45)}
+@media (max-width:820px){.integral{grid-template-columns:1fr}}
+.integral h3{margin:8px 0 10px;font-size:clamp(22px,3vw,30px);letter-spacing:-.025em;line-height:1.15}
+.integral p{margin:0 0 18px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12.5px;padding:7px 12px;border-radius:999px;border:1px solid var(--line-strong);background:rgba(113,60,71,.04)}
+.ops-head{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;padding:26px}
+@media (max-width:640px){.ops-head{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.ring.sm{width:150px;height:150px}.ring.sm .num{font-size:42px}
+.modules{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.mod{padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#FFFFFF;display:grid;gap:8px}
+.mod .ml{font-size:14px;font-weight:600}
+.mod .ms{font-size:12px;font-weight:600}
+.mod.s2{border-color:rgba(46,100,94,.35)} .mod.s2 .ms{color:var(--pass)}
+.mod.s1{border-color:rgba(128,81,46,.35)} .mod.s1 .ms{color:var(--warn)}
+.mod.s0{border-color:rgba(147,70,51,.4)} .mod.s0 .ms{color:var(--fail)}
+.mod.sna .ms{color:var(--ne)}
+.mod .prio{font-size:11px;color:var(--cyan);font-weight:700;letter-spacing:.06em}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.sc{padding:22px}
+.sc .k{font-size:12px;color:var(--muted);font-weight:600}
+.sc .m{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sc .v{font-size:14px;font-weight:600;margin-bottom:8px}
+.sc p{margin:0;font-size:13.5px;color:var(--muted)}
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:860px){.road{grid-template-columns:1fr}}
+.ph{padding:20px 22px;position:relative}
+.ph .n{font-size:12px;font-weight:700;color:var(--cyan);letter-spacing:.06em}
+.ph h4{margin:6px 0 12px;font-size:17px}
+.ph ul{margin:0;padding-left:18px;font-size:14px;color:var(--muted);display:grid;gap:6px}
+.insight-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.insight-list li{padding:14px 16px;border-radius:14px;background:rgba(147,70,51,.05);border:1px solid rgba(147,70,51,.18);font-size:14.5px;display:grid;grid-template-columns:22px 1fr;gap:10px}
+.sol{display:grid;gap:8px}
+.sol div{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:12px;background:rgba(113,60,71,.04);border:1px solid var(--line);font-size:14px;flex-wrap:wrap}
+.sol b{font-weight:600}
+.sol span{color:var(--muted)}
+/* ---------- diagnóstico integral (recorrido interactivo) ---------- */
+.field select{width:100%;padding:12px 14px;border-radius:12px;background:#FFFFFF;border:1px solid var(--line-strong);color:var(--white);outline:0;font-size:15px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#A8BCD0 50%),linear-gradient(135deg,#A8BCD0 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.field select option{background:#FFFFFF}
+.iq{padding-top:40px;padding-bottom:80px;max-width:760px}
+.scan-strip{margin-bottom:18px;padding:14px 16px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);backdrop-filter:blur(12px)}
+.scan-strip.done{border-color:rgba(46,100,94,.35)}
+.scan-strip.failed{border-color:rgba(147,70,51,.45);background:rgba(147,70,51,.07)}
+.ss-row{display:flex;align-items:center;gap:14px}
+.ss-ring{--p:0;width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;background:radial-gradient(closest-side,#FFFFFF 79%,transparent 80% 100%),conic-gradient(var(--cyan) calc(var(--p)*1%),rgba(142,96,104,.15) 0)}
+.scan-strip.done .ss-ring{color:var(--pass);background:radial-gradient(closest-side,#FFFFFF 79%,transparent 80% 100%),conic-gradient(var(--pass) 100%,transparent 0)}
+.ss-ico{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:800;color:var(--fail);border:1.5px solid var(--fail)}
+.ss-txt{display:grid;gap:2px;min-width:0}
+.ss-txt b{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.ss-txt span{font-size:12.5px;color:var(--muted)}
+.ss-bar{height:3px;border-radius:3px;background:rgba(142,96,104,.12);margin-top:12px;overflow:hidden}
+.ss-bar i{display:block;height:100%;background:var(--grad);transition:width .6s var(--ease)}
+.scan-strip.done .ss-bar{display:none}
+.ss-fix{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ss-fix input{flex:1;min-width:200px;padding:11px 13px;border-radius:12px;background:#FFFFFF;border:1px solid var(--line-strong);color:var(--white);font-size:15px;outline:0}
+.ss-fix .btn{padding:10px 14px;font-size:14px}
+.iq-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.iq-top .sec{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase}
+.iq-top .cnt{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.iq-sections{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:22px}
+.iq-sections span{height:5px;border-radius:5px;background:rgba(142,96,104,.14);position:relative;overflow:hidden}
+.iq-sections span i{position:absolute;inset:0;width:0;background:var(--grad);transition:width .5s var(--ease)}
+.iq-card{padding:34px 32px 28px;min-height:330px;display:flex;flex-direction:column}
+@media (max-width:560px){.iq-card{padding:26px 20px 22px}}
+.iq-card.enter{animation:qin .38s var(--ease)}
+.iq-card.back{animation:qback .38s var(--ease)}
+@keyframes qin{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes qback{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+.iq-card .qn{font-size:12px;color:var(--muted);font-weight:600}
+.iq-card h3{font-size:clamp(21px,3.2vw,28px);letter-spacing:-.025em;line-height:1.2;margin:8px 0 8px}
+.iq-card .help{color:var(--muted);font-size:14px;margin:0 0 22px}
+.dd{position:relative}
+.dd select{width:100%;padding:17px 48px 17px 18px;border-radius:14px;font-size:17px;font-weight:500;color:var(--white);background:#FFFFFF;border:1.5px solid var(--line-strong);appearance:none;-webkit-appearance:none;cursor:pointer;outline:0;transition:border-color .2s,box-shadow .2s}
+.dd select:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(147,70,51,.14)}
+.dd select.ph{color:#8E6068;font-weight:400}
+.dd select option{background:#FFFFFF;color:#211A18}
+.dd::after{content:"";position:absolute;right:20px;top:50%;width:9px;height:9px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.dd.ok select{border-color:rgba(147,70,51,.55)}
+@media (max-width:560px){.dd select{font-size:15px;padding:15px 40px 15px 14px}.lt{padding:10px 14px}.lt .v{font-size:19px}}
+.msd{position:relative}
+.msd-btn{width:100%;min-height:58px;text-align:left;padding:12px 48px 12px 16px;border-radius:14px;background:#FFFFFF;border:1.5px solid var(--line-strong);color:var(--white);font:inherit;font-size:16px;cursor:pointer;position:relative;display:flex;align-items:center;transition:border-color .2s,box-shadow .2s}
+.msd-btn::after{content:"";position:absolute;right:20px;top:50%;width:9px;height:9px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.msd.open .msd-btn{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(147,70,51,.14);border-bottom-left-radius:6px;border-bottom-right-radius:6px}
+.msd.open .msd-btn::after{transform:translateY(-30%) rotate(-135deg)}
+.msd-btn:focus-visible{outline:0;border-color:var(--cyan);box-shadow:0 0 0 4px rgba(147,70,51,.14)}
+.msd-val{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-width:0}
+.msd-val.ph{color:#8E6068}
+.msd-tag{background:rgba(147,70,51,.12);border:1px solid rgba(147,70,51,.4);color:#211A18;font-size:13.5px;padding:4px 10px;border-radius:999px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.msd-more{font-size:13px;color:var(--cyan);font-weight:700}
+.msd-panel{margin-top:6px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(147,70,51,.35);box-shadow:0 24px 60px -20px rgba(63,33,39,.25);overflow:hidden;animation:fade .2s var(--ease)}
+.msd-list{max-height:300px;overflow-y:auto;padding:6px;overscroll-behavior:contain}
+.msd-opt{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;cursor:pointer;font-size:15px;color:#211A18}
+.msd-opt:hover{background:rgba(113,60,71,.04)}
+.msd-opt input{width:18px;height:18px;margin:0;accent-color:var(--cyan);flex:none;cursor:pointer}
+.msd-opt input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.msd-opt.on{background:rgba(147,70,51,.09);color:#211A18}
+.msd-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line);background:#FFFFFF}
+.msd-foot span{font-size:12.5px;color:var(--muted)}
+.msd-foot .btn{padding:9px 18px;font-size:14px}
+@media (max-width:560px){.msd-list{max-height:52vh}.msd-btn{font-size:15px}}
+.cqs{display:flex;flex-wrap:wrap;gap:8px}
+.cq{cursor:pointer;position:relative}
+.cq input{position:absolute;opacity:0;pointer-events:none}
+.cq span{display:inline-flex;align-items:center;gap:8px;padding:11px 15px;border-radius:999px;border:1.5px solid var(--line-strong);background:#FFFFFF;font-size:14.5px;color:#211A18;transition:background .2s,border-color .2s,color .2s;user-select:none}
+.cq span::before{content:"";width:16px;height:16px;border-radius:5px;border:1.5px solid #8E6068;flex:none;transition:all .2s}
+.cq:hover span{border-color:rgba(147,70,51,.5)}
+.cq.on span{background:rgba(147,70,51,.12);border-color:var(--cyan);color:#211A18}
+.cq.on span::before{background:var(--cyan) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23FFFFFF' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--cyan)}
+.cq input:focus-visible+span{outline:2px solid var(--cyan);outline-offset:2px}
+@media (max-width:560px){.cq{flex:1 1 100%}.cq span{width:100%;border-radius:12px;font-size:14px}}
+.other-in{margin-top:12px}
+.other-in input{width:100%;padding:13px 14px;border-radius:12px;background:#FFFFFF;border:1.5px solid rgba(147,70,51,.45);color:var(--white);outline:0;font-size:15px}
+.iq-picked{margin-top:12px;font-size:13px;color:var(--pass);min-height:18px;display:flex;align-items:center;gap:6px}
+.iq-nav{margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.iq-nav .btn{padding:12px 20px}
+.iq-live{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media (max-width:560px){.iq-live{grid-template-columns:1fr}}
+.lt{padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid var(--line);opacity:.45;transition:opacity .4s,border-color .4s}
+.lt.on{opacity:1;border-color:rgba(113,60,71,.4)}
+.lt .k{font-size:11.5px;color:var(--muted);font-weight:600}
+.lt .v{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.lt .v.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lt .s{font-size:12px;color:var(--muted);margin-top:2px}
+.iq-answers{margin-top:16px}
+.iq-answers summary{cursor:pointer;font-size:13px;color:var(--muted);font-weight:600}
+.iq-answers ol{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.iq-answers li button{width:100%;text-align:left;display:flex;justify-content:space-between;gap:12px;background:rgba(113,60,71,.04);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--white);font-size:13px;cursor:pointer}
+.iq-answers li button span{color:var(--muted)}
+.iq-answers li button b{font-weight:600;text-align:right}
+.iq-contact .grid2{margin-top:4px}
+.iq-done{text-align:center;padding:60px 10px}
+.iq-done .spinner{margin-bottom:22px}
+.iq-done ul{list-style:none;padding:0;margin:18px auto 0;max-width:360px;text-align:left;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.iq-done li.on{color:var(--white)}
+.iq-done li::before{content:"○ ";color:var(--muted)}
+.iq-done li.on::before{content:"● ";color:var(--cyan)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;z-index:50;background:#FFFFFF;border:1px solid var(--line-strong);border-radius:14px;padding:12px 16px;font-size:14px;box-shadow:var(--shadow);transition:all .3s var(--ease);max-width:calc(100% - 24px);display:flex;gap:10px;align-items:center}
+.toast.on{opacity:1;transform:translateX(-50%);pointer-events:auto}
+.toast a,.toast button{color:var(--cyan);background:none;border:0;font:inherit;cursor:pointer;text-decoration:underline;padding:0}
+.sticky-share{position:fixed;left:0;right:0;bottom:0;z-index:15;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#FFFFFF;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:none;gap:8px}
+.sticky-share .btn{flex:1;padding:12px;font-size:14px}
+@media (max-width:640px){body.has-report .sticky-share{display:flex}body.has-report footer{padding-bottom:90px}}
+
+/* ================= Clinic Management Tech theme overrides ================= */
+body{background:var(--porcelain);color:var(--ink);font-family:var(--ui)}
+body::before{background:radial-gradient(60% 50% at 85% -10%,rgba(246,224,211,.95),transparent 70%),radial-gradient(45% 40% at 0% 25%,rgba(246,224,211,.6),transparent 70%),linear-gradient(180deg,#F8F3EC 0%,#F6EDE4 100%)}
+#neural{opacity:.55}
+a{color:var(--terracotta)}
+.nav{background:rgba(248,243,236,.9);border-bottom-color:var(--line-light)}
+.nav .wrap{height:72px}
+.brand{color:var(--ink);gap:12px}
+.brand-logo{width:28px;height:40px;background:url(assets/logo.png) center/contain no-repeat;display:inline-block}
+.brand-sep{width:1px;height:32px;background:var(--terracotta-deco)}
+.wordmark{font-family:var(--ui);font-weight:600;font-size:10px;letter-spacing:.3em;line-height:1.35;text-transform:uppercase}
+.event{color:var(--burgundy);border-color:var(--line-light);text-decoration:none;font-weight:600;background:#fff}
+.event:hover{border-color:var(--burgundy)}
+h1,h2,h3,h4,.headline,.r-head h2,.iq-card h3,.next h3,.integral h3,.section-h h3,.scan-head h2{font-family:var(--head)!important;font-weight:400!important;font-synthesis:none;letter-spacing:0!important}
+h1.headline{text-transform:none;font-size:clamp(34px,5.4vw,64px);line-height:1.05;max-width:18ch}
+h1.headline .g{font-family:var(--serif);font-style:italic;background:none;-webkit-text-fill-color:currentColor;color:var(--terracotta)}
+.subtitle,.next p,.integral p,.summary-card p{font-family:var(--serif);font-size:clamp(18px,1.9vw,21px);line-height:1.5}
+.subtitle{color:var(--warm-gray)}
+.eyebrow{color:var(--bronze);border-color:var(--line-light);background:#fff;font-family:var(--ui);font-weight:700}
+.eyebrow .dot{background:var(--teal);box-shadow:0 0 0 4px rgba(46,100,94,.15)}
+.btn{font-family:var(--ui);font-weight:700;border-radius:999px}
+.btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 12px 28px -14px rgba(113,60,71,.75)}
+.btn-primary:hover{background:#62323D;box-shadow:0 16px 34px -14px rgba(113,60,71,.85)}
+.btn-ghost{background:#fff;color:var(--burgundy);border:1px solid rgba(113,60,71,.35)}
+.btn-ghost:hover{background:var(--rose)}
+.scan-form{background:#fff;border-color:var(--line-light);border-radius:999px}
+.scan-form:focus-within{box-shadow:var(--shadow),0 0 0 2px rgba(113,60,71,.35)}
+.scan-form input{color:var(--ink)}
+.scan-form input::placeholder{color:#8E6068}
+.pillar{background:#fff;border-color:var(--line-light)}
+.pillar .w{color:var(--terracotta)}
+.card,details.cat-details>summary{background:#fff;border-color:var(--line-light);box-shadow:0 18px 40px -30px rgba(63,33,39,.45);backdrop-filter:none;-webkit-backdrop-filter:none}
+.progress span,.cat-bar span,.ss-bar i,.iq-sections span i{background:var(--teal)}
+.done .si{background:var(--teal)}
+.running .si{border-color:var(--teal);border-top-color:transparent}
+.steps li.running{background:var(--rose);color:var(--ink)}
+.steps li.done{color:var(--ink)}
+.spinner{border-color:var(--line-light);border-top-color:var(--burgundy)}
+.ring .track{stroke:var(--line-light)}
+.ring .num,.mini-ring .val{font-family:var(--ui)}
+.rec .idx,.sc .m,.lt .v.g{background:none;-webkit-text-fill-color:currentColor;color:var(--burgundy)}
+.summary-card{border-left-color:var(--burgundy)}
+.summary-card .k,.ph .n,.mod .prio,.iq-top .sec,.msd-more{color:var(--terracotta)}
+.next,.integral{background:var(--burgundy);border:0;color:#F8F3EC}
+.next h3,.integral h3{color:#F8F3EC}
+.next p,.integral p{color:rgba(248,243,236,.88)}
+.next .eyebrow,.integral .eyebrow{background:transparent;border-color:rgba(240,210,139,.45);color:var(--champagne)}
+.next .eyebrow .dot,.integral .eyebrow .dot{background:var(--champagne)}
+.next .btn-primary,.integral .btn-primary{background:#F8F3EC;color:var(--burgundy)}
+.next .btn-ghost,.integral .btn-ghost{background:transparent;color:#F8F3EC;border-color:rgba(248,243,236,.45)}
+.integral .chip{border-color:rgba(248,243,236,.35);color:#F8F3EC;background:rgba(255,255,255,.06)}
+.chip{color:var(--ink)}
+.insight-list li{background:var(--rose);border-color:var(--line-light)}
+.mod{background:#fff}
+.dd select,.msd-btn,.field input,.field select,.ss-fix input,.other-in input{background:#fff;color:var(--ink);border-color:rgba(142,96,104,.38)}
+.dd select:focus,.msd.open .msd-btn,.msd-btn:focus-visible,.field input:focus{border-color:var(--burgundy);box-shadow:0 0 0 4px rgba(113,60,71,.12)}
+.dd::after,.msd-btn::after{border-color:var(--burgundy)}
+.dd.ok select{border-color:var(--burgundy)}
+.dd select option,.field select option{background:#fff;color:var(--ink)}
+.msd-tag{background:var(--rose);border-color:var(--line-light);color:var(--ink)}
+.msd-panel{background:#fff;border-color:var(--line-light)}
+.msd-opt{color:var(--ink)}
+.msd-opt:hover{background:var(--porcelain)}
+.msd-opt.on{background:var(--rose);color:var(--ink)}
+.msd-opt input,.consent input{accent-color:var(--burgundy)}
+.msd-foot{background:var(--porcelain)}
+.iq-picked{color:var(--teal)}
+.lt{background:#fff;border-color:var(--line-light)}
+.lt.on{border-color:var(--burgundy)}
+.iq-answers li button{background:#fff;color:var(--ink)}
+.scan-strip{background:#fff;border-color:var(--line-light)}
+.ss-ring{background:radial-gradient(closest-side,#fff 79%,transparent 80% 100%),conic-gradient(var(--teal) calc(var(--p)*1%),var(--line-light) 0)}
+.scan-strip.done .ss-ring{background:radial-gradient(closest-side,#fff 79%,transparent 80% 100%),conic-gradient(var(--teal) 100%,transparent 0)}
+.toast{background:var(--wine);color:#F8F3EC;border-color:var(--wine)}
+.toast a,.toast button{color:var(--champagne)}
+.sticky-share{background:rgba(248,243,236,.95);border-top-color:var(--line-light)}
+.st.detected{color:var(--terracotta);background:rgba(147,70,51,.08)}
+.demo-banner{color:var(--bronze);background:var(--rose);border-color:var(--line-light)}
+.risks h3{color:var(--terracotta)}
+footer{background:var(--wine);color:rgba(248,243,236,.82);border-top:0;margin-top:40px}
+footer a{color:var(--champagne)}
+.limits summary{color:var(--ink)}
+.backend-note button,.linkbtn{color:var(--terracotta)}
+.iq-done li.on::before{color:var(--teal)}
+.cq span{background:#fff;color:var(--ink)}
+.cq.on span{background:var(--rose);border-color:var(--burgundy);color:var(--ink)}
+.cq.on span::before{background-color:var(--burgundy);border-color:var(--burgundy)}
+
+/* ================= recommended modules ================= */
+.recmods{margin-top:44px}
+.rm-hero{padding:30px;border-radius:var(--r);background:var(--burgundy);color:#F8F3EC;display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center}
+.rm-hero .eyebrow{background:transparent;border-color:rgba(240,210,139,.45);color:var(--champagne)}
+.rm-hero .eyebrow .dot{background:var(--champagne)}
+.rm-hero h3{font-size:clamp(24px,3.2vw,34px);margin:10px 0 8px;color:#F8F3EC}
+.rm-hero p{margin:0;font-family:var(--serif);font-size:18px;color:rgba(248,243,236,.88)}
+.rm-fit{display:grid;gap:8px}
+.rm-fit div{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:13.5px}
+.rm-fit i{grid-column:1/-1;height:6px;border-radius:6px;background:rgba(248,243,236,.18);overflow:hidden}
+.rm-fit i::after{content:"";display:block;height:100%;width:var(--v);background:var(--champagne);border-radius:6px}
+.rm-fit b{color:var(--champagne);font-weight:700}
+.rm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+@media (max-width:860px){.rm-grid{grid-template-columns:1fr}.rm-hero{grid-template-columns:1fr}}
+.rm{padding:22px;border-radius:var(--r);background:#fff;border:1px solid var(--line-light);display:grid;gap:10px;align-content:start;position:relative}
+.rm.top{border:1.5px solid var(--burgundy);box-shadow:0 22px 48px -30px rgba(113,60,71,.6)}
+.rm .rk{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--terracotta)}
+.rm.top .rk{color:var(--burgundy)}
+.rm h4{font-size:20px;margin:0;line-height:1.15}
+.rm p{margin:0;font-size:14px;color:var(--warm-gray)}
+.rm ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13px}
+.rm li{display:grid;grid-template-columns:16px 1fr;gap:8px;color:var(--ink)}
+.rm li::before{content:"✓";color:var(--teal);font-weight:800}
+.rm .fit{position:absolute;top:18px;right:18px;font-size:12px;font-weight:800;color:var(--teal);background:rgba(46,100,94,.1);padding:4px 9px;border-radius:999px}
+.rm-also{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rm-also span{font-size:13px;padding:8px 13px;border-radius:999px;background:#fff;border:1px solid var(--line-light)}
+.rm-also b{color:var(--burgundy)}
+.rm-ecom{margin-top:14px;padding:16px 18px;border-radius:14px;background:var(--rose);border:1px solid var(--line-light);font-size:14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.rm-ecom b{font-family:var(--head);font-weight:400;font-size:17px;display:block}
+.rm-ecom .ic{width:40px;height:40px;border-radius:12px;background:var(--burgundy);color:#fff;display:grid;place-items:center;font-size:18px}
+.rm-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+</style>
+</head>
+<body>
+<canvas id="neural" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E645E"/><stop offset="1" stop-color="#2E645E"/></linearGradient></defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#" id="home-link" aria-label="Diagnóstico de tu clínica, inicio">
+      <i class="brand-logo" aria-hidden="true"></i><span class="brand-sep"></span><span class="wordmark">Clinic<br>Management<br>Tech</span>
+    </a>
+    <a class="event" href="index.html">← Volver al sitio</a>
+  </div>
+</header>
+
+<main>
+  <section id="view-hero" class="view active" aria-labelledby="hero-title">
+    <div class="wrap hero">
+      <span class="eyebrow"><span class="dot"></span>DIAGNÓSTICO GRATUITO DE TU CLÍNICA</span>
+      <h1 class="headline" id="hero-title">¿Qué tan preparada está tu clínica para <span class="g">la inteligencia artificial?</span></h1>
+      <p class="subtitle">Analizamos tu sitio web y, con unas preguntas sobre tu operación, te decimos qué módulos de Clinic Management Tech le sirven más a tu clínica.</p>
+      <form class="scan-form" id="scan-form" novalidate>
+        <label for="url" class="sr-only">Sitio web de tu clínica</label>
+        <input id="url" name="url" type="url" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="https://www.tuclinica.com" required>
+        <button class="btn btn-primary" type="submit" id="scan-btn">Analizar mi clínica
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+      <div class="form-error" id="form-error" role="alert"></div>
+      <p class="supporting">Diagnóstico inicial gratuito. No requiere acceso a tu sitio web.<br>Mientras analizamos tu sitio, te haremos unas preguntas rápidas sobre tu clínica.</p>
+      <div class="backend-note" id="backend-note">El servidor de análisis no está disponible en este momento. <button type="button" data-demo>Ver una demostración con datos simulados</button>.</div>
+      <div class="pillars" aria-label="Qué evaluamos">
+        <div class="pillar"><span class="w">25%</span><b>Indexabilidad técnica</b><p>¿Pueden los buscadores encontrar y leer tu sitio?</p></div>
+        <div class="pillar"><span class="w">30%</span><b>Claridad de contenido y GEO</b><p>¿Entienden las IA qué tratamientos ofreces y dónde?</p></div>
+        <div class="pillar"><span class="w">25%</span><b>Confianza y autoridad médica</b><p>¿Es visible quién respalda tu clínica?</p></div>
+        <div class="pillar"><span class="w">20%</span><b>Experiencia y conversión</b><p>¿Puede un paciente agendar sin fricción?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-scan" class="view" aria-live="polite">
+    <div class="wrap scan">
+      <div class="card scan-card">
+        <div class="scan-head">
+          <div class="mini-ring" aria-hidden="true">
+            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(168,188,208,.12)" stroke-width="7"/><circle id="mini-bar" cx="50" cy="50" r="42" fill="none" stroke="url(#ringGrad)" stroke-width="7" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="263.9" style="transition:stroke-dashoffset .6s var(--ease)"/></svg>
+            <div class="val" id="scan-pct">0%</div>
+          </div>
+          <div><h2>Analizando tu clínica</h2><p id="scan-domain"></p></div>
+        </div>
+        <ol class="steps" id="steps"></ol>
+        <div class="progress" aria-hidden="true"><span id="scan-bar"></span></div>
+        <div class="scan-foot"><span>El progreso avanza solo cuando cada etapa termina de verdad.</span><button class="linkbtn" type="button" id="cancel-btn">Cancelar</button></div>
+        <div class="scan-error" id="scan-error" role="alert">
+          <div id="scan-error-msg"></div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button" id="retry-btn">Intentar con otra dirección</button>
+            <button class="btn btn-ghost" type="button" data-demo hidden id="demo-from-error">Ver demostración (datos simulados)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-loading" class="view"><div class="wrap loading-view"><div class="spinner"></div>Cargando informe…</div></section>
+  <section id="view-integral" class="view" aria-live="polite">
+    <div class="wrap iq">
+      <div class="scan-strip" id="scan-strip" hidden></div>
+      <div class="iq-top"><span class="sec" id="iq-sec"></span><span class="cnt" id="iq-cnt"></span></div>
+      <div class="iq-sections" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="card iq-card" id="iq-card"></div>
+      <div class="iq-live" id="iq-live"></div>
+      <details class="iq-answers" id="iq-answers" hidden><summary>Tus respuestas (<span id="iq-answers-n">0</span>) · toca una para cambiarla</summary><ol id="iq-answers-list"></ol></details>
+    </div>
+  </section>
+  <section id="view-report" class="view"><div class="wrap report" id="report-root"></div></section>
+</main>
+
+
+<div class="sticky-share" id="sticky-share">
+  <button class="btn btn-ghost" type="button" data-act="pdf">PDF</button>
+  <button class="btn btn-wa" type="button" data-act="wa">WhatsApp</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<footer>
+  <div class="wrap">
+    <span>Clinic Management Tech · Diagnóstico de preparación digital. No es una métrica oficial de Google ni de ningún asistente de IA.</span>
+    <span><a href="index.html">clinicmanagementech.com</a></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+'use strict';
+const meta = (n) => (document.querySelector(`meta[name="${n}"]`) || {}).content || '';
+const IN_GAS = typeof google !== 'undefined' && google.script && google.script.run;
+const ENDPOINT = (window.SCANNER_ENDPOINT || meta('gas-endpoint') || '').trim();
+const PLANS_URL = meta('plans-url') || './clinic-ai-plans.html';
+const PRIVACY_URL = meta('privacy-url') || '#';
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const STEP_LABELS = ['Validando dominio y conectividad', 'Evaluando arquitectura e indexabilidad', 'Revisando señales de posicionamiento GEO', 'Analizando confianza y presencia digital', 'Preparando diagnóstico personalizado'];
+const STATUS = { pass: 'Verificado', warn: 'Mejorable', fail: 'No cumple', not_detected: 'No detectado', not_evaluated: 'No evaluado', error: 'No verificable' };
+const LEVEL = { ready: 'Preparado', partial: 'Parcial', not_ready: 'No preparado' };
+const CAT_ORDER = ['technical_indexability', 'content_and_geo_clarity', 'medical_trust_and_authority', 'user_experience_and_conversion'];
+const CAT_LABEL = { technical_indexability: 'Indexabilidad técnica', content_and_geo_clarity: 'Claridad de contenido y GEO', medical_trust_and_authority: 'Confianza y autoridad médica', user_experience_and_conversion: 'Experiencia y conversión' };
+const CAT_WEIGHT = { technical_indexability: 25, content_and_geo_clarity: 30, medical_trust_and_authority: 25, user_experience_and_conversion: 20 };
+const MODULES = [
+  ['agenda', 'Agenda de citas online'], ['reminders', 'Recordatorios y confirmaciones'], ['whatsapp', 'WhatsApp Business (API / multiagente)'],
+  ['crm', 'CRM de pacientes y oportunidades'], ['sales', 'Ventas y cotizaciones'], ['ehr', 'Expediente / historia clínica digital'],
+  ['consent', 'Consentimientos informados digitales'], ['invoicing', 'Facturación electrónica'], ['cashclose', 'Cierre de caja y conciliación'],
+  ['agents', 'Agentes de IA para atención'], ['marketing', 'Marketing y reactivación'], ['bi', 'Reportes e indicadores (BI)'],
+];
+
+const state = { report: null, demo: false, cancelled: false, contact: null, reportUrl: '', pdfDriveUrl: '' };
+
+$$('[data-plans]').forEach((a) => (a.href = PLANS_URL));
+
+/* ---------------------------------------------------------------- transport */
+function api(action, payload = {}) {
+  if (IN_GAS) {
+    return new Promise((resolve, reject) => {
+      google.script.run
+        .withSuccessHandler((r) => (r && r.ok ? resolve(r.data) : reject(Object.assign(new Error((r && r.message) || 'Error'), { code: r && r.error, fields: r && r.fields }))))
+        .withFailureHandler((e) => reject(Object.assign(new Error('No pudimos conectar con el servidor.'), { code: 'NETWORK', detail: e })))
+        .api(action, payload);
+    });
+  }
+  if (!ENDPOINT) return Promise.reject(Object.assign(new Error('Servidor de análisis no configurado.'), { code: 'NO_BACKEND' }));
+  return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, payload }), redirect: 'follow' })
+    .catch(() => { throw Object.assign(new Error('No pudimos conectar con el servidor.'), { code: 'NETWORK' }); })
+    .then((r) => r.json())
+    .then((r) => (r.ok ? r.data : Promise.reject(Object.assign(new Error(r.message || 'Error'), { code: r.error, fields: r.fields }))));
+}
+
+function show(view) {
+  $$('.view').forEach((v) => v.classList.toggle('active', v.id === `view-${view}`));
+  document.body.classList.toggle('has-report', view === 'report');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+let toastT;
+function toast(html, ms = 4200) {
+  const t = $('#toast');
+  t.innerHTML = html;
+  t.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('on'), ms);
+}
+
+/* ---------------------------------------------------------------- boot */
+function getParam(name) {
+  return new Promise((resolve) => {
+    if (IN_GAS && google.script.url) google.script.url.getLocation((loc) => resolve((loc.parameter || {})[name] || ''));
+    else resolve(new URLSearchParams(location.search).get(name) || '');
+  });
+}
+getParam('r').then((id) => {
+  if (id && /^[0-9a-f-]{36}$/i.test(id)) {
+    show('loading');
+    api('getReport', { id }).then((r) => renderReport(r, false)).catch((e) => { show('hero'); $('#form-error').textContent = e.message || 'No pudimos abrir ese informe.'; });
+  }
+});
+api('health').catch(() => { $('#backend-note').style.display = 'block'; });
+
+/* ---------------------------------------------------------------- scan */
+function normalize(input) {
+  let s = input.trim();
+  if (!s) return null;
+  if (!/^https?:\/\//i.test(s)) s = 'https://' + s;
+  try { const u = new URL(s); return /\.[a-z]{2,}$/i.test(u.hostname) ? u.href : null; } catch { return null; }
+}
+$('#scan-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  $('#form-error').textContent = '';
+  const url = normalize($('#url').value);
+  if (!url) { $('#form-error').textContent = 'Ingresa una dirección válida, por ejemplo https://www.tuclinica.com'; $('#url').focus(); return; }
+  startScan(url);
+});
+
+function renderSteps(steps) {
+  $('#steps').innerHTML = steps.map((s) => `<li class="${esc(s.status)}"><span class="si" aria-hidden="true"></span><span>${esc(s.label)}</span></li>`).join('');
+}
+function setProgress(p) {
+  p = Math.max(0, Math.min(100, Math.round(p)));
+  $('#scan-pct').textContent = p + '%';
+  $('#scan-bar').style.width = p + '%';
+  $('#mini-bar').style.strokeDashoffset = String(263.9 * (1 - p / 100));
+}
+
+/**
+ * New flow: the site scan runs in the background while the clinic answers the integral
+ * diagnosis. Results are revealed only after the questionnaire, already combined.
+ */
+function startScan(url) {
+  state.cancelled = false; state.demo = false; state.report = null; state.pdfDriveUrl = '';
+  const token = (state.scanToken = (state.scanToken || 0) + 1);
+  state.scan = { url, domain: new URL(url).hostname, status: 'running', progress: 0, step: STEP_LABELS[0], error: '', offerDemo: false, token };
+  // fresh questionnaire for a new site
+  IQ.i = 0; IQ.answers = {}; IQ.busy = false; IQ.from = 'hero';
+  IQ.contact = { website: url };
+  show('integral');
+  renderIQ('enter');
+  renderScanStrip();
+  state.scanRun = runScan(url, token);
+}
+
+async function runScan(url, token) {
+  const alive = () => !state.cancelled && state.scan && state.scan.token === token;
+  try {
+    let s = await api('createAudit', { url });
+    while (alive()) {
+      state.scan.progress = s.progress;
+      const next = s.steps.find((x) => x.status === 'pending' || x.status === 'running');
+      state.scan.step = next ? next.label : 'Análisis completado';
+      if (s.status === 'done') {
+        state.scan.status = 'done'; state.scan.progress = 100; state.scan.report = s.report; state.report = s.report;
+        prefillFromReport(s.report);
+        renderScanStrip();
+        return s.report;
+      }
+      renderScanStrip();
+      s = await withRetry(() => api('auditStep', { id: s.id }));
+    }
+  } catch (e) {
+    if (!alive()) return null;
+    state.scan.status = 'failed';
+    state.scan.error = e.message || 'No fue posible analizar el sitio.';
+    state.scan.offerDemo = ['NETWORK', 'NO_BACKEND'].includes(e.code);
+    renderScanStrip();
+  }
+  return null;
+}
+
+function prefillFromReport(r) {
+  const fx = r.facts || {}, ins = r.insights || {};
+  const fill = (k, v) => {
+    if (!v || IQ.contact[k]) return;
+    IQ.contact[k] = v;
+    const el = document.querySelector(`#iq-form [name="${k}"]`);
+    if (el && !el.value) el.value = v;
+  };
+  fill('clinic', ins.clinicName && ins.clinicName !== r.domain ? ins.clinicName : '');
+  fill('city', fx.city || '');
+}
+
+function renderScanStrip() {
+  const el = $('#scan-strip'), sc = state.scan;
+  if (!el) return;
+  if (!sc) { el.hidden = true; return; }
+  el.hidden = false;
+  el.className = 'scan-strip ' + sc.status;
+  if (sc.status === 'failed') {
+    el.innerHTML = `<div class="ss-row"><span class="ss-ico">!</span><div class="ss-txt"><b>No pudimos analizar ${esc(sc.domain)}</b><span>${esc(sc.error)} Corrige la dirección; tus respuestas se conservan.</span></div></div>
+      <form class="ss-fix" id="ss-fix"><input id="ss-url" value="${esc(sc.url)}" inputmode="url" autocapitalize="off" spellcheck="false" aria-label="Sitio web de tu clínica"><button class="btn btn-ghost" type="submit">Analizar de nuevo</button>${sc.offerDemo ? '<button class="btn btn-ghost" type="button" data-demo-integral>Usar demostración</button>' : ''}</form>`;
+    return;
+  }
+  const p = Math.round(sc.progress || 0);
+  el.innerHTML = `<div class="ss-row"><span class="ss-ring" style="--p:${sc.status === 'done' ? 100 : p}">${sc.status === 'done' ? '✓' : p + '%'}</span>
+    <div class="ss-txt"><b>${sc.status === 'done' ? 'Análisis de ' + esc(sc.domain) + ' listo' : 'Analizando ' + esc(sc.domain) + ' en segundo plano'}</b>
+    <span>${sc.status === 'done' ? 'Lo verás junto con tu diagnóstico integral al terminar.' : esc(sc.step) + '… mientras tanto, cuéntanos sobre tu clínica.'}</span></div></div>
+    <div class="ss-bar"><i style="width:${sc.status === 'done' ? 100 : Math.max(4, p)}%"></i></div>`;
+}
+
+document.addEventListener('submit', (e) => {
+  if (e.target.id !== 'ss-fix') return;
+  e.preventDefault();
+  const url = normalize($('#ss-url').value);
+  if (!url) { toast('Ingresa una dirección válida, por ejemplo https://www.tuclinica.com'); return; }
+  const token = (state.scanToken = (state.scanToken || 0) + 1);
+  state.scan = { url, domain: new URL(url).hostname, status: 'running', progress: 0, step: STEP_LABELS[0], token };
+  IQ.contact.website = url;
+  renderScanStrip();
+  state.scanRun = runScan(url, token);
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('[data-demo-integral]')) return;
+  state.demo = true; state.scan.status = 'done'; state.scan.demo = true; state.report = demoReport(false);
+  renderScanStrip();
+  toast('Modo demostración: el informe usará datos simulados.');
+});
+/** Retry a phase on transient network failures (a phase is safe to repeat: state is saved only when it completes). */
+async function withRetry(fn, tries = 3) {
+  for (let i = 0; ; i++) {
+    try { return await fn(); }
+    catch (e) {
+      if (state.cancelled || e.code !== 'NETWORK' || i >= tries - 1) throw e;
+      toast('Conexión inestable, reintentando…', 3000);
+      await new Promise((r) => setTimeout(r, 2000 * (i + 1)));
+    }
+  }
+}
+function scanFailed(msg, offerDemo) {
+  $('#cancel-btn').hidden = true;
+  $('#scan-error-msg').textContent = msg;
+  $('#demo-from-error').hidden = !offerDemo;
+  $('#scan-error').style.display = 'block';
+  $$('#steps li.running').forEach((li) => (li.className = 'error'));
+}
+$('#cancel-btn').addEventListener('click', () => { state.cancelled = true; show('hero'); });
+$('#retry-btn').addEventListener('click', () => { show('hero'); setTimeout(() => $('#url').focus(), 300); });
+$('#home-link').addEventListener('click', (e) => { e.preventDefault(); state.cancelled = true; state.scan = null; show('hero'); });
+
+/* ---------------------------------------------------------------- report */
+const stChip = (s) => `<span class="st ${esc(s)}">${esc(STATUS[s] || s)}</span>`;
+const checkList = (checks) => checks.map((c) => `<div class="chk">${stChip(c.status)}<div><div class="l">${esc(c.label)}</div><div class="e">${esc(c.evidence)}</div></div></div>`).join('');
+function summaryOf(checks) {
+  const n = (s) => checks.filter((c) => c.status === s).length;
+  return [[n('pass'), 'verificados'], [n('warn'), 'mejorables'], [n('fail') + n('not_detected'), 'pendientes'], [n('not_evaluated') + n('error'), 'no evaluados']].filter(([v]) => v).map(([v, l]) => `${v} ${l}`).join(' · ');
+}
+const ICON = {
+  ok: '<svg class="ico-ok" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  no: '<svg class="ico-no" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>',
+  spark: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="url(#ringGrad)"/></svg>',
+  wa: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>',
+  pdf: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  link: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+};
+
+function reportLink(r) {
+  if (state.demo) return '';
+  if (!IN_GAS && /^https?:/.test(location.href)) return location.origin + location.pathname + '?r=' + r.id;
+  return r.shareUrl || '';
+}
+
+function ring(id, value, size = 603.2) {
+  return `<svg viewBox="0 0 220 220"><circle class="track" cx="110" cy="110" r="96"/><circle class="bar" id="${id}" cx="110" cy="110" r="96" stroke-dasharray="${size}" stroke-dashoffset="${size}"/></svg>`;
+}
+
+
+/* ---------------------------------------------------------------- módulos recomendados (Clinic Management Tech) */
+const CMT_MODULES = {
+  agenda: { name: 'Agenda y recordatorios', desc: 'Agenda por profesional y sala, reservas desde la app y recordatorios automáticos.', where: 'Consola: Agenda · App: Mis citas' },
+  expediente: { name: 'Expediente y consentimientos', desc: 'Un expediente por paciente con fotos, notas y consentimientos firmados en línea.', where: 'Consola: Expediente' },
+  facial: { name: 'Análisis facial y antes/después', desc: 'Captura guiada, 468 puntos y comparación contra el Día 0 en las mismas condiciones.', where: 'Consola: Antes y después · App: Mi progreso' },
+  tratamientos: { name: 'Tratamientos y planes', desc: 'Planes de varias sesiones, dosis y lotes, y propuestas que la paciente acepta desde su celular.', where: 'Consola: Tratamientos' },
+  cobros: { name: 'Cobros, facturación y cierre', desc: 'Un solo cobro por sesión y productos, factura y cierre de caja que cuadra solo.', where: 'Consola: Cobros · Cierre' },
+  voz: { name: 'Nota de voz a factura', desc: 'El médico dicta; la IA prepara la nota, los ítems y la factura para su revisión.', where: 'Consola: Expediente · Cobros' },
+  tienda: { name: 'Tienda de la clínica', desc: 'La rutina que receta el médico, lista para comprar en la app; retiro en clínica o envío.', where: 'App: Tienda · Consola: Productos' },
+  inventario: { name: 'Productos e inventario', desc: 'Catálogo, stock por lote y vencimiento, y ventas por profesional.', where: 'Consola: Productos · Inventario' },
+  seguimiento: { name: 'Seguimiento y fidelización', desc: 'Controles, reposiciones y pacientes inactivos con recordatorios automáticos.', where: 'Consola: Seguimiento' },
+  app: { name: 'App del paciente', desc: 'Citas, progreso, rutina y mensajes de tu clínica en el bolsillo de cada paciente.', where: 'App del paciente' },
+  geo: { name: 'Posicionamiento GEO', desc: 'Que ChatGPT, Gemini y Google te encuentren y te recomienden.', where: 'Estrategia GEO' },
+  asistente: { name: 'Asistente de pacientes', desc: 'Respuestas fuera de horario y agendamiento por WhatsApp y web.', where: 'Web · WhatsApp' },
+};
+const ECOM_NAMES = { shopify: 'Shopify', woocommerce: 'WooCommerce', custom: 'tu desarrollo a medida en JavaScript', wix: 'Wix', tiendanube: 'Tiendanube', vtex: 'VTEX', marketplace: 'marketplace' };
+
+function recommend() {
+  const a = IQ.answers, sc = {}, why = {};
+  const add = (id, pts, reason) => { if (!pts) return; sc[id] = (sc[id] || 0) + pts; if (reason) (why[id] = why[id] || []).push(reason); };
+  const v = (k) => (a[k] && !a[k].multi ? a[k].v : '');
+  const lbl = (k) => (a[k] ? String(a[k].label).replace(/^Otro: /, '') : '');
+  const n = (k) => (a[k] && a[k].n !== '' && a[k].n !== undefined ? Number(a[k].n) : null);
+  const has = (k, code) => !!(a[k] && a[k].multi && a[k].items.some((x) => x.v === code));
+  const gap = (key) => { const s = modScore(a['m_' + key]); return s === null ? 0 : 2 - s; };
+  const ns = n('noShow'), hrs = n('adminHours'), rev = n('ecomRevenue');
+  const sells = v('ecomSells'), routine = v('ecomRoutine');
+
+  // Agenda
+  if (gap('agenda')) add('agenda', gap('agenda') * 2, `Hoy agendan así: ${lbl('m_agenda').toLowerCase()}`);
+  if (gap('reminders')) add('agenda', gap('reminders') * 1.5, `Recordatorios: ${lbl('m_reminders').toLowerCase()}`);
+  if (ns !== null && ns >= 10) add('agenda', ns >= 15 ? 3 : 2, `Inasistencia cercana al ${Math.round(ns)}%`);
+  if (has('challenges', 'noshow') || has('goals', 'noshow')) add('agenda', 2, 'Quieres reducir las inasistencias');
+  if (has('challenges', 'agenda')) add('agenda', 2, 'Agenda desordenada o con huecos');
+  // Expediente
+  if (gap('ehr')) add('expediente', gap('ehr') * 2, `Historia clínica: ${lbl('m_ehr').toLowerCase()}`);
+  if (gap('consent')) add('expediente', gap('consent') * 1.5, `Consentimientos: ${lbl('m_consent').toLowerCase()}`);
+  if (has('challenges', 'records') || has('goals', 'paperless')) add('expediente', 2, 'Quieres eliminar el papel');
+  // Análisis facial y antes/después
+  const aesth = ['estetica', 'dermato', 'plastica', 'antiage', 'spa'].some((c) => has('specialties', c));
+  const facialTx = ['toxina', 'rellenos', 'bioestim', 'laser', 'peeling', 'rf', 'hifu', 'derma', 'hilos', 'prp'].filter((c) => has('treatments', c)).length;
+  if (aesth) add('facial', 1.5, 'Tu clínica trabaja medicina estética o dermatología');
+  if (facialTx >= 2) add('facial', 1.5 + Math.min(facialTx, 5) * 0.3, `${facialTx} tratamientos faciales donde el antes y después vende`);
+  if (a.m_ehr && modScore(a.m_ehr) !== null && !/fotos antes\/después/i.test(a.m_ehr.label)) add('facial', 1, 'Tus fotos no están integradas a la historia clínica');
+  if (has('goals', 'sales') || has('goals', 'retention')) add('facial', 1, 'Resultados visibles para vender y fidelizar');
+  // Tratamientos y planes
+  if (gap('sales')) add('tratamientos', gap('sales') * 2, `Cotizaciones: ${lbl('m_sales').toLowerCase()}`);
+  if (has('challenges', 'sales')) add('tratamientos', 2, 'Cotizaciones que no se cierran');
+  // Cobros
+  if (gap('invoicing')) add('cobros', gap('invoicing') * 2, `Facturación: ${lbl('m_invoicing').toLowerCase()}`);
+  if (gap('cashclose')) add('cobros', gap('cashclose') * 2, `Cierre de caja: ${lbl('m_cashclose').toLowerCase()}`);
+  if (has('challenges', 'admin') || has('goals', 'order')) add('cobros', 1.5, 'Quieres ordenar la administración');
+  // Nota de voz
+  if (hrs !== null && hrs >= 22) add('voz', hrs >= 45 ? 3.5 : 2.5, `≈${Math.round(hrs)} horas semanales en tareas administrativas`);
+  if (has('challenges', 'admin')) add('voz', 1.5, 'La carga administrativa es uno de tus retos');
+  // Tienda
+  if (sells === 'social') add('tienda', 3.5, 'Vendes productos por WhatsApp o redes: ventas que se pierden en el chat');
+  if (sells === 'clinic') add('tienda', 3.5, 'Solo vendes en la clínica: la paciente no puede reponer desde casa');
+  if (sells === 'online' && ['none', 'unknown'].includes(v('ecomLink'))) add('tienda', 3, `Tu tienda en ${ECOM_NAMES[v('ecomPlatform')] || lbl('ecomPlatform') || 'línea'} no está conectada con la clínica`);
+  if (['paper', 'verbal', 'none'].includes(routine)) add('tienda', 2, `La rutina en casa hoy se indica ${routine === 'paper' ? 'en papel' : routine === 'verbal' ? 'de forma verbal' : 'sin seguimiento'}`);
+  if (rev !== null && rev >= 10) add('tienda', 1.5, `Los productos ya son cerca del ${Math.round(rev)}% de tus ingresos`);
+  if (sells === 'no') add('tienda', 0.8, 'Una línea de ingresos que hoy no aprovechas');
+  // Inventario
+  if (sells && sells !== 'no') add('inventario', 1.5, 'Vendes productos en la clínica');
+  if (['none', 'stock', 'unknown'].includes(v('ecomLink'))) add('inventario', 1.5, 'Inventario sin conexión con pacientes y ventas');
+  if (a.ecomBrands && a.ecomBrands.items.length >= 3) add('inventario', 1, `${a.ecomBrands.items.length} marcas que controlar`);
+  // Seguimiento
+  if (gap('crm')) add('seguimiento', gap('crm') * 1.5, `Seguimiento de interesados: ${lbl('m_crm').toLowerCase()}`);
+  if (gap('marketing')) add('seguimiento', gap('marketing') * 1.5, `Reactivación: ${lbl('m_marketing').toLowerCase()}`);
+  if (has('challenges', 'retention') || has('goals', 'retention')) add('seguimiento', 2, 'Quieres que tus pacientes vuelvan');
+  // App del paciente
+  if (['paper', 'verbal', 'none'].includes(routine)) add('app', 1.5, 'La rutina vive en su app, con recordatorios');
+  if (ns !== null && ns >= 10) add('app', 1, 'Confirmaciones y cambios de cita sin llamar');
+  if (has('goals', 'retention') || has('challenges', 'retention')) add('app', 1.5, 'Ve su progreso y vuelve a agendar');
+  // GEO
+  const vis = state.report && state.report.score ? state.report.score.overall : null;
+  if (vis !== null && vis !== undefined) add('geo', vis < 50 ? 4 : vis < 70 ? 2.5 : vis < 85 ? 1 : 0, `Tu sitio obtuvo ${vis}/100 en visibilidad para la IA`);
+  if (has('goals', 'visibility') || has('challenges', 'visibility')) add('geo', 2, 'Quieres aparecer en Google y en la IA');
+  if (has('goals', 'newpatients')) add('geo', 1.5, 'Quieres más pacientes nuevos');
+  // Asistente (complemento)
+  const slow = ['lt4h', 'sameday', 'gt1d', 'unknown'].includes(v('responseTime'));
+  if (slow) add('asistente', 1.2, `Tiempo de respuesta: ${lbl('responseTime').toLowerCase()}`);
+  if (gap('agents')) add('asistente', gap('agents') * 0.8, 'Mensajes fuera de horario sin respuesta inmediata');
+  if (has('goals', 'whatsapp247') || has('challenges', 'whatsapp')) add('asistente', 1.2, 'WhatsApp saturado o sin atención 24/7');
+
+  const list = Object.keys(sc).map((id) => ({ id, ...CMT_MODULES[id], score: sc[id], reasons: (why[id] || []).slice(0, 3) })).filter((m) => m.score >= 1.5).sort((x, y) => y.score - x.score);
+  const max = list.length ? list[0].score : 1;
+  list.forEach((m) => (m.fit = Math.round(62 + 36 * (m.score / max))));
+  return list;
+}
+
+function ecomNote() {
+  const a = IQ.answers, s = a.ecomSells && a.ecomSells.v, p = a.ecomPlatform && a.ecomPlatform.v;
+  if (!s) return '';
+  let t = '', h = '';
+  if (s === 'online') {
+    const name = ECOM_NAMES[p] || (a.ecomPlatform ? String(a.ecomPlatform.label).replace(/^Otro: /, '') : 'tu plataforma');
+    h = `Tu tienda en ${name}`;
+    t = p === 'marketplace' ? 'El marketplace te da ventas, pero no la relación con la paciente. La tienda de la clínica la conecta con su rutina y su expediente.'
+      : p === 'custom' ? 'Una tienda a medida se puede conectar con la consola por API: cada rutina recetada lleva a tus productos y la venta queda en el expediente. Lo revisamos en la demo.'
+      : `Podemos conectar tu catálogo de ${name} con la consola, o usar la tienda de la clínica dentro de la app. Lo definimos contigo en la demo.`;
+  } else if (s === 'social') { h = 'Vendes por WhatsApp o redes'; t = 'Con la tienda de la clínica, cada paciente compra su rutina en la app y la venta queda registrada, sin perderse en los chats.'; }
+  else if (s === 'clinic') { h = 'Vendes solo en la clínica'; t = 'Con la tienda en la app, la paciente repone sus productos desde casa y tú recibes el aviso de reposición.'; }
+  else { h = 'Aún no vendes productos'; t = 'Puedes empezar con kits post-tratamiento recetados por el médico, sin montar una tienda aparte.'; }
+  return `<div class="rm-ecom"><span class="ic">🛍</span><div><b>${esc(h)}</b>${esc(t)}</div></div>`;
+}
+
+function renderRecs() {
+  const recs = recommend();
+  if (!recs.length) return '';
+  const top = recs.slice(0, 3), also = recs.slice(3, 8);
+  const ids = recs.slice(0, 5).map((m) => m.id).join(',');
+  return `
+  <div class="recmods" id="modulos">
+    <div class="rm-hero">
+      <div><span class="eyebrow"><span class="dot"></span>TU PLAN RECOMENDADO</span>
+        <h3>Los módulos de Clinic Management Tech que más le sirven a tu clínica</h3>
+        <p>Calculado con tus ${answeredCount()} respuestas${state.report && state.report.score && state.report.score.overall !== null ? ' y el análisis de tu sitio' : ''}.</p></div>
+      <div class="rm-fit">${recs.slice(0, 5).map((m) => `<div><span>${esc(m.name)}</span><b>${m.fit}%</b><i style="--v:${m.fit}%"></i></div>`).join('')}</div>
+    </div>
+    <div class="rm-grid">${top.map((m, i) => `
+      <div class="rm ${i === 0 ? 'top' : ''}"><span class="fit">${m.fit}% ajuste</span><span class="rk">${i === 0 ? 'EMPIEZA POR AQUÍ' : 'PRIORIDAD ' + (i + 1)}</span>
+        <h4>${esc(m.name)}</h4><p>${esc(m.desc)}</p>
+        ${m.reasons.length ? `<ul>${m.reasons.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>` : ''}
+        <p style="font-size:12px">${esc(m.where)}</p></div>`).join('')}</div>
+    ${also.length ? `<div class="rm-also">${also.map((m) => `<span><b>${esc(m.name)}</b> · ${m.fit}%</span>`).join('')}</div>` : ''}
+    ${ecomNote()}
+    <div class="rm-cta"><a class="btn btn-primary" href="index.html?modulos=${esc(ids)}#demo">Agendar demo con estos módulos</a><a class="btn btn-ghost" href="index.html#clinics">Ver la consola</a></div>
+  </div>`;
+}
+
+function renderReport(r, demo) {
+  state.report = r; state.demo = demo; state.reportUrl = reportLink(r);
+  const s = r.score, ins = r.insights || {}, ops = r.operations;
+  const when = new Date(r.auditedAt).toLocaleString('es-CO', { dateStyle: 'long', timeStyle: 'short' });
+  const byCat = (k) => r.checks.filter((c) => c.category === k);
+  const overall = s.overall;
+  const name = ins.clinicName || r.domain;
+  const ai = ins.aiView || { understood: [], missing: [] };
+  const aiCheck = r.checks.find((c) => c.id === 'ai_crawlers');
+  const bots = aiCheck && aiCheck.aiBots ? `<div class="bots">${aiCheck.aiBots.map((b) => `<div class="bot"><span>${esc(b.name)}<br><span class="k">${esc(b.owner)} · ${b.kind === 'training' ? 'entrenamiento' : b.kind === 'search' ? 'búsqueda' : 'consulta de usuario'}</span></span><span class="${b.allowed ? 'ok' : 'no'}">${b.allowed ? 'Permitido' : 'Bloqueado'}</span></div>`).join('')}</div>` : '';
+  const perf = r.performance ? `<div class="chk"><span class="st detected">PageSpeed</span><div><div class="l">Métricas móviles</div><div class="e">Rendimiento ${esc(r.performance.score)}/100 · LCP ${esc(r.performance.lcp || '—')} · CLS ${esc(r.performance.cls || '—')} · TBT ${esc(r.performance.tbt || '—')}${r.performance.fieldCategory ? ` · Usuarios reales: ${esc(r.performance.fieldCategory)}` : ''}</div></div></div>` : '';
+  const toolbar = `<div class="toolbar">
+      <button class="btn btn-wa" type="button" data-act="wa">${ICON.wa} Compartir por WhatsApp</button>
+      <button class="btn btn-ghost" type="button" data-act="pdf">${ICON.pdf} Descargar PDF</button>
+      ${state.reportUrl ? `<button class="btn btn-ghost" type="button" data-act="copy">${ICON.link} Copiar enlace</button>` : ''}
+    </div>`;
+
+  $('#report-root').innerHTML = `
+    ${demo ? '<div class="demo-banner" style="display:block">DEMOSTRACIÓN — Estos resultados son simulados y no corresponden a ningún sitio real.</div>' : ''}
+    <div class="r-head">
+      <div><span class="eyebrow"><span class="dot"></span>DIAGNÓSTICO AI VISIBILITY</span>
+        <h2>${ops ? esc(name) + ': tu diagnóstico integral' : 'Tu clínica tiene más potencial del que muestra su sitio web.'}</h2></div>
+      <div class="r-meta">Sitio analizado<br><b>${esc(r.domain)}</b><br>${esc(when)} · ${esc(r.pagesAnalyzed.length)} página(s) revisada(s)</div>
+    </div>
+    ${toolbar}
+    ${answeredCount() >= 8 ? renderRecs() : ''}
+
+    <div class="overview">
+      <div class="card score-card">
+        <div class="ring" role="img" aria-label="${overall === null ? 'Puntaje global no disponible' : `AI Visibility Score ${overall} de 100`}">
+          ${ring('score-bar')}
+          <div class="center"><span class="num" id="score-num">${overall === null ? '—' : '0'}</span><span class="of">AI Visibility Score</span></div>
+        </div>
+        <div class="tier">${overall === null ? 'Evidencia insuficiente' : esc(s.tier)}</div>
+        ${s.provisional ? '<span class="badge prov">Puntaje provisional · cobertura parcial</span>' : ''}
+        <p class="score-note">${overall === null ? 'No pudimos observar suficientes señales para emitir un puntaje global confiable.' : `Puntaje propio de preparación sobre ${esc(s.coverage)}% de las señales evaluables. No es una métrica oficial de ningún buscador.`}</p>
+      </div>
+      <div class="card cats">
+        ${CAT_ORDER.map((k) => { const c = s.categories[k]; return `
+          <div class="cat-row">
+            <span class="n">${esc(CAT_LABEL[k])}<small>${CAT_WEIGHT[k]}%</small></span>
+            <span class="v ${c.score === null ? 'na' : ''}">${c.score === null ? 'No evaluado' : c.score}</span>
+            <div class="cat-bar"><span data-w="${c.score || 0}"></span></div>
+            <span class="nar">${esc((ins.categoryNarratives || {})[k] || '')} Cobertura ${esc(c.coverage)}%.</span>
+          </div>`; }).join('')}
+      </div>
+    </div>
+
+    ${ins.summary ? `<div class="card summary-card"><span class="k">RESUMEN EJECUTIVO</span><p>${esc(ins.summary)}</p>${ins.summarySource === 'gemini' ? '<div class="src">Redactado con IA a partir de los hallazgos verificados.</div>' : ''}</div>` : ''}
+
+    ${r.criticalRisks.length ? `<div class="risks" style="display:block"><h3>Riesgos críticos detectados</h3><ul>${r.criticalRisks.map((x) => `<li><b>${esc(x.label)}:</b> ${esc(x.evidence)}</li>`).join('')}</ul></div>` : ''}
+
+    <div class="section">
+      <div class="section-h"><div><h3>Cómo te entiende la IA hoy</h3><span class="sum">Lo que un asistente de IA puede confirmar leyendo tu sitio, y lo que tiene que adivinar.</span></div></div>
+      <div class="two">
+        <div class="card list-card"><h4>${ICON.ok} Puede confirmar</h4><ul>${ai.understood.length ? ai.understood.map((x) => `<li>${ICON.ok}<div><b>${esc(x.label)}</b><span>${esc(x.value)}</span></div></li>`).join('') : '<li><span></span><span>Nada que pueda confirmar con certeza.</span></li>'}</ul></div>
+        <div class="card list-card"><h4>${ICON.no} Tiene que adivinar</h4><ul>${ai.missing.length ? ai.missing.map((x) => `<li>${ICON.no}<div><b>${esc(x.label)}</b><span>${esc(x.value)}</span></div></li>`).join('') : '<li><span></span><span>Sin vacíos relevantes en las señales evaluadas.</span></li>'}</ul></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-h"><h3>Tres recomendaciones prioritarias</h3><span class="sum">Ordenadas por impacto estimado</span></div>
+      <div class="recs">
+        ${r.recommendations.length ? r.recommendations.map((x, i) => `<div class="card rec"><span class="idx">PRIORIDAD ${i + 1}</span><h4>${esc(x.title)}</h4><p>${esc(x.impact)}</p><div class="ev">Hallazgo: ${esc(x.evidence)}</div></div>`).join('')
+        : '<div class="card rec"><h4>Sin brechas prioritarias</h4><p>Las señales observables están bien resueltas. El siguiente nivel está en estrategia de contenido y autoridad.</p></div>'}
+      </div>
+      <div class="locked"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2" stroke="#665954" stroke-width="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#665954" stroke-width="2"/></svg>
+        <span>La hoja de ruta de implementación, el mapa de contenidos y el análisis competitivo se entregan en la sesión de consultoría.</span></div>
+    </div>
+
+    ${(ins.patientQueries || []).length ? `<div class="section">
+      <div class="section-h"><div><h3>Lo que tus pacientes le preguntan a la IA</h3><span class="sum">¿Tu sitio da a un asistente lo necesario para responder con tu clínica?</span></div></div>
+      <div class="card queries">${ins.patientQueries.map((q) => `<div class="q"><span class="t">“${esc(q.query)}”</span><span class="lvl ${esc(q.level)}">${esc(LEVEL[q.level])}</span><span class="r">${esc(q.reason)}</span></div>`).join('')}</div>
+      <p class="note">Consultas de ejemplo construidas con los tratamientos y datos detectados. Indican preparación del sitio, no respuestas reales de ChatGPT, Gemini u otros asistentes.</p>
+    </div>` : ''}
+
+    ${(ins.strengths || []).length || (ins.gaps || []).length ? `<div class="section"><div class="two">
+      <div class="card list-card"><h4>${ICON.ok} Fortalezas</h4><ul>${(ins.strengths || []).map((x) => `<li>${ICON.ok}<div><b>${esc(x.label)}</b><span>${esc(x.evidence)}</span></div></li>`).join('') || '<li><span></span><span>—</span></li>'}</ul></div>
+      <div class="card list-card"><h4>${ICON.no} Otras brechas</h4><ul>${(ins.gaps || []).map((x) => `<li>${ICON.no}<div><b>${esc(x.label)}</b><span>${esc(x.evidence)}</span></div></li>`).join('') || '<li><span></span><span>Sin brechas adicionales.</span></li>'}</ul></div>
+    </div></div>` : ''}
+
+    ${ops ? renderOps(ops) : `
+    <div class="card integral" id="integral-cta">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>DIAGNÓSTICO INTEGRAL · 2 MINUTOS</span>
+        <h3>Ahora veamos cómo tu clínica convierte esa visibilidad en pacientes.</h3>
+        <p>Cuéntanos cómo funcionan hoy tu agenda, expediente, ventas, facturación, cierre, CRM, WhatsApp y agentes. Calculamos oportunidades con tus propias cifras y las sumamos a este informe.</p>
+        <button class="btn btn-primary" type="button" data-act="wizard">Completar mi diagnóstico integral</button>
+      </div>
+      <div class="chips">${MODULES.map((m) => `<span class="chip">${esc(m[1])}</span>`).join('')}</div>
+    </div>`}
+
+    <div class="section">
+      <div class="section-h"><div><h3>Hallazgos detallados</h3><span class="sum">Cada verificación con su evidencia.</span></div><div class="legend">${['pass', 'warn', 'fail', 'not_detected', 'not_evaluated'].map(stChip).join('')}</div></div>
+      ${[['technical_indexability', 'Estado de descubrimiento e indexabilidad'], ['content_and_geo_clarity', 'Oportunidades de visibilidad en IA'], ['medical_trust_and_authority', 'Señales de autoridad médica'], ['user_experience_and_conversion', 'Experiencia digital del paciente']].map(([k, t], i) => `
+        <details class="cat-details" ${i === 0 ? 'open' : ''}>
+          <summary><div><h4>${esc(t)}</h4><span class="sum">${esc(summaryOf(byCat(k)))}</span></div><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#665954" stroke-width="2" stroke-linecap="round"/></svg></summary>
+          <div class="card checks">${checkList(byCat(k))}${k === 'content_and_geo_clarity' ? bots : ''}${k === 'user_experience_and_conversion' ? perf : ''}</div>
+        </details>`).join('')}
+      <details class="cat-details">
+        <summary><div><h4>Herramientas detectadas públicamente</h4><span class="sum">Informativo · no afecta el puntaje</span></div><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#665954" stroke-width="2" stroke-linecap="round"/></svg></summary>
+        <div class="card checks">${r.integrations.map((x) => `<div class="chk"><span class="st ${x.status === 'detected' ? 'detected' : x.status === 'not_evaluated' ? 'not_evaluated' : 'detected-no'}">${x.status === 'detected' ? 'Detectado' : x.status === 'not_evaluated' ? 'No evaluado' : 'No detectado'}</span><div><div class="l">${esc(x.label)}</div><div class="e">${esc(x.evidence)}${x.caveat ? ` — ${esc(x.caveat)}` : ''}</div></div></div>`).join('')}</div>
+      </details>
+    </div>
+
+    <div class="card next">
+      <span class="eyebrow"><span class="dot"></span>PRÓXIMO PASO RECOMENDADO</span>
+      <h3>Tu clínica puede pasar de tener una página web a contar con un ecosistema digital que atrae, atiende y convierte pacientes.</h3>
+      <p>${ops ? 'Revisemos juntos este diagnóstico y prioricemos las acciones de mayor impacto para tu clínica.' : 'Completa el diagnóstico integral y recibe una ruta priorizada con tus propias cifras.'}</p>
+      <div class="cta-row">
+        ${ops ? `<a class="btn btn-primary" href="${esc(PLANS_URL)}">Quiero mejorar la visibilidad de mi clínica</a>` : '<button class="btn btn-primary" type="button" data-act="wizard">Quiero mejorar la visibilidad de mi clínica</button>'}
+        <a class="btn btn-ghost" href="${esc(PLANS_URL)}">Explorar soluciones con IA</a>
+        <button class="btn btn-wa" type="button" data-act="wa">${ICON.wa} Compartir</button>
+      </div>
+    </div>
+
+    <details class="limits"><summary>Alcance y limitaciones de este diagnóstico</summary><ul>${r.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul></details>
+    <p style="margin-top:28px;text-align:center"><button class="linkbtn" type="button" id="new-scan">Analizar otro sitio</button></p>`;
+
+  show('report');
+  $('#new-scan').addEventListener('click', () => { $('#url').value = ''; show('hero'); });
+  requestAnimationFrame(() => setTimeout(() => {
+    if (overall !== null) { $('#score-bar').style.strokeDashoffset = String(603.2 * (1 - overall / 100)); countUp($('#score-num'), overall, 1800); }
+    if (ops && ops.maturity !== null && $('#ops-bar')) { $('#ops-bar').style.strokeDashoffset = String(603.2 * (1 - ops.maturity / 100)); countUp($('#ops-num'), ops.maturity, 1500, '%'); }
+    $$('.cat-bar span').forEach((b) => (b.style.width = b.dataset.w + '%'));
+  }, 120));
+}
+
+function renderOps(o) {
+  return `
+  <div class="section" id="ops">
+    <div class="section-h"><div><h3>Diagnóstico operativo</h3><span class="sum">Cómo tu clínica atiende, vende y administra hoy.</span></div></div>
+    <div class="card ops-head">
+      <div class="ring sm" role="img" aria-label="Madurez operativa ${o.maturity === null ? 'no disponible' : o.maturity + '%'}">${ring('ops-bar')}<div class="center"><span class="num" id="ops-num">${o.maturity === null ? '—' : '0%'}</span><span class="of">Madurez operativa</span></div></div>
+      <div><div class="tier" style="margin:0 0 8px">${esc(o.level)}</div><p style="margin:0;color:var(--muted)">${esc(o.summary)}</p>${o.summarySource === 'gemini' ? '<div class="note">Redactado con IA a partir de tus respuestas.</div>' : ''}</div>
+    </div>
+    <div class="modules" style="margin-top:14px">${o.modules.map((m) => `<div class="mod s${esc(m.status)}"><span class="ml">${esc(m.label)}</span><span class="ms">${esc(m.statusLabel)}</span>${o.priorityModules.includes(m.label) ? '<span class="prio">PRIORIDAD</span>' : ''}</div>`).join('')}</div>
+  </div>
+  ${o.scenarios.length ? `<div class="section"><div class="section-h"><div><h3>Oportunidades calculadas con tus cifras</h3><span class="sum">Escenarios ilustrativos: solo usan los datos que nos diste.</span></div></div>
+    <div class="scen">${o.scenarios.map((x) => `<div class="card sc"><span class="k">${esc(x.title)}</span><div class="m">${esc(x.metric)}</div>${x.value ? `<div class="v">${esc(x.value)}</div>` : ''}<p>${esc(x.detail)}</p></div>`).join('')}</div></div>` : ''}
+  ${o.crossInsights.length ? `<div class="section"><div class="section-h"><div><h3>Insights de tu clínica</h3><span class="sum">Lo que aparece al cruzar tu sitio web con tu operación.</span></div></div>
+    <ul class="insight-list">${o.crossInsights.map((t) => `<li>${ICON.spark}<span>${esc(t)}</span></li>`).join('')}</ul></div>` : ''}
+  ${o.roadmap.length ? `<div class="section"><div class="section-h"><div><h3>Ruta sugerida</h3><span class="sum">Secuencia de alto nivel. El plan de implementación detallado se construye en la consultoría.</span></div></div>
+    <div class="road">${o.roadmap.map((p) => `<div class="card ph"><span class="n">${esc(p.phase)}</span><h4>${esc(p.title)}</h4><ul>${p.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div></div>` : ''}
+  ${o.solutions.length ? `<div class="section"><div class="section-h"><div><h3>Soluciones recomendadas para tu clínica</h3></div></div>
+    <div class="sol">${o.solutions.map((x) => `<div><b>${esc(x.module)}</b><span>${esc(x.solution)}</span></div>`).join('')}</div></div>` : ''}`;
+}
+
+function countUp(el, to, ms, suffix = '') {
+  const t0 = performance.now();
+  const tick = (t) => { const k = Math.min(1, (t - t0) / ms); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))) + suffix; if (k < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}
+
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('[data-act]');
+  if (a) {
+    const act = a.dataset.act;
+    if (act === 'wizard') openWizard();
+    else if (act === 'pdf') downloadPdf();
+    else if (act === 'wa') shareWhatsApp();
+    else if (act === 'copy') copyLink();
+    else if (act === 'drive') openDrivePdf();
+  }
+  if (e.target.closest('[data-demo]')) runDemo();
+});
+
+/* ---------------------------------------------------------------- diagnóstico integral (recorrido interactivo) */
+const SECTIONS = ['Tu clínica', 'Pacientes y demanda', 'Ventas', 'Tus procesos', 'Tienda y productos', 'Objetivos', 'Contacto'];
+const OTHER = '__other';
+const FX = { COP: 4000, USD: 1, MXN: 18, CRC: 510, PEN: 3.7, CLP: 950, GTQ: 7.7, DOP: 60, ARS: 1000, EUR: 0.92, HNL: 25, NIO: 37, UYU: 40, BOB: 6.9, BRL: 5.5 };
+const SYM = { COP: '$', USD: 'US$', MXN: '$', CRC: '₡', PEN: 'S/', CLP: '$', GTQ: 'Q', DOP: 'RD$', ARS: '$', EUR: '€', HNL: 'L', NIO: 'C$', UYU: '$', BOB: 'Bs', BRL: 'R$' };
+const round2 = (x) => { const p = Math.pow(10, Math.max(0, Math.floor(Math.log10(x)) - 1)); return Math.round(x / p) * p; };
+const fmtN = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const money = (n, cur) => `${SYM[cur] || '$'}${fmtN(n)}${cur && cur !== 'USD' && cur !== 'EUR' ? ' ' + cur : ''}`;
+const opt = (v, label, n) => ({ v, label, n });
+const rng = (rows) => rows.map(([v, n, label]) => ({ v, n, label }));
+const list = (rows) => rows.map(([v, label]) => ({ v, label }));
+
+function ticketOptions(a) {
+  const cur = (a.currency && a.currency.v) || 'COP', fx = FX[cur] || 1;
+  const b = [30, 80, 150, 400, 1000, 2500].map((x) => round2(x * fx)), mid = [20, 55, 115, 275, 700, 1750, 3500].map((x) => round2(x * fx));
+  return [
+    opt('t1', `Menos de ${money(b[0], cur)}`, mid[0]),
+    ...b.slice(0, -1).map((lo, i) => opt('t' + (i + 2), `${money(lo, cur)} – ${money(b[i + 1], cur)}`, mid[i + 1])),
+    opt('t7', `Más de ${money(b[5], cur)}`, mid[6]),
+  ];
+}
+
+/** Process question: options are [label, score] with score 2 = digital & connected, 1 = partial/manual, 0 = none. */
+const mod = (key, q, rows, help) => ({ id: 'm_' + key, module: key, sec: 3, q, help, other: true, options: rows.map(([label, s], i) => ({ v: key + i, label, s })).concat([{ v: 'na', label: 'No aplica en mi clínica', s: null }]) });
+
+const QUESTIONS = [
+  { id: 'specialties', sec: 0, multi: true, q: '¿Qué especialidades ofrece tu clínica?', help: 'Marca todas las que apliquen.', other: true,
+    options: list([['estetica', 'Medicina estética'], ['dermato', 'Dermatología'], ['plastica', 'Cirugía plástica'], ['odonto', 'Odontología estética'], ['antiage', 'Medicina antienvejecimiento / longevidad'], ['nutri', 'Nutrición y control de peso'], ['capilar', 'Tricología / tratamientos capilares'], ['gineco', 'Ginecología estética / funcional'], ['funcional', 'Medicina funcional / integrativa'], ['spa', 'Spa médico / cosmetología'], ['general', 'Medicina general']]) },
+  { id: 'treatments', sec: 0, multi: true, q: '¿Qué tratamientos o servicios ofreces?', help: 'Marca los principales. Los compararemos con lo que tu sitio muestra.', other: true,
+    options: list([['toxina', 'Toxina botulínica (bótox)'], ['rellenos', 'Ácido hialurónico / rellenos'], ['bioestim', 'Bioestimuladores (Sculptra, Radiesse)'], ['hilos', 'Hilos tensores'], ['laser', 'Láser (CO2, Fotona, etc.)'], ['depilacion', 'Depilación láser'], ['hifu', 'HIFU / ultrasonido'], ['rf', 'Radiofrecuencia / Morpheus'], ['peeling', 'Peelings y limpiezas'], ['prp', 'PRP / plasma'], ['suero', 'Sueroterapia'], ['corporal', 'Moldeo corporal no invasivo'], ['lipo', 'Lipoescultura / liposucción'], ['mamo', 'Cirugía mamaria'], ['rino', 'Rinoplastia / cirugía facial'], ['peso', 'Programas de control de peso'], ['capilar', 'Tratamiento capilar'], ['sonrisa', 'Diseño de sonrisa'], ['derma', 'Dermatología clínica (acné, manchas)']]) },
+  { id: 'doctors', sec: 0, q: '¿Cuántos médicos o especialistas atienden?', options: rng([['1', 1, 'Solo 1'], ['2-3', 2.5, '2 a 3'], ['4-6', 5, '4 a 6'], ['7-10', 8.5, '7 a 10'], ['11-20', 15, '11 a 20'], ['20+', 25, 'Más de 20']]) },
+  { id: 'locations', sec: 0, q: '¿Cuántas sedes o consultorios tiene?', options: rng([['in', 1, 'Consultorio dentro de otra clínica u hospital'], ['1', 1, '1 sede propia'], ['2', 2, '2 sedes'], ['3-5', 4, '3 a 5 sedes'], ['6-10', 8, '6 a 10 sedes'], ['10+', 12, 'Más de 10 sedes']]) },
+
+  { id: 'patientsMonth', sec: 1, q: '¿Cuántos pacientes atienden al mes?', help: 'Una cifra aproximada es suficiente.', options: rng([['p0', 30, 'Menos de 50'], ['p1', 75, '50 a 100'], ['p2', 175, '100 a 250'], ['p3', 375, '250 a 500'], ['p4', 750, '500 a 1.000'], ['p5', 1500, '1.000 a 2.000'], ['p6', 2500, 'Más de 2.000']]) },
+  { id: 'leadsMonth', sec: 1, q: '¿Cuántas consultas de personas nuevas reciben al mes?', help: 'Mensajes, llamadas o formularios de personas interesadas.', options: rng([['l0', 15, 'Menos de 25'], ['l1', 37, '25 a 50'], ['l2', 100, '50 a 150'], ['l3', 225, '150 a 300'], ['l4', 450, '300 a 600'], ['l5', 800, '600 a 1.000'], ['l6', 1300, 'Más de 1.000'], ['lx', '', 'No lo sabemos']]) },
+  { id: 'channels', sec: 1, multi: true, max: 4, q: '¿Por dónde llegan tus pacientes nuevos?', help: 'Elige hasta 4, empezando por el más importante.', other: true,
+    options: list([['whatsapp', 'WhatsApp'], ['instagram', 'Instagram'], ['facebook', 'Facebook'], ['tiktok', 'TikTok'], ['google', 'Google / Google Maps'], ['web', 'Sitio web'], ['directory', 'Doctoralia u otros directorios'], ['calls', 'Llamadas telefónicas / call center'], ['walkin', 'Llegan directo a la clínica'], ['referrals', 'Referidos de otros pacientes'], ['doctors', 'Referidos de otros médicos'], ['influencers', 'Influencers / alianzas'], ['events', 'Eventos y ferias']]) },
+  { id: 'attendants', sec: 1, multi: true, q: '¿Quién atiende las consultas y mensajes de pacientes?', help: 'Marca todos los que apliquen.', other: true,
+    options: list([['reception', 'Recepcionista'], ['callcenter_in', 'Call center propio'], ['callcenter_out', 'Call center externo / tercerizado'], ['sales', 'Asesora comercial / de ventas'], ['coordinator', 'Coordinadora de pacientes'], ['doctor', 'El médico directamente'], ['owner', 'El dueño o administrador'], ['agency', 'Una agencia de marketing'], ['bot', 'Chatbot o respuestas automáticas'], ['ai', 'Agente de IA']]) },
+  { id: 'responseTime', sec: 1, q: '¿Cuánto tardan en responder un mensaje nuevo?', options: list([['instant', 'Al instante (respuesta automática)'], ['lt5m', 'Menos de 5 minutos'], ['lt1h', 'Menos de 1 hora'], ['lt4h', 'Entre 1 y 4 horas'], ['sameday', 'El mismo día'], ['gt1d', 'Más de un día'], ['unknown', 'No lo medimos']]) },
+  { id: 'bookingRate', sec: 1, q: 'De esas consultas, ¿qué porcentaje termina agendando?', options: rng([['b0', 5, 'Menos del 10%'], ['b1', 15, '10% a 20%'], ['b2', 25, '20% a 30%'], ['b3', 35, '30% a 40%'], ['b4', 50, '40% a 60%'], ['b5', 70, 'Más del 60%'], ['bx', '', 'No lo sabemos']]) },
+  { id: 'noShow', sec: 1, q: '¿Qué porcentaje de citas no se presenta?', options: rng([['n0', 3, 'Menos del 5%'], ['n1', 7.5, '5% a 10%'], ['n2', 12.5, '10% a 15%'], ['n3', 17.5, '15% a 20%'], ['n4', 25, '20% a 30%'], ['n5', 35, 'Más del 30%'], ['nx', '', 'No lo medimos']]) },
+
+  { id: 'currency', sec: 2, q: '¿En qué moneda facturas?', options: list([['COP', 'Peso colombiano (COP)'], ['USD', 'Dólar (USD)'], ['MXN', 'Peso mexicano (MXN)'], ['CRC', 'Colón costarricense (CRC)'], ['PEN', 'Sol peruano (PEN)'], ['CLP', 'Peso chileno (CLP)'], ['GTQ', 'Quetzal (GTQ)'], ['HNL', 'Lempira (HNL)'], ['NIO', 'Córdoba (NIO)'], ['DOP', 'Peso dominicano (DOP)'], ['ARS', 'Peso argentino (ARS)'], ['UYU', 'Peso uruguayo (UYU)'], ['BOB', 'Boliviano (BOB)'], ['BRL', 'Real (BRL)'], ['EUR', 'Euro (EUR)']]) },
+  { id: 'ticket', sec: 2, q: '¿Cuál es el valor promedio por paciente o tratamiento?', help: 'Rangos aproximados en tu moneda.', options: ticketOptions },
+  { id: 'payments', sec: 2, multi: true, q: '¿Qué medios de pago aceptas?', help: 'Marca todos los que apliquen.', other: true,
+    options: list([['cash', 'Efectivo'], ['card', 'Tarjeta (datáfono)'], ['transfer', 'Transferencia bancaria'], ['link', 'Link de pago en línea'], ['wallet', 'Billeteras digitales (Nequi, SINPE, Yape…)'], ['financing', 'Financiación / crédito'], ['installments', 'Cuotas sin interés'], ['insurance', 'Seguros o medicina prepagada']]) },
+
+  mod('agenda', '¿Cómo se agendan hoy las citas?', [['Reserva en línea 24/7 integrada al sitio y a WhatsApp', 2], ['Directorio con agenda (Doctoralia u otro)', 2], ['Software de agenda que solo maneja el equipo', 1], ['Por teléfono con call center o recepción', 1], ['Google Calendar o Excel compartido', 0], ['Cuaderno o conversaciones de WhatsApp', 0]]),
+  mod('reminders', '¿Cómo confirman y recuerdan las citas?', [['Recordatorios automáticos por WhatsApp con confirmación', 2], ['SMS o correo automático', 2], ['El call center llama para confirmar', 1], ['La recepción escribe o llama uno por uno', 1], ['Solo a algunos pacientes', 0], ['No enviamos recordatorios', 0]]),
+  mod('whatsapp', '¿Cómo gestionan WhatsApp?', [['WhatsApp Business API con bandeja compartida y varios agentes', 2], ['Plataforma omnicanal (WhatsApp + redes en un solo lugar)', 2], ['WhatsApp Business en varios celulares', 1], ['WhatsApp Business en un solo celular', 1], ['WhatsApp personal del médico o del personal', 0], ['No usamos WhatsApp', 0]]),
+  mod('crm', '¿Cómo dan seguimiento a interesados que aún no agendan?', [['CRM con embudo y tareas de seguimiento', 2], ['CRM básico o del software clínico', 2], ['Excel o Google Sheets', 1], ['Etiquetas o listas en WhatsApp', 1], ['El call center lleva su propio registro', 1], ['No hacemos seguimiento sistemático', 0]]),
+  mod('sales', '¿Cómo cotizan los tratamientos?', [['Cotizaciones digitales con seguimiento hasta el cierre', 2], ['Plantilla de cotización en el software clínico', 2], ['PDF o imagen enviada por WhatsApp', 1], ['Precio por mensaje, sin documento', 1], ['Solo de forma verbal en la consulta', 0]]),
+  mod('ehr', '¿Cómo llevan la historia clínica?', [['Historia clínica electrónica con fotos antes/después', 2], ['Software de historia clínica sin fotos integradas', 2], ['Documentos en Word, PDF o Drive', 1], ['Mixta: parte digital y parte en papel', 1], ['En papel', 0]]),
+  mod('consent', '¿Cómo firman los consentimientos informados?', [['Firma digital con trazabilidad', 2], ['Firma en tableta dentro del software', 2], ['PDF o documentos escaneados', 1], ['En papel', 0]]),
+  mod('invoicing', '¿Cómo facturan?', [['Facturación electrónica integrada a agenda y ventas', 2], ['Facturación electrónica en otro sistema (doble digitación)', 1], ['Portal de la autoridad tributaria, manual', 1], ['La hace un contador externo', 0], ['Recibos manuales', 0]]),
+  mod('cashclose', '¿Cómo hacen el cierre de caja?', [['Automático por sede y profesional', 2], ['Reporte del software, revisado a mano', 1], ['En Excel al final del día', 1], ['Lo hace el contador a fin de mes', 0], ['No hacemos un cierre formal', 0]]),
+  mod('agents', '¿Quién responde los mensajes fuera de horario?', [['Un agente de IA que responde y agenda', 2], ['Call center 24/7', 2], ['Chatbot de menú o respuestas automáticas', 1], ['Alguien del equipo desde su celular', 1], ['Nadie, hasta el día siguiente', 0]]),
+  mod('marketing', '¿Cómo reactivan pacientes y promueven tratamientos?', [['Campañas automáticas por segmento y recompra', 2], ['Agencia de marketing con estrategia y reportes', 2], ['Publicaciones y campañas manuales en redes', 1], ['Mensajes masivos ocasionales por WhatsApp', 1], ['No hacemos marketing activo', 0]]),
+  mod('bi', '¿Cómo miden los resultados de la clínica?', [['Tablero de indicadores en tiempo real', 2], ['Reportes del software clínico', 2], ['Reportes manuales en Excel', 1], ['Solo revisamos ventas del mes', 0], ['No medimos indicadores', 0]]),
+
+
+  // ---- Tienda y productos (e-commerce) ----
+  { id: 'ecomSells', sec: 4, q: '¿Venden productos de cuidado en casa (skincare, suplementos)?', help: 'Por ejemplo, protector solar, sérums o kits post-tratamiento.',
+    options: list([['online', 'Sí, y tenemos tienda en línea'], ['social', 'Sí, por WhatsApp o redes sociales'], ['clinic', 'Sí, solo en la clínica'], ['no', 'No vendemos productos']]) },
+  { id: 'ecomPlatform', sec: 4, when: (a) => a.ecomSells && a.ecomSells.v === 'online', other: true, q: '¿En qué plataforma está tu tienda en línea?',
+    options: list([['shopify', 'Shopify'], ['woocommerce', 'WooCommerce (WordPress)'], ['custom', 'JavaScript / desarrollo a medida'], ['wix', 'Wix'], ['tiendanube', 'Tiendanube'], ['vtex', 'VTEX'], ['marketplace', 'Marketplace (Mercado Libre, Amazon…)']]) },
+  { id: 'ecomLink', sec: 4, when: (a) => a.ecomSells && a.ecomSells.v === 'online', q: '¿La tienda está conectada con tu agenda, expediente o inventario?',
+    options: list([['full', 'Sí, comparte inventario y datos de pacientes'], ['stock', 'Solo comparte el inventario'], ['none', 'No, funciona por separado'], ['unknown', 'No lo sé']]) },
+  { id: 'ecomBrands', sec: 4, multi: true, other: true, when: (a) => a.ecomSells && a.ecomSells.v !== 'no', q: '¿Qué marcas venden o recomiendan?', help: 'Marca todas las que apliquen.',
+    options: list([['colorescience', 'Colorescience'], ['sensilis', 'Sensilis'], ['skinceuticals', 'SkinCeuticals'], ['isdin', 'ISDIN'], ['heliocare', 'Heliocare'], ['lrp', 'La Roche-Posay'], ['own', 'Marca propia']]) },
+  { id: 'ecomRevenue', sec: 4, when: (a) => a.ecomSells && a.ecomSells.v !== 'no', q: '¿Qué parte de tus ingresos viene de la venta de productos?',
+    options: rng([['r0', 3, 'Menos del 5%'], ['r1', 7.5, '5% a 10%'], ['r2', 15, '10% a 20%'], ['r3', 25, 'Más del 20%'], ['rx', '', 'No lo sabemos']]) },
+  { id: 'ecomRoutine', sec: 4, q: '¿Cómo le indican al paciente su rutina en casa?',
+    options: list([['app', 'En una app o plataforma, con enlace para comprar'], ['digital', 'Por WhatsApp o correo (mensaje o PDF)'], ['paper', 'En un papel o tarjeta'], ['verbal', 'De forma verbal en la consulta'], ['none', 'No indicamos rutina en casa']]) },
+
+  { id: 'adChannels', sec: 5, multi: true, q: '¿Dónde invierten en publicidad?', help: 'Marca todos los que apliquen.', other: true, exclusive: 'none',
+    options: list([['meta', 'Meta Ads (Instagram / Facebook)'], ['google', 'Google Ads'], ['tiktok', 'TikTok Ads'], ['influencers', 'Influencers'], ['seo', 'SEO / contenido para buscadores'], ['directories', 'Directorios pagos (Doctoralia Premium, etc.)'], ['offline', 'Radio, revistas o vallas'], ['none', 'No invertimos en publicidad']]) },
+  { id: 'adminHours', sec: 5, q: '¿Cuántas horas a la semana dedica el equipo a tareas administrativas?', help: 'Facturación, cierres, reportes, cotizaciones, confirmaciones.', options: rng([['h0', 3, 'Menos de 5 horas'], ['h1', 10, '5 a 15 horas'], ['h2', 22, '15 a 30 horas'], ['h3', 45, '30 a 60 horas'], ['h4', 80, '60 a 100 horas'], ['h5', 120, 'Más de 100 horas']]) },
+  { id: 'software', sec: 5, multi: true, q: '¿Qué herramientas usan hoy?', help: 'Marca todas las que apliquen.', other: true, exclusive: 'none',
+    options: list([['sheets', 'Excel o Google Sheets'], ['directory', 'Doctoralia u otro directorio con agenda'], ['clinical', 'Software clínico especializado'], ['erp', 'Software contable / ERP'], ['crm', 'CRM (HubSpot, Kommo, etc.)'], ['omni', 'Plataforma omnicanal de WhatsApp'], ['own', 'Un sistema propio'], ['none', 'Ninguna / papel']]) },
+  { id: 'challenges', sec: 5, multi: true, max: 3, q: '¿Cuáles son tus mayores retos hoy?', help: 'Elige hasta 3.', other: true,
+    options: list([['leads', 'Consultas que no se convierten en citas'], ['noshow', 'Pacientes que no asisten'], ['whatsapp', 'WhatsApp o call center saturados'], ['agenda', 'Agenda desordenada o con huecos'], ['sales', 'Cotizaciones que no se cierran'], ['retention', 'Pacientes que no vuelven'], ['admin', 'Carga administrativa y facturación'], ['records', 'Historias y consentimientos en papel'], ['visibility', 'Pocos pacientes nuevos'], ['team', 'Rotación o capacitación del equipo'], ['data', 'No sabemos qué funciona y qué no']]) },
+  { id: 'goals', sec: 5, multi: true, max: 3, q: '¿Qué te gustaría lograr en los próximos 6 meses?', help: 'Elige hasta 3.', other: true,
+    options: list([['newpatients', 'Atraer más pacientes nuevos'], ['visibility', 'Aparecer en Google y en asistentes de IA'], ['noshow', 'Reducir las inasistencias'], ['whatsapp247', 'Atender WhatsApp 24/7'], ['sales', 'Vender más tratamientos'], ['retention', 'Aumentar recompra y fidelización'], ['order', 'Ordenar la operación y la administración'], ['paperless', 'Eliminar el papel'], ['data', 'Tomar decisiones con datos'], ['expand', 'Abrir una nueva sede']]) },
+  { id: 'timeline', sec: 5, q: '¿Cuándo te gustaría implementar mejoras?', options: list([['now', 'De inmediato'], ['1m', 'Este mes'], ['1-3m', 'En 1 a 3 meses'], ['3-6m', 'En 3 a 6 meses'], ['6m+', 'En más de 6 meses'], ['explore', 'Solo estoy explorando']]) },
+  { id: 'budget', sec: 5, q: '¿Qué inversión mensual considerarías para estas mejoras?', options: list([['unknown', 'Aún no lo sé'], ['low', 'Menos de US$300'], ['mid', 'US$300 – 1.000'], ['high', 'US$1.000 – 3.000'], ['top', 'US$3.000 – 6.000'], ['enterprise', 'Más de US$6.000']]) },
+
+  { id: 'contact', sec: 6, type: 'contact', q: '¿A quién le enviamos tu diagnóstico integral?' },
+];
+
+const IQ = { i: 0, answers: {}, contact: {}, busy: false };
+const isActive = (q) => !q.when || q.when(IQ.answers);
+const activeQs = () => QUESTIONS.filter(isActive);
+const optsOf = (q) => (typeof q.options === 'function' ? q.options(IQ.answers) : q.options);
+const answeredCount = () => activeQs().filter((q) => q.type !== 'contact' && IQ.answers[q.id]).length;
+const modScore = (a) => (a && a.s !== null && a.s !== undefined ? Number(a.s) : null);
+
+function openWizard() {
+  IQ.from = 'report';
+  state.scan = null; renderScanStrip();
+  if (state.report) {
+    const fx = state.report.facts || {}, ins = state.report.insights || {};
+    IQ.contact.website = IQ.contact.website || state.report.finalUrl || `https://${state.report.domain}`;
+    if (!IQ.contact.city && fx.city) IQ.contact.city = fx.city;
+    if (!IQ.contact.clinic && ins.clinicName && ins.clinicName !== state.report.domain) IQ.contact.clinic = ins.clinicName;
+  }
+  const firstOpen = QUESTIONS.findIndex((q) => isActive(q) && (q.type === 'contact' || !IQ.answers[q.id]));
+  IQ.i = Math.max(0, firstOpen);
+  show('integral');
+  renderIQ('enter');
+}
+
+function headIQ(q) {
+  $('#iq-sec').textContent = SECTIONS[q.sec];
+  const act = activeQs();
+  $('#iq-cnt').textContent = `${act.indexOf(q) + 1} de ${act.length}`;
+  $$('.iq-sections i').forEach((bar, s) => {
+    const inSec = act.filter((x) => x.sec === s);
+    const done = s === SECTIONS.length - 1 ? (IQ.busy ? 1 : 0) : inSec.length ? inSec.filter((x) => IQ.answers[x.id]).length / inSec.length : 0;
+    bar.style.width = Math.round(done * 100) + '%';
+  });
+}
+
+function renderIQ(dir) {
+  const q = QUESTIONS[IQ.i];
+  headIQ(q);
+  const card = $('#iq-card');
+  card.className = 'card iq-card ' + (dir || 'enter');
+  card.onchange = null;
+  void card.offsetWidth;
+  const sub = `${esc(SECTIONS[q.sec])}${q.module ? ` · proceso ${QUESTIONS.filter((x) => x.module).indexOf(q) + 1} de 12` : ''}${q.multi ? ' · selección múltiple' : ''}`;
+  const nav = (enabled) => `<div class="iq-nav"><button class="btn btn-ghost" type="button" id="iq-back">← ${IQ.i === 0 ? (IQ.from === 'report' ? 'Volver al informe' : 'Cambiar sitio') : 'Atrás'}</button><button class="btn btn-primary" type="button" id="iq-next" ${enabled ? '' : 'disabled'}>Continuar</button></div>`;
+  if (q.type === 'contact') card.innerHTML = contactCard(q);
+  else if (q.multi) {
+    const a = IQ.answers[q.id], chosen = a ? a.items.map((x) => x.v) : [], otherTxt = a ? (a.items.find((x) => x.v === OTHER) || {}).text || '' : '';
+    const opts = optsOf(q).concat(q.other ? [{ v: OTHER, label: 'Otro (escribir)…' }] : []);
+    card.innerHTML = `
+      <span class="qn">${sub}</span><h3 id="iq-q">${esc(q.q)}</h3><p class="help">${esc(q.help || 'Puedes elegir varias opciones.')}</p>
+      <div class="msd" id="msd">
+        <button type="button" class="msd-btn" id="msd-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="iq-q msd-val"><span class="msd-val ph" id="msd-val">Selecciona una o varias</span></button>
+        <div class="msd-panel" id="msd-panel" role="listbox" aria-multiselectable="true" aria-labelledby="iq-q" hidden>
+          <div class="msd-list">
+            ${opts.map((o) => `<label class="msd-opt" role="option" aria-selected="${chosen.includes(o.v)}"><input type="checkbox" value="${esc(o.v)}" ${chosen.includes(o.v) ? 'checked' : ''}><span>${esc(o.label)}</span></label>`).join('')}
+          </div>
+          <div class="msd-foot"><span id="msd-count"></span><button type="button" class="btn btn-primary" id="msd-done">Listo</button></div>
+        </div>
+      </div>
+      <div class="field other-in" id="iq-other-wrap" ${chosen.includes(OTHER) ? '' : 'hidden'}><input id="iq-other" maxlength="120" placeholder="Escribe cuál (puedes separar varios con comas)" value="${esc(otherTxt)}"></div>
+      <div class="iq-picked" id="iq-picked"></div>
+      ${nav(false)}`;
+    const boxes = () => $$('#msd-panel input', card);
+    const setOpen = (open) => {
+      $('#msd-panel').hidden = !open;
+      $('#msd').classList.toggle('open', open);
+      $('#msd-btn').setAttribute('aria-expanded', String(open));
+      if (open) { const first = boxes().find((b) => b.checked) || boxes()[0]; if (first && !isMobile()) first.focus({ preventScroll: true }); }
+    };
+    const sync = () => {
+      const checked = boxes().filter((b) => b.checked).map((b) => b.value);
+      const otherOn = checked.includes(OTHER), txt = $('#iq-other').value.trim();
+      $('#iq-other-wrap').hidden = !otherOn;
+      const valid = checked.length > 0 && (!otherOn || txt.length >= 2);
+      $('#iq-next').disabled = !valid;
+      const labelOf = (v) => (v === OTHER ? (txt ? 'Otro: ' + txt : 'Otro') : optsOf(q).find((o) => o.v === v).label);
+      const names = checked.map(labelOf);
+      const val = $('#msd-val');
+      val.classList.toggle('ph', !names.length);
+      val.innerHTML = names.length ? names.slice(0, 2).map((n) => `<span class="msd-tag">${esc(n)}</span>`).join('') + (names.length > 2 ? `<span class="msd-more">+${names.length - 2}</span>` : '') : 'Selecciona una o varias';
+      $('#msd-count').textContent = `${checked.length} seleccionada(s)${q.max ? ` · máximo ${q.max}` : ''}`;
+      $('#iq-picked').textContent = checked.length ? `✓ ${checked.length} seleccionada(s)${otherOn && txt.length < 2 ? ' · escribe la opción “Otro”' : ' · pulsa Continuar cuando termines'}` : '';
+      if (valid) {
+        const items = checked.map((v) => (v === OTHER ? { v: OTHER, label: 'Otro: ' + txt, text: txt } : { v, label: labelOf(v) }));
+        IQ.answers[q.id] = { multi: true, items, label: items.map((x) => x.label).join(', ') };
+      } else delete IQ.answers[q.id];
+      renderLive(); renderAnswers(); headIQ(q);
+    };
+    card.onchange = (e) => {
+      const box = e.target;
+      if (box.type !== 'checkbox' || !box.closest('#msd-panel')) return;
+      const all = boxes();
+      if (box.checked && q.exclusive) {
+        if (box.value === q.exclusive) all.forEach((b) => { if (b !== box) b.checked = false; });
+        else all.forEach((b) => { if (b.value === q.exclusive) b.checked = false; });
+      }
+      if (box.checked && q.max && all.filter((b) => b.checked).length > q.max) { box.checked = false; toast(`Puedes elegir hasta ${q.max} opciones.`, 2200); }
+      all.forEach((b) => { b.closest('.msd-opt').classList.toggle('on', b.checked); b.closest('.msd-opt').setAttribute('aria-selected', String(b.checked)); });
+      if (box.value === OTHER && box.checked) { setOpen(false); setTimeout(() => $('#iq-other').focus(), 50); }
+      sync();
+    };
+    boxes().forEach((b) => b.closest('.msd-opt').classList.toggle('on', b.checked));
+    $('#msd-btn').addEventListener('click', () => setOpen($('#msd-panel').hidden));
+    $('#msd-done').addEventListener('click', () => { setOpen(false); $('#iq-next').focus({ preventScroll: true }); });
+    $('#msd-panel').addEventListener('keydown', (e) => {
+      const list = boxes(), i = list.indexOf(document.activeElement);
+      if (e.key === 'Escape') { e.preventDefault(); setOpen(false); $('#msd-btn').focus(); }
+      else if (e.key === 'ArrowDown' && i >= 0) { e.preventDefault(); (list[i + 1] || list[0]).focus(); }
+      else if (e.key === 'ArrowUp' && i >= 0) { e.preventDefault(); (list[i - 1] || list[list.length - 1]).focus(); }
+      else if (e.key === 'Enter' && i >= 0) { e.preventDefault(); list[i].click(); }
+    });
+    IQ.closeMsd = (e) => { const m = $('#msd'); if (m && !m.contains(e.target) && !$('#msd-panel').hidden) setOpen(false); };
+    $('#iq-other').addEventListener('input', sync);
+    $('#iq-other').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !$('#iq-next').disabled) { e.preventDefault(); goIQ(1); } });
+    sync();
+    if (!chosen.length) setOpen(true);
+    $('#iq-next').addEventListener('click', () => goIQ(1));
+  } else {
+    const a = IQ.answers[q.id], isOther = a && a.v === OTHER;
+    card.innerHTML = `
+      <span class="qn">${sub}</span><h3 id="iq-q">${esc(q.q)}</h3><p class="help">${esc(q.help || 'Elige la opción que mejor describe tu clínica.')}</p>
+      <div class="dd ${a ? 'ok' : ''}"><select id="iq-sel" aria-labelledby="iq-q" class="${a ? '' : 'ph'}">
+        <option value="" disabled ${a ? '' : 'selected'}>Selecciona una opción</option>
+        ${optsOf(q).map((o) => `<option value="${esc(o.v)}" ${a && a.v === o.v ? 'selected' : ''}>${esc(o.label)}</option>`).join('')}
+        ${q.other ? `<option value="${OTHER}" ${isOther ? 'selected' : ''}>Otra (escribir)…</option>` : ''}
+      </select></div>
+      <div class="field other-in" id="iq-other-wrap" ${isOther ? '' : 'hidden'}><input id="iq-other" maxlength="120" placeholder="Describe cómo lo hacen" value="${esc(isOther ? a.text : '')}"></div>
+      <div class="iq-picked" id="iq-picked">${a ? '✓ Respuesta guardada' : ''}</div>
+      ${nav(!!a)}`;
+    const sel = $('#iq-sel');
+    const saveOther = () => {
+      const txt = $('#iq-other').value.trim();
+      if (txt.length >= 2) { IQ.answers[q.id] = { v: OTHER, label: 'Otro: ' + txt, text: txt, s: q.module ? 1 : undefined }; $('#iq-next').disabled = false; $('#iq-picked').textContent = '✓ Respuesta guardada'; }
+      else { delete IQ.answers[q.id]; $('#iq-next').disabled = true; $('#iq-picked').textContent = 'Escribe tu respuesta para continuar'; }
+      renderLive(); renderAnswers(); headIQ(q);
+    };
+    sel.addEventListener('change', () => {
+      sel.classList.remove('ph'); sel.parentElement.classList.add('ok');
+      if (sel.value === OTHER) { $('#iq-other-wrap').hidden = false; setTimeout(() => $('#iq-other').focus(), 50); saveOther(); return; }
+      $('#iq-other-wrap').hidden = true;
+      const o = optsOf(q).find((x) => x.v === sel.value);
+      if (!o) return;
+      IQ.answers[q.id] = { v: o.v, label: o.label, n: o.n, s: o.s };
+      if (q.id === 'currency' && IQ.answers.ticket) delete IQ.answers.ticket; // ticket ranges depend on the currency
+      $('#iq-picked').textContent = '✓ Respuesta guardada';
+      $('#iq-next').disabled = false;
+      renderLive(); renderAnswers(); headIQ(q);
+      clearTimeout(IQ.t); IQ.t = setTimeout(() => goIQ(1), 420);
+    });
+    $('#iq-other').addEventListener('input', saveOther);
+    $('#iq-other').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !$('#iq-next').disabled) { e.preventDefault(); goIQ(1); } });
+    $('#iq-next').addEventListener('click', () => goIQ(1));
+    if (!isMobile() && !isOther) setTimeout(() => sel.focus({ preventScroll: true }), 60);
+  }
+  $('#iq-back').addEventListener('click', () => { if (IQ.i > 0) return goIQ(-1); if (IQ.from === 'report') return show('report'); state.cancelled = true; state.scan = null; show('hero'); setTimeout(() => $('#url').focus(), 300); });
+  renderLive(); renderAnswers();
+}
+
+function goIQ(step) {
+  clearTimeout(IQ.t);
+  let n = IQ.i + step;
+  while (n >= 0 && n < QUESTIONS.length && !isActive(QUESTIONS[n])) n += step;
+  if (n < 0 || n >= QUESTIONS.length) return;
+  if (step > 0 && QUESTIONS[IQ.i].type !== 'contact' && !IQ.answers[QUESTIONS[IQ.i].id]) return;
+  QUESTIONS.forEach((x) => { if (!isActive(x)) delete IQ.answers[x.id]; });
+  IQ.i = n;
+  renderIQ(step > 0 ? 'enter' : 'back');
+  if (step > 0) $('#view-integral').scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+
+function contactCard(q) {
+  const c = IQ.contact, missing = activeQs().filter((x) => x.type !== 'contact' && !IQ.answers[x.id]);
+  return `
+    <span class="qn">Último paso</span>
+    <h3 id="iq-q">${esc(q.q)}</h3>
+    <p class="help">${missing.length ? `Te faltan ${missing.length} respuesta(s); puedes completarlas desde “Tus respuestas” o enviar así.` : 'Con esto cruzamos tu visibilidad digital con tu operación y calculamos tus oportunidades.'}</p>
+    <form id="iq-form" class="iq-contact" novalidate>
+      <div class="grid2">
+        <div class="field"><label for="c-name">Nombre</label><input id="c-name" name="name" autocomplete="name" value="${esc(c.name || '')}"><span class="err" data-err="name"></span></div>
+        <div class="field"><label for="c-role">Cargo</label><select id="c-role" name="role">${['', 'Médico(a) dueño(a)', 'Director(a) médico(a)', 'Gerente / administrador(a)', 'Coordinador(a) comercial', 'Marketing', 'Otro'].map((r) => `<option value="${esc(r)}" ${c.role === r ? 'selected' : ''}>${r ? esc(r) : 'Selecciona tu cargo'}</option>`).join('')}</select><span class="err" data-err="role"></span></div>
+        <div class="field"><label for="c-clinic">Clínica</label><input id="c-clinic" name="clinic" autocomplete="organization" value="${esc(c.clinic || '')}"><span class="err" data-err="clinic"></span></div>
+        <div class="field"><label for="c-city">Ciudad</label><input id="c-city" name="city" autocomplete="address-level2" value="${esc(c.city || '')}"><span class="err" data-err="city"></span></div>
+        <div class="field"><label for="c-email">Correo electrónico</label><input id="c-email" name="email" type="email" autocomplete="email" value="${esc(c.email || '')}"><span class="err" data-err="email"></span></div>
+        <div class="field"><label for="c-wa">WhatsApp</label><input id="c-wa" name="whatsapp" type="tel" autocomplete="tel" placeholder="+57 300 000 0000" value="${esc(c.whatsapp || '')}"><span class="err" data-err="whatsapp"></span></div>
+        <div class="field" style="grid-column:1/-1"><label for="c-web">Sitio web</label><input id="c-web" name="website" type="url" autocomplete="url" value="${esc(c.website || '')}"><span class="err" data-err="website"></span></div>
+      </div>
+      <div class="hp" aria-hidden="true"><label>No completar <input name="company_url" tabindex="-1" autocomplete="off"></label></div>
+      <label class="consent"><input type="checkbox" name="privacy" ${c.privacy ? 'checked' : ''}><span>He leído y acepto la <a href="${esc(PRIVACY_URL)}" target="_blank" rel="noopener">política de privacidad</a> y autorizo el tratamiento de mis datos para recibir este diagnóstico. <strong>(Obligatorio)</strong></span></label>
+      <span class="err" data-err="privacy" style="color:var(--fail);font-size:12px"></span>
+      <label class="consent"><input type="checkbox" name="marketing" ${c.marketing ? 'checked' : ''}><span>Acepto recibir comunicaciones comerciales sobre soluciones digitales para clínicas. (Opcional)</span></label>
+      <div class="form-error" id="iq-error" role="alert">${state.demo ? 'Modo demostración: no se enviarán datos.' : ''}</div>
+      <div class="iq-nav">
+        <button class="btn btn-ghost" type="button" id="iq-back">← Atrás</button>
+        <button class="btn btn-primary" type="submit" id="iq-submit">Generar mi diagnóstico integral</button>
+      </div>
+    </form>`;
+}
+
+document.addEventListener('input', (e) => {
+  if (!e.target.closest('#iq-form')) return;
+  const el = e.target;
+  IQ.contact[el.name] = el.type === 'checkbox' ? el.checked : el.value;
+});
+document.addEventListener('change', (e) => {
+  if (!e.target.closest('#iq-form')) return;
+  IQ.contact[e.target.name] = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+});
+document.addEventListener('submit', (e) => {
+  if (e.target.id !== 'iq-form') return;
+  e.preventDefault();
+  submitIntegral(e.target);
+});
+
+function renderLive() {
+  const a = IQ.answers, n = (k) => (a[k] && a[k].n !== '' && a[k].n !== undefined ? Number(a[k].n) : null);
+  const mods = QUESTIONS.filter((q) => q.module && modScore(a[q.id]) !== null);
+  const maturity = mods.length ? Math.round((mods.reduce((s, q) => s + modScore(a[q.id]), 0) / (mods.length * 2)) * 100) : null;
+  const P = n('patientsMonth'), NS = n('noShow'), T = n('ticket'), L = n('leadsMonth'), BR = n('bookingRate');
+  const cur = (a.currency && a.currency.v) || 'COP';
+  let lost = null;
+  if (P && NS) { const sch = P / (1 - NS / 100); lost = sch * NS / 100; }
+  const slow = a.responseTime && ['lt4h', 'sameday', 'gt1d', 'unknown'].includes(a.responseTime.v);
+  $('#iq-live').innerHTML = `
+    <div class="lt ${maturity !== null ? 'on' : ''}"><div class="k">Madurez operativa</div><div class="v g">${maturity === null ? '—' : maturity + '%'}</div><div class="s">${mods.length ? `${mods.length} de 12 procesos evaluados` : 'Se calcula con tus procesos'}</div></div>
+    <div class="lt ${lost !== null ? 'on' : ''}"><div class="k">Citas que se pierden al mes</div><div class="v">${lost === null ? '—' : '≈' + fmtN(lost)}</div><div class="s">${lost === null ? 'Responde pacientes e inasistencia' : T ? '≈' + money(lost * T, cur) + ' / mes' : 'Agrega tu ticket para valorarlas'}</div></div>
+    <div class="lt ${L ? 'on' : ''}"><div class="k">Consultas nuevas al mes</div><div class="v">${L ? '≈' + fmtN(L) : '—'}</div><div class="s">${!L ? 'Responde consultas nuevas' : BR ? `≈${fmtN(L * BR / 100)} agendan${slow ? ' · respuesta lenta' : ''}` : slow ? 'Esperan más de 1 hora' : 'Agrega tu tasa de agendamiento'}</div></div>`;
+}
+
+function renderAnswers() {
+  const rows = QUESTIONS.map((q, i) => ({ q, i })).filter(({ q }) => isActive(q) && IQ.answers[q.id]);
+  $('#iq-answers').hidden = !rows.length;
+  $('#iq-answers-n').textContent = rows.length;
+  $('#iq-answers-list').innerHTML = rows.map(({ q, i }) => `<li><button type="button" data-goto="${i}"><span>${esc(q.q)}</span><b>${esc(IQ.answers[q.id].label)}</b></button></li>`).join('');
+}
+document.addEventListener('mousedown', (e) => { if (IQ.closeMsd) IQ.closeMsd(e); });
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-goto]');
+  if (!b) return;
+  IQ.i = Number(b.dataset.goto);
+  renderIQ('back');
+  $('#iq-answers').open = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+function validateIQContact(f) {
+  $$('[data-err]', f).forEach((x) => (x.textContent = ''));
+  const errs = {}, v = (k) => f[k].value.trim();
+  if (v('name').length < 2) errs.name = 'Ingresa tu nombre';
+  if (v('clinic').length < 2) errs.clinic = 'Ingresa el nombre de tu clínica';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) errs.email = 'Correo inválido';
+  const d = v('whatsapp').replace(/\D/g, '');
+  if (d.length < 7 || d.length > 15) errs.whatsapp = 'Número inválido';
+  if (v('city').length < 2) errs.city = 'Ingresa tu ciudad';
+  if (!f.privacy.checked) errs.privacy = 'Debes aceptar la política de privacidad para continuar';
+  for (const [k, msg] of Object.entries(errs)) { const el = $(`[data-err="${k}"]`, f); if (el) el.textContent = msg; }
+  return !Object.keys(errs).length;
+}
+
+async function submitIntegral(f) {
+  if (IQ.busy || !validateIQContact(f)) return;
+  const a = IQ.answers;
+  const val = (k) => (a[k] && !a[k].multi ? a[k].v : '');
+  const num = (k) => (a[k] && a[k].n !== undefined ? a[k].n : '');
+  const codes = (k) => (a[k] && a[k].multi ? a[k].items.map((x) => x.v) : []);
+  const texts = (k) => (a[k] && a[k].multi ? a[k].items.map((x) => (x.v === OTHER ? x.text : x.label)) : []);
+  const modules = {}, labels = {};
+  QUESTIONS.forEach((q) => {
+    if (!a[q.id] || q.type === 'contact') return;
+    labels[q.id] = a[q.id].label;
+    if (q.module) modules[q.module] = a[q.id].s === null || a[q.id].s === undefined ? 'na' : String(a[q.id].s);
+  });
+  const payload = {
+    auditId: state.demo ? null : state.report && state.report.id,
+    company_url: f.company_url.value,
+    contact: { name: f.name.value.trim(), role: f.role.value, clinic: f.clinic.value.trim(), email: f.email.value.trim(), whatsapp: f.whatsapp.value.trim(), website: f.website.value.trim(), city: f.city.value.trim() },
+    consent: { privacy: f.privacy.checked, marketing: f.marketing.checked, policyVersion: '2026-01' },
+    profile: {
+      specialty: texts('specialties').join(', '), specialties: codes('specialties'), treatments: texts('treatments'),
+      doctors: num('doctors'), locations: num('locations'), patientsMonth: num('patientsMonth'), leadsMonth: num('leadsMonth'),
+      bookingRate: num('bookingRate'), ticket: num('ticket'), currency: val('currency') || 'COP', noShow: num('noShow'), responseTime: val('responseTime'),
+      adminHours: num('adminHours'), modules, software: texts('software').join(', '), softwareCodes: codes('software'),
+      channels: codes('channels'), attendants: codes('attendants'), payments: codes('payments'), adChannels: codes('adChannels'),
+      challenges: codes('challenges'), goals: codes('goals'), timeline: val('timeline'), budget: val('budget'), labels,
+      ecommerce: { sells: val('ecomSells'), platform: val('ecomPlatform'), platformLabel: (a.ecomPlatform && a.ecomPlatform.label) || '', connected: val('ecomLink'), brands: texts('ecomBrands'), revenueShare: num('ecomRevenue'), routine: val('ecomRoutine') },
+      recommendedModules: recommend().slice(0, 5).map((m) => m.id),
+    },
+  };
+  state.contact = payload.contact;
+  IQ.busy = true;
+  headIQ(QUESTIONS[IQ.i]);
+  const waitCard = (title, sub) => { $('#iq-card').innerHTML = `<div class="iq-done"><div class="spinner"></div><h3>${title}</h3><p class="help" id="iq-wait-sub">${sub}</p></div>`; };
+  // The site scan may still be running: wait for it before revealing anything.
+  if (state.scan && state.scan.status === 'running') {
+    waitCard('Terminando el análisis de tu sitio', `${esc(state.scan.step)} · ${Math.round(state.scan.progress)}%`);
+    const tick = setInterval(() => { const el = $('#iq-wait-sub'); if (el && state.scan) el.textContent = `${state.scan.step} · ${Math.round(state.scan.progress)}%`; }, 500);
+    await state.scanRun;
+    clearInterval(tick);
+  }
+  if (state.scan && state.scan.status === 'failed') {
+    IQ.busy = false;
+    renderIQ('enter');
+    $('#iq-error').textContent = 'Antes de generar el diagnóstico necesitamos analizar tu sitio: corrige la dirección en el recuadro de arriba.';
+    $('#scan-strip').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  payload.auditId = state.demo ? null : state.report && state.report.id;
+  waitCard('Generando tu diagnóstico integral', `Cruzando el análisis de ${esc((state.report && state.report.domain) || 'tu sitio')} con tus ${answeredCount()} respuestas.`);
+  try {
+    let r;
+    if (state.demo) { await new Promise((res) => setTimeout(res, 900)); r = demoReport(true); }
+    else {
+      const res = await withRetry(() => api('submitProfile', payload), 2);
+      r = res.report || Object.assign({}, state.report, { operations: res.operations });
+    }
+    IQ.busy = false;
+    renderReport(r, state.demo);
+    toast('Tu diagnóstico integral está listo. Ya puedes descargarlo o compartirlo.');
+  } catch (e) {
+    IQ.busy = false;
+    renderIQ('enter');
+    const f2 = $('#iq-form');
+    if (e.fields && f2) for (const [k, msg] of Object.entries(e.fields)) { const el = $(`[data-err="${k}"]`, f2); if (el) el.textContent = msg; }
+    $('#iq-error').textContent = e.message || 'No pudimos generar tu diagnóstico. Intenta de nuevo.';
+  }
+}
+
+/* ---------------------------------------------------------------- share */
+function shareText(r) {
+  const ins = r.insights || {}, o = r.operations;
+  const recsWa = answeredCount() >= 8 ? recommend().slice(0, 3).map((m) => m.name).join(', ') : '';
+  const lines = [`*Diagnóstico Clinic Management Tech* — ${ins.clinicName || r.domain}`, `🌐 ${r.domain}`, ...(recsWa ? [`🧩 Módulos recomendados: ${recsWa}`] : []),
+    `📊 AI Visibility Score: *${r.score.overall === null ? '—' : r.score.overall + '/100'}*${r.score.tier ? ` (${r.score.tier})` : ''}`];
+  if (o && o.maturity !== null) lines.push(`⚙️ Madurez operativa: *${o.maturity}%* (${o.level})`);
+  if (r.recommendations.length) { lines.push('', '*Prioridades:*'); r.recommendations.forEach((x, i) => lines.push(`${i + 1}. ${x.title}`)); }
+  if (o && o.scenarios && o.scenarios[0]) lines.push('', `💡 ${o.scenarios[0].title}: ${o.scenarios[0].metric}${o.scenarios[0].value ? ` (${o.scenarios[0].value})` : ''}`);
+  if (state.reportUrl) lines.push('', `Informe completo: ${state.reportUrl}`);
+  if (state.demo) lines.push('', '(Demostración con datos simulados)');
+  return lines.join('\n');
+}
+const pdfName = (r) => `Diagnostico-IA-${(r.domain || 'clinica').replace(/[^a-z0-9.-]/gi, '')}${state.demo ? '-DEMO' : ''}.pdf`;
+const isMobile = () => /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+async function uploadPdf(doc) {
+  if (state.demo || !state.report) return '';
+  if (state.pdfDriveUrl && !state.pdfDirty) return state.pdfDriveUrl;
+  const b64 = doc.output('datauristring').split(',')[1];
+  const res = await api('savePdf', { id: state.report.id, base64: b64 });
+  state.pdfDriveUrl = res.url; state.pdfDirty = false;
+  return res.url;
+}
+
+async function shareWhatsApp() {
+  const r = state.report; if (!r) return;
+  const doc = buildPdf(r, state.demo);
+  const text = shareText(r);
+  if (doc && isMobile() && navigator.canShare) {
+    try {
+      const file = new File([doc.output('blob')], pdfName(r), { type: 'application/pdf' });
+      if (navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text }); return; }
+    } catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  const w = window.open('about:blank', '_blank');
+  let pdfUrl = '';
+  if (doc) { try { toast('Preparando el PDF para compartir…', 6000); pdfUrl = await uploadPdf(doc); } catch (e) { console.warn('PDF upload failed:', e && e.message); } }
+  const url = 'https://wa.me/?text=' + encodeURIComponent(text + (pdfUrl ? `\n\nPDF: ${pdfUrl}` : ''));
+  if (w) w.location.href = url; else window.location.href = url;
+  toast('Abriendo WhatsApp…');
+}
+
+function downloadPdf() {
+  const r = state.report; if (!r) return;
+  const doc = buildPdf(r, state.demo);
+  if (!doc) return;
+  doc.save(pdfName(r));
+  if (!state.demo) toast(`PDF generado. <button type="button" data-act="drive">¿No se descargó? Ábrelo desde Drive</button>`, 8000);
+}
+async function openDrivePdf() {
+  const w = window.open('about:blank', '_blank');
+  try { const url = await uploadPdf(buildPdf(state.report, state.demo)); if (w) w.location.href = url; else location.href = url; }
+  catch (e) { if (w) w.close(); toast('No se pudo guardar el PDF en Drive.'); }
+}
+async function copyLink() {
+  const url = state.reportUrl; if (!url) return;
+  try { await navigator.clipboard.writeText(url); toast('Enlace copiado.'); }
+  catch { window.prompt('Copia el enlace del informe:', url); }
+}
+
+/* ---------------------------------------------------------------- PDF */
+function pdfSafe(s) {
+  return String(s ?? '').replace(/[“”«»]/g, '"').replace(/[‘’]/g, "'").replace(/[–—]/g, '-').replace(/…/g, '...').replace(/→/g, '->').replace(/[•·]/g, '-').replace(/≈/g, '~').replace(/[^\x00-\xFF]/g, '');
+}
+function buildPdf(r, demo) {
+  if (!window.jspdf) { toast('No se pudo cargar el generador de PDF. Revisa tu conexión.'); return null; }
+  state.pdfDirty = true;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const W = 210, M = 16, CW = W - 2 * M;
+  const C = { bg: [113, 60, 71], cyan: [147, 70, 51], cyanD: [128, 81, 46], violet: [113, 60, 71], muted: [102, 89, 84], ink: [33, 26, 24], sub: [102, 89, 84], line: [223, 210, 196], soft: [248, 243, 236], champ: [240, 210, 139], rose: [246, 224, 211], teal: [46, 100, 94] };
+  const SC = { pass: [46, 100, 94], warn: [128, 81, 46], fail: [147, 70, 51], not_detected: [142, 96, 104], not_evaluated: [102, 89, 84], error: [102, 89, 84], ready: [46, 100, 94], partial: [128, 81, 46], not_ready: [147, 70, 51] };
+  const ins = r.insights || {}, o = r.operations;
+  let y = 0;
+  const T = (t, x, yy, opt) => doc.text(pdfSafe(t), x, yy, opt);
+  const wrap = (t, w) => doc.splitTextToSize(pdfSafe(t), w);
+  const font = (size, style = 'normal', color = C.ink) => { doc.setFont('helvetica', style); doc.setFontSize(size); doc.setTextColor(...color); };
+  const watermark = () => { if (!demo) return; font(40, 'bold', [246, 224, 211]); T('DEMOSTRACION - DATOS SIMULADOS', 30, 220, { angle: 35 }); };
+  const footer = () => { font(7.5, 'normal', C.muted); T('Clinic Management Tech - Puntaje propio de preparacion; no es una metrica oficial de ningun buscador ni asistente de IA.', M, 290); T(`Pag. ${doc.getNumberOfPages()}`, W - M, 290, { align: 'right' }); };
+  const newPage = () => { footer(); doc.addPage(); watermark(); y = 20; };
+  const ensure = (h) => { if (y + h > 280) newPage(); };
+  const H = (t, color = C.ink) => { ensure(30); y += 3; font(13, 'bold', color); T(t, M, y); y += 2; doc.setDrawColor(...C.cyan); doc.setLineWidth(0.6); doc.line(M, y, M + 14, y); y += 6; };
+  const P = (t, size = 9.5, color = C.sub, style = 'normal') => { font(size, style, color); const ls = wrap(t, CW); const lh = size * 0.47; ensure(ls.length * lh + 1); doc.text(ls, M, y); y += ls.length * lh + 1.5; };
+  const bullets = (items, color = C.sub, dot = C.cyan) => items.forEach((it) => { font(9.3, 'normal', color); const ls = wrap(it, CW - 6); ensure(ls.length * 4.4 + 1); doc.setFillColor(...dot); doc.circle(M + 1.3, y - 1.2, 0.9, 'F'); doc.text(ls, M + 5, y); y += ls.length * 4.4 + 1.6; });
+
+  // cover band
+  watermark();
+  doc.setFillColor(...C.bg); doc.rect(0, 0, W, 66, 'F');
+  doc.setFillColor(...C.champ); doc.rect(0, 66, W, 1.2, 'F');
+  font(8.5, 'bold', C.champ); T('CLINIC MANAGEMENT TECH' + (o ? '  -  DIAGNOSTICO INTEGRAL' : ''), M, 16, { charSpace: 0.6 });
+  font(19, 'bold', [255, 255, 255]); doc.text(wrap(ins.clinicName && ins.clinicName !== r.domain ? ins.clinicName : 'Diagnóstico de visibilidad en IA', 118), M, 28);
+  font(10, 'normal', [246, 224, 211]); doc.text(wrap('Tu clínica tiene más potencial del que muestra su sitio web.', 118), M, 40);
+  font(9, 'normal', [246, 224, 211]); T(`Sitio: ${r.domain}`, M, 52); T(`Fecha: ${new Date(r.auditedAt).toLocaleDateString('es-CO', { dateStyle: 'long' })}  -  ${r.pagesAnalyzed.length} pagina(s) analizada(s)`, M, 58);
+  const gauge = (cx, cy, rad, val, label) => {
+    doc.setDrawColor(142, 96, 104); doc.setLineWidth(2.6); doc.circle(cx, cy, rad, 'S');
+    if (val !== null && val !== undefined) for (let i = 0; i < Math.round(val * 0.9); i++) { const a0 = -Math.PI / 2 + (i / 90) * 2 * Math.PI, a1 = -Math.PI / 2 + ((i + 1) / 90) * 2 * Math.PI, k = i / 90; doc.setDrawColor(240, 210, 139); doc.line(cx + rad * Math.cos(a0), cy + rad * Math.sin(a0), cx + rad * Math.cos(a1), cy + rad * Math.sin(a1)); }
+    font(rad > 15 ? 22 : 15, 'bold', [255, 255, 255]); T(val === null || val === undefined ? '--' : String(val) + (label === '%' ? '%' : ''), cx, cy + (rad > 15 ? 3 : 2), { align: 'center' });
+  };
+  gauge(o ? 152 : 172, 31, 17, r.score.overall);
+  font(7.5, 'bold', [255, 255, 255]); T('AI Visibility', o ? 152 : 172, 55, { align: 'center' }); font(7.5, 'normal', [246, 224, 211]); T(r.score.tier || 'Evidencia insuficiente', o ? 152 : 172, 59, { align: 'center' });
+  if (o) { gauge(188, 31, 12, o.maturity, '%'); font(7.5, 'bold', [255, 255, 255]); T('Madurez operativa', 188, 55, { align: 'center' }); font(7.5, 'normal', [246, 224, 211]); T(o.level, 188, 59, { align: 'center' }); }
+
+  y = 80;
+  H('Resumen ejecutivo');
+  if (ins.summary) P(ins.summary, 10.2, C.ink);
+  if (o && o.summary) P(o.summary, 10.2, C.ink);
+  if (r.score.provisional) P('Puntaje provisional: algunas señales no pudieron evaluarse.', 8.5, SC.warn);
+  const recsPdf = answeredCount() >= 8 ? recommend().slice(0, 5) : [];
+  if (recsPdf.length) {
+    H('Módulos recomendados de Clinic Management Tech', C.violet);
+    bullets(recsPdf.map((m, i) => `${i === 0 ? 'Empieza por aquí - ' : ''}${m.name} (${m.fit}% de ajuste): ${m.reasons.join('; ') || m.desc}`), C.ink, C.teal);
+  }
+
+  H('AI Visibility Score por categoría');
+  CAT_ORDER.forEach((k) => {
+    const c = r.score.categories[k];
+    ensure(14);
+    font(9.5, 'bold', C.ink); T(`${CAT_LABEL[k]} (${CAT_WEIGHT[k]}%)`, M, y); T(c.score === null ? 'No evaluado' : String(c.score), W - M, y, { align: 'right' });
+    y += 2.4; doc.setFillColor(...C.line); doc.roundedRect(M, y, CW, 2.4, 1.2, 1.2, 'F');
+    if (c.score) { doc.setFillColor(...C.cyan); doc.roundedRect(M, y, CW * c.score / 100, 2.4, 1.2, 1.2, 'F'); }
+    y += 6; const nar = (ins.categoryNarratives || {})[k]; if (nar) { font(8.3, 'normal', C.muted); T(nar, M, y); y += 5; } else y += 1;
+  });
+
+  if (r.criticalRisks.length) { H('Riesgos críticos', SC.fail); bullets(r.criticalRisks.map((x) => `${x.label}: ${x.evidence}`), C.ink, SC.fail); }
+
+  if (ins.aiView) {
+    H('Cómo te entiende la IA hoy');
+    font(9.5, 'bold', SC.pass); ensure(8); T('Puede confirmar', M, y); y += 5;
+    bullets(ins.aiView.understood.map((x) => `${x.label}: ${x.value}`), C.sub, SC.pass);
+    if (ins.aiView.missing.length) { font(9.5, 'bold', SC.fail); ensure(8); y += 1; T('Tiene que adivinar', M, y); y += 5; bullets(ins.aiView.missing.map((x) => `${x.label}: ${x.value}`), C.sub, SC.fail); }
+  }
+
+  H('Tres recomendaciones prioritarias');
+  r.recommendations.forEach((x, i) => {
+    const t = wrap(x.title, CW - 12), b = wrap(x.impact, CW - 12), ev = wrap('Hallazgo: ' + x.evidence, CW - 12);
+    const h = t.length * 5 + b.length * 4.4 + ev.length * 3.9 + 8;
+    ensure(h);
+    doc.setFillColor(...C.soft); doc.roundedRect(M, y - 4, CW, h, 2, 2, 'F');
+    doc.setFillColor(...C.violet); doc.circle(M + 5, y - 0.3, 2.9, 'F'); font(8, 'bold', [255, 255, 255]); T(String(i + 1), M + 5, y + 0.9, { align: 'center' });
+    font(10.5, 'bold', C.ink); doc.text(t, M + 11, y + 0.4); let yy = y + t.length * 5;
+    font(9.3, 'normal', C.sub); doc.text(b, M + 11, yy); yy += b.length * 4.4;
+    font(8.2, 'normal', C.muted); doc.text(ev, M + 11, yy);
+    y += h + 3;
+  });
+
+  if ((ins.patientQueries || []).length) {
+    H('Lo que tus pacientes le preguntan a la IA');
+    ins.patientQueries.forEach((q) => {
+      const rs = wrap(q.reason, CW - 34); const h = 5 + rs.length * 3.9 + 2; ensure(h);
+      font(8, 'bold', SC[q.level] || C.muted); T(LEVEL[q.level], M, y);
+      font(9.4, 'bold', C.ink); doc.text(wrap('"' + q.query + '"', CW - 34), M + 30, y);
+      font(8.2, 'normal', C.muted); doc.text(rs, M + 30, y + 4.4); y += h + 1.2;
+    });
+    P('Consultas de ejemplo construidas con los datos detectados; indican preparación del sitio, no respuestas reales de asistentes de IA.', 7.8, C.muted);
+  }
+
+  if ((ins.strengths || []).length) { H('Fortalezas'); bullets(ins.strengths.map((x) => `${x.label}: ${x.evidence}`), C.sub, SC.pass); }
+  if ((ins.gaps || []).length) { H('Otras brechas'); bullets(ins.gaps.map((x) => `${x.label}: ${x.evidence}`), C.sub, SC.fail); }
+
+  if (o) {
+    newPage();
+    H('Diagnóstico operativo', C.violet);
+    P(`Madurez operativa: ${o.maturity === null ? '-' : o.maturity + '%'} (${o.level}).`, 10.5, C.ink, 'bold');
+    o.modules.forEach((m) => {
+      ensure(7); font(9.2, 'normal', C.ink); T(m.label, M, y);
+      const col = m.status === '2' ? SC.pass : m.status === '1' ? SC.warn : m.status === '0' ? SC.fail : C.muted;
+      font(8.5, 'bold', col); T(m.statusLabel + (o.priorityModules.includes(m.label) ? '  - PRIORIDAD' : ''), W - M, y, { align: 'right' });
+      y += 2; doc.setDrawColor(...C.line); doc.setLineWidth(0.2); doc.line(M, y, W - M, y); y += 4.2;
+    });
+    if (o.scenarios.length) {
+      H('Oportunidades calculadas con tus cifras');
+      o.scenarios.forEach((s) => {
+        const d = wrap(s.detail, CW - 10); const h = 14 + d.length * 4.2; ensure(h + 2);
+        doc.setFillColor(...C.soft); doc.roundedRect(M, y - 4, CW, h, 2, 2, 'F');
+        font(8.5, 'bold', C.muted); T(s.title, M + 5, y + 0.5);
+        font(13, 'bold', C.violet); T(s.metric + (s.value ? '   ' : ''), M + 5, y + 7);
+        if (s.value) { const w = doc.getTextWidth(pdfSafe(s.metric + '   ')); font(10, 'bold', C.ink); T(s.value, M + 5 + w, y + 7); }
+        font(8.8, 'normal', C.sub); doc.text(d, M + 5, y + 12.5);
+        y += h + 3;
+      });
+      P('Escenarios ilustrativos calculados únicamente con los datos que compartiste; no son una promesa de resultados.', 7.8, C.muted);
+    }
+    if (o.crossInsights.length) { H('Insights de tu clínica'); bullets(o.crossInsights, C.ink, C.violet); }
+    if (o.roadmap.length) {
+      H('Ruta sugerida');
+      o.roadmap.forEach((p) => { ensure(14); font(8.5, 'bold', C.cyanD); T(p.phase, M, y); font(10.5, 'bold', C.ink); T(p.title, M + 42, y); y += 5.5; bullets(p.items); y += 1; });
+      P('La hoja de ruta de implementación detallada se construye en la sesión de consultoría.', 7.8, C.muted);
+    }
+    if (o.solutions.length) { H('Soluciones recomendadas'); bullets(o.solutions.map((x) => `${x.module}: ${x.solution}`), C.ink, C.cyan); }
+  }
+
+  newPage();
+  H('Anexo: hallazgos detallados');
+  P('Verificado = señal observada. No detectado = no se encontró públicamente. No evaluado = excluido del puntaje.', 8, C.muted);
+  CAT_ORDER.forEach((k) => {
+    ensure(12); y += 1; font(10.5, 'bold', C.violet); T(CAT_LABEL[k], M, y); y += 5.5;
+    r.checks.filter((x) => x.category === k).forEach((c) => {
+      const ev = wrap(c.evidence, CW - 34); const h = 4.4 + ev.length * 3.7 + 2; ensure(h);
+      font(7.5, 'bold', SC[c.status] || C.muted); T(STATUS[c.status] || c.status, M, y);
+      font(9, 'bold', C.ink); T(c.label, M + 34, y);
+      font(7.9, 'normal', C.muted); doc.text(ev, M + 34, y + 4);
+      y += h; doc.setDrawColor(...C.line); doc.setLineWidth(0.2); doc.line(M, y - 1.4, W - M, y - 1.4); y += 1.4;
+    });
+  });
+  H('Herramientas detectadas públicamente (no puntúa)');
+  bullets(r.integrations.map((x) => `${x.label}: ${x.status === 'detected' ? 'Detectado' : 'No detectado'} - ${x.evidence}`));
+  H('Alcance y limitaciones');
+  bullets(r.limitations, C.muted, C.muted);
+
+  ensure(46); y += 4;
+  doc.setFillColor(...C.bg); doc.roundedRect(M, y, CW, 40, 3, 3, 'F');
+  font(8, 'bold', C.champ); T('PRÓXIMO PASO RECOMENDADO', M + 8, y + 9);
+  font(11, 'bold', [255, 255, 255]); doc.text(wrap('Tu clínica puede pasar de tener una página web a contar con un ecosistema digital que atrae, atiende y convierte pacientes.', CW - 16), M + 8, y + 16);
+  font(8.5, 'normal', [246, 224, 211]);
+  if (state.reportUrl) { T('Informe interactivo: ', M + 8, y + 33); doc.setTextColor(...C.champ); doc.textWithLink('abrir en línea', M + 8 + doc.getTextWidth('Informe interactivo: '), y + 33, { url: state.reportUrl }); }
+  else T('La hoja de ruta de implementación se entrega en la sesión de consultoría.', M + 8, y + 33);
+  footer();
+  return doc;
+}
+
+/* ---------------------------------------------------------------- demo */
+function demoReport(withOps) {
+  const T = 'technical_indexability', G = 'content_and_geo_clarity', M = 'medical_trust_and_authority', U = 'user_experience_and_conversion';
+  const mk = (id, category, label, status, evidence) => ({ id, category, label, status, evidence: evidence + ' (simulado)' });
+  const r = {
+    id: 'demo', domain: 'clinica-demo.example', finalUrl: 'https://clinica-demo.example/', auditedAt: new Date().toISOString(),
+    pagesAnalyzed: ['/', '/tratamientos/', '/contacto/'],
+    score: { overall: 52, tier: 'Alto potencial de mejora', provisional: true, coverage: 94, categories: { [T]: { score: 74, coverage: 100 }, [G]: { score: 31, coverage: 100 }, [M]: { score: 55, coverage: 100 }, [U]: { score: 58, coverage: 76 } } },
+    checks: [
+      mk('http_status', T, 'Respuesta del servidor', 'pass', 'HTTP 200'), mk('https', T, 'HTTPS y certificado TLS', 'pass', 'Certificado válido'),
+      mk('sitemap', T, 'Sitemap XML', 'not_detected', 'No se encontró sitemap'), mk('title', T, 'Título de página', 'warn', '“Inicio” (6 caracteres)'),
+      mk('jsonld', G, 'Datos estructurados JSON-LD', 'not_detected', 'Sin JSON-LD'), mk('treatment_pages', G, 'Páginas específicas por tratamiento', 'warn', '2 URL(s) de tratamiento'),
+      mk('faq', G, 'Preguntas frecuentes estructuradas', 'not_detected', 'Sin FAQ'), mk('doctors_visible', M, 'Médicos identificados', 'pass', 'Dra. Ejemplo'),
+      mk('credentials', M, 'Credenciales y formación visibles', 'warn', 'Señales: especialista'), mk('booking', U, 'Reserva de citas en línea', 'not_detected', 'Sin agenda en línea'),
+      mk('whatsapp', U, 'Contacto por WhatsApp', 'pass', 'Enlace wa.me'), mk('performance', U, 'Rendimiento móvil (PageSpeed)', 'not_evaluated', 'No medido en la demostración'),
+    ],
+    integrations: [{ id: 'ga4', label: 'Google Analytics 4', status: 'detected', evidence: 'G-DEMO000 (simulado)', caveat: 'Dato simulado.' }],
+    recommendations: [
+      { title: 'Existen oportunidades para mejorar cómo las plataformas interpretan los servicios de tu clínica', impact: 'Sin datos estructurados, los asistentes de IA deben adivinar quién eres, dónde estás y qué ofreces.', evidence: 'Sin JSON-LD (simulado)' },
+      { title: 'Tus tratamientos necesitan una arquitectura de contenido más clara para buscadores y asistentes de IA', impact: 'Los pacientes preguntan por tratamientos concretos; sin páginas dedicadas, otra clínica responde por ti.', evidence: '2 URL(s) de tratamiento (simulado)' },
+      { title: 'Tu presencia digital podría conectar mejor las búsquedas de pacientes con la reserva de citas', impact: 'Cada paso extra entre el interés y la cita es un paciente que se pierde.', evidence: 'Sin agenda en línea (simulado)' },
+    ],
+    criticalRisks: [], facts: { city: 'Medellín' },
+    limitations: ['DEMOSTRACIÓN: todos los valores de esta vista son simulados y no provienen de ningún análisis real.'],
+    insights: {
+      clinicName: 'Clínica Demo', summary: 'Clínica Demo obtiene 52/100 (Alto potencial de mejora). Su mayor fortaleza está en indexabilidad técnica (74) y su principal oportunidad en claridad de contenido y GEO (31). (Texto simulado.)',
+      aiView: { understood: [{ label: 'Médicos', value: 'Dra. Ejemplo (simulado)' }, { label: 'Cómo contactar', value: 'WhatsApp (simulado)' }], missing: [{ label: 'Tipo de entidad', value: 'No se declara como entidad médica (simulado)' }, { label: 'Tratamientos', value: 'Solo 2 páginas de tratamiento (simulado)' }] },
+      strengths: [{ label: 'HTTPS y certificado TLS', evidence: 'Certificado válido (simulado)' }], gaps: [{ label: 'Sitemap XML', evidence: 'No se encontró sitemap (simulado)' }],
+      patientQueries: [{ query: '¿Dónde me hago bótox en Medellín?', level: 'partial', reason: 'Hay página del tratamiento, pero la ubicación no está estructurada. (simulado)' }, { query: '¿Cuánto cuesta un tratamiento y es seguro?', level: 'not_ready', reason: 'No hay respuestas a dudas frecuentes. (simulado)' }],
+      categoryNarratives: {},
+    },
+  };
+  if (withOps) r.operations = {
+    maturity: 38, level: 'Digitalización parcial', summary: 'Clínica Demo tiene una madurez operativa de 38% (Digitalización parcial). (Texto simulado.)',
+    modules: MODULES.map(([k, l], i) => ({ key: k, label: l, status: String([1, 0, 1, 0, 1, 2, 1, 2, 0, 0, 1, 0][i]), statusLabel: ['No lo tenemos', 'Lo tenemos, pero es manual o deficiente', 'Lo tenemos y funciona'][[1, 0, 1, 0, 1, 2, 1, 2, 0, 0, 1, 0][i]] })),
+    priorityModules: ['CRM de pacientes y oportunidades', 'Agentes de IA para atención'],
+    scenarios: [{ title: 'Citas que hoy se pierden por inasistencia', metric: '70 citas/mes', value: 'Valor simulado', detail: 'Escenario de demostración con cifras simuladas.' }],
+    crossInsights: ['Tu sitio ya dirige pacientes a WhatsApp, pero la atención por ese canal es manual. (simulado)'],
+    roadmap: [{ phase: 'Fase 1 · 0–30 días', title: 'Visibilidad y captación', items: ['Agenda de citas online', 'Recordatorios y confirmaciones'] }],
+    solutions: [{ module: 'CRM de pacientes y oportunidades', solution: 'CRM con embudo de valoración → tratamiento → recompra' }],
+  };
+  return r;
+}
+function runDemo() { state.cancelled = true; renderReport(demoReport(false), true); }
+
+/* ---------------------------------------------------------------- neural bg */
+(function neural() {
+  const c = $('#neural'), ctx = c.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, nodes = [], running = false;
+  const resize = () => {
+    const dpr = Math.min(2, devicePixelRatio || 1); w = innerWidth; h = innerHeight;
+    c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(70, (w * h) / 22000));
+    nodes = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18 }));
+  };
+  const frame = () => {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i]; a.x += a.vx; a.y += a.vy;
+      if (a.x < 0 || a.x > w) a.vx *= -1; if (a.y < 0 || a.y > h) a.vy *= -1;
+      for (let j = i + 1; j < nodes.length; j++) { const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy; if (d < 19000) { ctx.strokeStyle = `rgba(147,70,51,${0.10 * (1 - d / 19000)})`; ctx.lineWidth = 0.7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } }
+      ctx.fillStyle = i % 4 ? 'rgba(195,106,85,.45)' : 'rgba(113,60,71,.55)'; ctx.beginPath(); ctx.arc(a.x, a.y, 1.4, 0, 6.283); ctx.fill();
+    }
+  };
+  const loop = () => { if (document.hidden || reduce) { running = false; return; } frame(); requestAnimationFrame(loop); };
+  const start = () => { if (!running && !reduce) { running = true; requestAnimationFrame(loop); } };
+  resize(); frame(); start();
+  addEventListener('resize', () => { resize(); frame(); });
+  document.addEventListener('visibilitychange', start);
+})();
+})();
+
+</script>
+</body>
+</html>

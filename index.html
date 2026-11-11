@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clinic Management Tech | Your clinic, your doctors and your patients, connected</title>
+<meta name="description" content="Clinic Management Tech connects aesthetic clinics, doctors and patients in one platform: facial analysis, scheduling, digital records, a patient app and a clinic shop for each patient's skincare routine.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#F8F3EC">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clinic Management Tech">
+<meta property="og:title" content="Clinic Management Tech | Your clinic, your doctors and your patients, connected">
+<meta property="og:description" content="Facial analysis, scheduling, records, a patient app and a skincare shop, in one platform for aesthetic clinics.">
+<meta property="og:url" content="https://clinicmanagementech.com">
+<meta property="og:image" content="https://clinicmanagementech.com/clinictech.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://clinicmanagementech.com">
+<link rel="alternate" hreflang="en" href="https://clinicmanagementech.com/?lang=en">
+<link rel="alternate" hreflang="es" href="https://clinicmanagementech.com/?lang=es">
+<link rel="alternate" hreflang="x-default" href="https://clinicmanagementech.com/">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Clinic Management Tech","applicationCategory":"BusinessApplication","operatingSystem":"Web, iOS, Android","url":"https://clinicmanagementech.com",
+"description":"Platform that connects aesthetic clinics, doctors and patients: facial analysis, scheduling, digital records, patient app and a clinic shop for prescribed skincare routines.",
+"featureList":["468-point facial analysis","Progress against a Day 0 baseline","Scheduling by professional and room","Digital records and consents","Voice note to clinical note and invoice","Patient app","Prescribed skincare routines","Clinic e-commerce for skincare products","Replenishment reminders","AI patient assistant","AI search visibility (GEO) diagnosis"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+/* Language: ?lang=es|en  >  saved choice  >  browser language. Spanish dictionary in js/i18n.js */
+(function () {
+  var q = (location.search.match(/[?&]lang=(es|en)/) || [])[1], saved = null;
+  try { saved = localStorage.getItem('cmt-lang'); } catch (e) {}
+  var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+  var lang = q || saved || (/^es\b/i.test(nav) ? 'es' : 'en');
+  if (q) { try { localStorage.setItem('cmt-lang', q); } catch (e) {} }
+  window.CMT_LANG = lang;
+  document.documentElement.lang = lang;
+  if (lang === 'es') { document.documentElement.classList.add('i18n-wait'); setTimeout(function () { document.documentElement.classList.remove('i18n-wait'); }, 2000); }
+})();
+</script>
+
+<script>
+/* ===== CONFIG: fill in these values ===== */
+window.CMT_CONFIG = {
+  WHATSAPP: '',   // sales WhatsApp, digits only with country code, e.g. '50688887777'
+  ENDPOINT: '',   // Apps Script Web App /exec URL. Receives action: 'lead' | 'chat' | 'appointment' | 'alert' | 'order'
+  GEO_URL:  'diagnostico.html',   // URL of the GEO scanner / diagnosis page
+  INSTAGRAM:'',   // Instagram profile URL
+  VIDEO:    'assets/app-scan.mp4', // hero screen recording
+  CURRENCY: 'USD',
+  // Before & after shown in the slider. Empty = illustrative images set in js/sections.js (DEFAULT_CASE).
+  // { before: 'assets/cases/1-before.jpg', after: 'assets/cases/1-after.jpg', label: 'Melasma · week 12', scores: [['Glow', 84, 91]] }
+  CASES: [],
+  // Photo of the model used in the before & after demo. Paste another URL to change it.
+  BA_PHOTO: 'https://i.ibb.co/TBgRk7nR/Retrato-de-belleza-con-mon-o-despeinado-2.png'
+};
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2.5h7.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/></symbol>
+    <symbol id="i-face" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-6.5 3.3-6.5 8 0 5 3 10 6.5 10s6.5-5 6.5-10c0-4.7-2.5-8-6.5-8z"/><path d="M9 10.5c.6-.4 1.4-.4 2 0M13 10.5c.6-.4 1.4-.4 2 0M12 12v3M10.5 17.5c.9.5 2.1.5 3 0"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17 9 11.5l3.5 3.5 8-8"/><path d="M15 7h5.5v5.5"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12.5H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V20H4z"/><path d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.4-3.6 4.2-5.2 7.5-5.2s6.1 1.6 7.5 5.2"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="8.5" r="3.3"/><path d="M3 19.5c1-3 3.3-4.5 6-4.5s5 1.5 6 4.5M15.5 5.5a3.2 3.2 0 0 1 0 6.2M17.5 15.3c1.7.6 2.9 2 3.5 4.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16.3 9.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14"/><path d="M21 3 14.5 21l-4.5-7-7-4.5z"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l3 3-3 3"/><path d="M4 11V9a3 3 0 0 1 3-3h13M7 21l-3-3 3-3"/><path d="M20 13v2a3 3 0 0 1-3 3H4"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  </defs>
+</svg>
+
+<div class="pagebar" id="pagebar"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Clinic Management Tech, home"><i class="logo"></i><span class="sep"></span><span class="wordmark">Clinic<br>Management<br>Tech</span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      <a href="#story">How it works</a>
+      <a href="#clinics">Console</a>
+      <a href="#results">Before &amp; after</a>
+      <a href="#patients">Patient app</a>
+      <a href="#shop">Shop</a>
+      <a href="#geo">GEO</a>
+      <div class="lang lang-m" role="group" aria-label="Language"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>
+    </nav>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>
+    <a class="btn btn-diag" href="diagnostico.html"><span class="spark" aria-hidden="true">✦</span><span>Diagnose my clinic</span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO · scroll-driven app recording ============ -->
+<section class="scrolly" id="scrolly" style="--chapters:7" aria-label="The facial analysis in the patient app">
+  <div class="stage-x">
+    <div class="wrap stage-grid">
+      <div class="chaps" aria-live="polite">
+        <div class="chap on" data-i="0">
+          <span class="eyebrow">Platform for aesthetic clinics</span>
+          <h1>Your clinic, your doctors and your patients, <span class="g">connected.</span></h1>
+          <p class="m-hide">One console for your clinic. One app for each patient.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-gold" href="#demo">Book a demo <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-line m-hide" href="#story">See how it works</a>
+          </div>
+          <span class="cue"><i></i>Scroll</span>
+        </div>
+        <div class="chap" data-i="1"><span class="k">01 / 06 <b>Two photos</b></span><h2>Same conditions, <em>every visit.</em></h2><div class="chip-row"><span><em>Light</em>✓</span><span><em>Distance</em>✓</span><span><em>Pose</em>✓</span></div></div>
+        <div class="chap" data-i="2"><span class="k">02 / 06 <b>468 points</b></span><h2>A precise map <em>of every face.</em></h2><div class="chip-row"><span><em>Landmarks</em>468</span></div></div>
+        <div class="chap" data-i="3"><span class="k">03 / 06 <b>Proportion</b></span><h2>Proportion <em>and symmetry.</em></h2><div class="chip-row"><span><em>Proportion</em>0.92</span><span><em>Symmetry</em>94.7</span></div></div>
+        <div class="chap" data-i="4"><span class="k">04 / 06 <b>Skin</b></span><h2>Skin, <em>zone by zone.</em></h2><div class="chip-row"><span><em>Forehead</em>0.74</span><span><em>Redness</em>0.13</span></div></div>
+        <div class="chap" data-i="5"><span class="k">05 / 06 <b>Glow</b></span><h2>One score that <em>moves with the plan.</em></h2><div class="chip-row"><span><em>Glow</em>84</span><span><em>Day</em>0</span></div></div>
+        <div class="chap" data-i="6"><span class="k">06 / 06 <b>Report</b></span><h2>A report that <em>stays with her.</em></h2><div class="chip-row"><span><em>Photos</em>2</span><span><em>Next</em>auto-compare</span></div></div>
+      </div>
+      <div class="vstage">
+        <div class="vphone" id="vphone">
+          <span class="scan-ring" aria-hidden="true"></span>
+          <div class="pins" id="pins" aria-hidden="true"></div>
+          <video id="scrub" muted playsinline preload="auto" poster="assets/poster.jpg" aria-label="Screen recording of the facial analysis in the patient app. Simulated person."></video>
+        </div>
+      </div>
+      <div class="readout" aria-hidden="true">
+        <div class="ro on"><div class="ro-h"><span>One platform</span><span>3 sides</span></div>
+          <div class="m st"><span>Clinic console</span><b class="t">Schedule · records · sales</b></div>
+          <div class="m st"><span>Doctor</span><b class="t">Analysis · notes · routine</b></div>
+          <div class="m st"><span>Patient app</span><b class="t">Visits · progress · shop</b></div></div>
+        <div class="ro"><div class="ro-h"><span>Capture checks</span><span>Photo 1 of 2</span></div>
+          <div class="m ok"><span>Light</span><b>Pass</b></div><div class="m ok"><span>Distance</span><b>Pass</b></div><div class="m ok"><span>Pose</span><b>Pass</b></div></div>
+        <div class="ro"><div class="ro-h"><span>Recognition</span><span>Front photo</span></div><div class="m big"><span>Landmarks</span><b>468</b></div></div>
+        <div class="ro"><div class="ro-h"><span>Structure</span><span>Front photo</span></div>
+          <div class="m big"><span>Proportion index</span><b>0.92</b><div class="bar" style="--v:92%"></div></div>
+          <div class="m"><span>Symmetry</span><b>94.7<small>/100</small></b><div class="bar" style="--v:94.7%"></div></div></div>
+        <div class="ro"><div class="ro-h"><span>Skin by zone</span><span>Index 0–1</span></div>
+          <div class="m"><span>Forehead · luminosity</span><b>0.74</b></div><div class="m"><span>Cheek · redness</span><b>0.13</b></div><div class="m"><span>Chin · uniformity</span><b>0.74</b></div></div>
+        <div class="ro"><div class="ro-h"><span>Baseline</span><span>Day 0</span></div><div class="m big"><span>Glow score</span><b>84</b><div class="bar" style="--v:84%"></div></div></div>
+        <div class="ro"><div class="ro-h"><span>Saved</span><span>Day 0</span></div>
+          <div class="m"><span>Photos (front + profile)</span><b>2</b></div><div class="m"><span>Recommended routine</span><b class="t">Ready to buy</b></div><div class="m"><span>Next visit</span><b class="t">Auto-compare</b></div></div>
+      </div>
+    </div>
+    <span class="rail-label" id="rail-label">Overview</span>
+    <div class="rail" id="rail" aria-label="Jump to step"></div>
+  </div>
+</section>
+
+<!-- ============ MODULES ============ -->
+<section class="strip" aria-label="Modules">
+  <div class="wrap mods">
+    <div class="mod rv"><div class="ic"><svg><use href="#i-folder"/></svg></div><b>Clinic console</b></div>
+    <div class="mod rv d1"><div class="ic"><svg><use href="#i-face"/></svg></div><b>Facial analysis</b></div>
+    <div class="mod rv d2"><div class="ic"><svg><use href="#i-phone"/></svg></div><b>Patient app</b></div>
+    <div class="mod rv d3"><div class="ic"><svg><use href="#i-bag"/></svg></div><b>Clinic shop</b></div>
+    <div class="mod rv d3"><div class="ic"><svg><use href="#i-globe"/></svg></div><b>GEO positioning</b></div>
+  </div>
+</section>
+
+<!-- Story, console, before & after and GEO are rendered by js/sections.js (both languages there) -->
+<section class="sx" id="story"></section>
+<section class="sx clinic" id="clinics"></section>
+<section class="sx" id="results"></section>
+
+<!-- ============ VOICE NOTE → INVOICE ============ -->
+<section class="pad" id="console">
+  <div class="wrap flow">
+    <div>
+      <span class="eyebrow rv">For the doctor</span>
+      <h2 class="h-sec rv d1">From voice note <em>to invoice.</em></h2>
+      <p class="lead rv d2">The doctor dictates. AI drafts the note, items and invoice for review.</p>
+    </div>
+    <div class="flow-card rv d1">
+      <div class="flow-tabs" id="flow-tabs" role="tablist">
+        <button class="on" data-f="0">Voice note</button><button data-f="1">Draft</button><button data-f="2">Services</button><button data-f="3">Review</button><button data-f="4">Invoice</button>
+      </div>
+      <div class="flow-body">
+        <div class="flow-pane on"><p class="lbl">Dr. Méndez · 0:14</p><div class="wave" id="wave"></div><blockquote>“Toxin on the forehead and frown lines, 20 units. No reactions. Recommend SPF and the calming routine, check-up in 15 days.”</blockquote></div>
+        <div class="flow-pane"><p class="lbl">Clinical note · AI draft</p><dl class="kv"><dt>Procedure</dt><dd>Botulinum toxin, forehead and glabella</dd><dt>Dose</dt><dd>20 U</dd><dt>Events</dt><dd>No immediate reactions</dd><dt>Plan</dt><dd>Check-up in 15 days · daily SPF 50 · calming routine</dd></dl></div>
+        <div class="flow-pane"><p class="lbl">Detected items</p><div class="line"><span>Toxin application, 2 zones</span><b>$320</b></div><div class="line"><span>Sunforgettable Face Shield SPF 50 · Colorescience</span><b>$69</b></div><div class="line"><span>Cicaplast Baume B5 · La Roche-Posay</span><b>$18</b></div><div class="line total"><span>Total</span><span>$407</span></div></div>
+        <div class="flow-pane"><p class="lbl">Doctor review</p><div class="okline"><svg><use href="#i-check"/></svg>Note approved and signed</div><div class="okline"><svg><use href="#i-check"/></svg>Check-up booked in 15 days</div><div class="okline"><svg><use href="#i-check"/></svg>Routine sent to the patient's app</div><div class="okline"><svg><use href="#i-check"/></svg>2 products deducted from stock</div></div>
+        <div class="flow-pane"><p class="lbl">Invoice · ready to send</p><dl class="kv"><dt>Patient</dt><dd>Laura G. (example)</dd><dt>Items</dt><dd>1 service · 2 products</dd><dt>Total</dt><dd>$407</dd><dt>Sent to</dt><dd>Email and the patient's app</dd></dl></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATIENT APP ============ -->
+<section class="pad" id="patients" style="padding-top:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow both rv">Patient app</span>
+      <h2 class="h-sec rv d1">Your clinic, in your <em>patients' pocket.</em></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-list" role="tablist" aria-label="App features">
+        <div class="feat on rv" role="tab" tabindex="0" aria-selected="true" data-pane="p-appts"><span class="ic"><svg><use href="#i-cal"/></svg></span><div><h3>My appointments</h3><p>Book and confirm without calling.</p></div></div>
+        <div class="feat rv d1" role="tab" tabindex="0" aria-selected="false" data-pane="p-prog"><span class="ic"><svg><use href="#i-trend"/></svg></span><div><h3>My progress</h3><p>Every visit compared with Day 0.</p></div></div>
+        <div class="feat rv d2" role="tab" tabindex="0" aria-selected="false" data-pane="p-rout"><span class="ic"><svg><use href="#i-drop"/></svg></span><div><h3>My routine</h3><p>Morning and night, prescribed by her doctor.</p></div></div>
+        <div class="feat rv d3" role="tab" tabindex="0" aria-selected="false" data-pane="p-shop"><span class="ic"><svg><use href="#i-bag"/></svg></span><div><h3>Clinic shop</h3><p>Her routine, in one tap.</p></div></div>
+        <div class="feat rv d3" role="tab" tabindex="0" aria-selected="false" data-pane="p-chat"><span class="ic"><svg><use href="#i-chat"/></svg></span><div><h3>Messages</h3><p>A direct line to the clinic.</p></div></div>
+      </div>
+      <div class="demo-phone rv d1">
+        <div class="phone"><div class="screen">
+          <div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="pane on" id="p-appts"><h4>My appointments</h4>
+            <div class="row"><span class="av">TH</span><div><b>Post-treatment check-up</b><span>Thursday · 10:30 a.m.</span></div><span class="pill">Confirmed</span></div>
+            <div class="row"><span class="av">MO</span><div><b>Deep facial cleansing</b><span>Monday 18 · 4:00 p.m.</span></div><span class="pill">Pending</span></div>
+            <div class="row"><span class="av">TU</span><div><b>New facial analysis</b><span>Tuesday 26 · 9:00 a.m.</span></div><span class="pill">New</span></div>
+          </div>
+          <div class="pane" id="p-prog"><h4>My progress</h4>
+            <div class="chart"><div class="k"><span>Glow score</span><b style="color:var(--gold-3)">84 → 91</b></div>
+              <svg viewBox="0 0 220 90" preserveAspectRatio="none"><path d="M0 75 C30 70,50 62,75 58 S120 40,150 34 S195 18,220 12 V90 H0Z" fill="rgba(147,70,51,.18)"/><path d="M0 75 C30 70,50 62,75 58 S120 40,150 34 S195 18,220 12" fill="none" stroke="#934633" stroke-width="2.2"/></svg>
+              <div class="k"><span>Day 0</span><span>Week 6</span><span>Week 12</span></div></div>
+            <div class="row"><span class="av">✓</span><div><b>Session 3 of 4</b><span>Note from your doctor</span></div></div>
+            <div class="row"><span class="av">◎</span><div><b>Progress photos</b><span>Day 0 vs. today</span></div><span class="pill">View</span></div>
+          </div>
+          <div class="pane" id="p-rout"><h4>My routine</h4>
+            <div class="mini-tabs"><span class="on">MORNING</span><span>NIGHT</span></div>
+            <div class="step"><span class="c ok"></span><span class="pimg" data-p="clean"></span><div><b>Cleanse</b><span>Purify Essential Cleanser</span></div></div>
+            <div class="step"><span class="c ok"></span><span class="pimg" data-p="vitc"></span><div><b>Antioxidant</b><span>C E Ferulic</span></div></div>
+            <div class="step"><span class="c"></span><span class="pimg" data-p="spf"></span><div><b>Protect</b><span>Sunforgettable SPF 50</span></div></div>
+            <div class="row" style="margin-top:12px"><span class="av">↻</span><div><b>SPF runs out in ~6 days</b><span>Reorder from your clinic</span></div><span class="pill">Reorder</span></div>
+          </div>
+          <div class="pane" id="p-shop"><h4>Clinic shop</h4>
+            <div class="prod-mini"><div><span class="pimg" data-p="spf"></span><b>Sunforgettable SPF 50</b><span>Colorescience</span></div><div><span class="pimg" data-p="clean"></span><b>Purify Essential Cleanser</b><span>Sensilis</span></div><div><span class="pimg" data-p="vitc"></span><b>C E Ferulic</b><span>SkinCeuticals</span></div><div><span class="pimg" data-p="gelspf"></span><b>360° Water Gel SPF 50+</b><span>Heliocare</span></div></div>
+            <div class="row" style="margin-top:10px"><span class="av">Rx</span><div><b>Your routine · 3 items</b><span>Recommended by your doctor</span></div><span class="pill">Add all</span></div>
+          </div>
+          <div class="pane" id="p-chat"><h4>Messages</h4>
+            <div class="chat"><div class="bub out">Can I wear makeup after today's session?</div><div class="bub in"><small>Clinic team</small>Wait 24 hours. Then your tinted SPF works as light coverage.</div><div class="bub out">Perfect. Can I pick up the cream on Thursday?</div><div class="bub in"><small>Clinic team</small>Yes, it's reserved at reception. See you Thursday!</div></div>
+          </div>
+          <div class="app-nav"><svg class="on"><use href="#i-home"/></svg><svg><use href="#i-cal"/></svg><svg><use href="#i-bag"/></svg><svg><use href="#i-chat"/></svg><svg><use href="#i-user"/></svg></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLINIC SHOP ============ -->
+<section class="shop-sec pad" id="shop">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow both rv">Clinic shop</span>
+      <h2 class="h-sec rv d1">The routine her doctor prescribes, <em>one tap away.</em></h2>
+      <div class="brands rv d2" aria-label="Example brands"><span>Colorescience</span><span>Sensilis</span><span>SkinCeuticals</span><span>ISDIN</span><span>Heliocare</span><span>La Roche-Posay</span><span>+ your brands</span></div>
+    </div>
+    <div class="sim">
+      <div class="console rv">
+        <div class="console-h"><b>Clinic console · Prescribe a routine</b><span>Try it</span></div>
+        <div class="console-b">
+          <div class="pt"><span class="av">LG</span><div><b>Laura G.</b><span>Example patient · Glow 84 · cheek redness 0.13</span></div></div>
+          <div><p class="lbl">1 · Treatment plan</p><div class="plans" id="plans"></div></div>
+          <div><p class="lbl">2 · Home routine (built from the plan)</p><div class="rx" id="rx"></div></div>
+          <button class="btn btn-gold" id="rx-send" type="button">Send to the patient's app <svg><use href="#i-send"/></svg></button>
+        </div>
+        <div class="log">
+          <p class="lbl">What just happened</p>
+          <ol id="log"><li class="empty">Nothing yet. Choose a plan and send the routine.</li></ol>
+          <div class="log-f"><small>Simulation with example data. Nothing is saved.</small><button class="linkbtn" id="sim-reset" type="button">Restart</button></div>
+        </div>
+      </div>
+      <div class="phone rv d1"><div class="screen" id="shop-screen">
+        <div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+        <div class="toast" id="toast"><i class="logo"></i><span id="toast-t"></span></div>
+        <div class="shop" id="shop-ui"></div>
+        <div class="app-nav"><svg><use href="#i-home"/></svg><svg><use href="#i-cal"/></svg><svg class="on"><use href="#i-bag"/></svg><svg><use href="#i-chat"/></svg><svg><use href="#i-user"/></svg></div>
+      </div></div>
+    </div>
+    <div class="vals">
+      <div class="val rv"><div class="ic"><svg><use href="#i-doc"/></svg></div><h3>Prescription → purchase</h3></div>
+      <div class="val rv d1"><div class="ic"><svg><use href="#i-box"/></svg></div><h3>Kits per treatment</h3></div>
+      <div class="val rv d2"><div class="ic"><svg><use href="#i-repeat"/></svg></div><h3>Automatic refills</h3></div>
+      <div class="val rv d3"><div class="ic"><svg><use href="#i-trend"/></svg></div><h3>Stock &amp; sales</h3></div>
+    </div>
+    <p class="fine center">Example catalog and prices. Brand names and product photos belong to their owners; each clinic loads its own catalog, prices and suppliers.</p>
+  </div>
+</section>
+
+<section class="sx dark geo" id="geo"></section>
+
+<!-- ============ FAQ ============ -->
+<section class="pad" id="faq">
+  <div class="wrap">
+    <div class="center"><span class="eyebrow both rv">FAQ</span><h2 class="h-sec rv d1">What clinics <em>ask us.</em></h2></div>
+    <div class="faq">
+      <details><summary>Do I have to replace my current system?</summary><p>No. We start where your clinic needs it most and connect the rest step by step.</p></details>
+      <details><summary>Does the facial analysis replace a medical assessment?</summary><p>No. It supports the doctor; the decision is always theirs.</p></details>
+      <details><summary>Which brands can I sell?</summary><p>The ones your clinic already carries, plus your own line.</p></details>
+      <details><summary>Where do the before &amp; after photos come from?</summary><p>From your own patients, captured with the app and shared only with their consent.</p></details>
+      <details><summary>Can you guarantee ChatGPT will recommend my clinic?</summary><p>No one can. We improve the signals AI relies on and measure the result every month.</p></details>
+      <details><summary>Can I use my own brand?</summary><p>Yes. The app and the shop carry your clinic's identity.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="demo">
+  <div class="wrap"><div class="cta-box">
+    <div>
+      <span class="eyebrow">Book a demo</span>
+      <h2 class="h-sec">Connect your clinic <em>with your patients.</em></h2>
+      <p class="lead">30 minutes, on a video call, with a case like yours.</p>
+    </div>
+    <form class="demo-form" id="demo-form" novalidate>
+      <div id="df-fields" style="display:grid;gap:14px">
+        <h3>Request your demo</h3>
+        <div class="df-row">
+          <div class="df-f"><label for="df-name">Your name</label><input id="df-name" autocomplete="name" placeholder="Dr. Laura Méndez" required></div>
+          <div class="df-f"><label for="df-clinic">Clinic and city</label><input id="df-clinic" autocomplete="organization" placeholder="Lumière Clinic, Miami" required></div>
+        </div>
+        <div class="df-row">
+          <div class="df-f"><label for="df-email">Email</label><input id="df-email" type="email" autocomplete="email" placeholder="you@clinic.com" required></div>
+          <div class="df-f"><label for="df-wa">WhatsApp</label><input id="df-wa" type="tel" autocomplete="tel" placeholder="+1 305 555 0123" required></div>
+        </div>
+        <div class="df-row">
+          <div class="df-f"><label for="df-pros">Professionals</label><select id="df-pros"><option>Just me</option><option selected>2 to 5</option><option>6 to 15</option><option>More than 15</option></select></div>
+          <div class="df-f"><label for="df-int">Most interested in</label><select id="df-int"><option>Everything</option><option>Clinic console</option><option>Patient app &amp; follow-up</option><option>Clinic shop</option><option>Facial analysis</option><option>AI visibility (GEO)</option></select></div>
+        </div>
+        <p class="df-err" id="df-err" role="alert"></p>
+        <button class="btn btn-gold" type="submit">Request demo <svg><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="df-ok" id="df-ok" hidden><b>Request received</b><p id="df-ok-text"></p><div id="df-ok-acts"></div></div>
+    </form>
+  </div></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><i class="logo" style="width:26px;height:36px"></i><span class="sep"></span><span class="wordmark">Clinic<br>Management<br>Tech</span></a>
+    <nav aria-label="Footer"><a href="#story">How it works</a><a href="#clinics">Console</a><a href="#results">Before &amp; after</a><a href="#shop">Shop</a><a href="#geo">GEO</a><a href="#faq">FAQ</a><a href="https://www.instagram.com/" id="ig-link" target="_blank" rel="noopener">Instagram</a></nav>
+    <span>© <span id="yr"></span> Clinic Management Tech · Photos: Unsplash</span>
+  </div>
+</footer>
+
+<!-- ============ PATIENT ASSISTANT (demo widget) ============ -->
+<div class="agent" id="agent" role="dialog" aria-label="Savia, your clinic's AI assistant" aria-hidden="true">
+  <div class="ag-h"><span class="ag-av"><i class="logo"></i></span><div><b>Savia</b><small>Your clinic's assistant · Online</small></div><span class="ag-badge">AI</span>
+    <button class="ag-x" id="ag-x" type="button" aria-label="Close chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="ag-body" id="ag-body" role="log" aria-live="polite"></div>
+  <form class="ag-in" id="ag-form" autocomplete="off">
+    <label for="ag-text" class="sr-only">Type your message</label>
+    <textarea id="ag-text" rows="1" placeholder="Ask Savia anything…" enterkeyhint="send"></textarea>
+    <button class="ag-send" id="ag-send" type="submit" aria-label="Send"><svg width="20" height="20"><use href="#i-send"/></svg></button>
+  </form>
+  <p class="ag-foot">Demo patient view. Savia gives general guidance; your clinic's team makes clinical decisions.</p>
+</div>
+<div class="ag-tip" id="ag-tip" role="status" hidden><button type="button" id="ag-tip-x" aria-label="Hide">×</button></div>
+<button class="ag-launch" id="ag-launch" type="button" aria-label="Open chat with Savia" aria-expanded="false"><i class="logo"></i><svg class="xi" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+
+<script src="js/i18n.js" defer></script>
+<script src="js/catalog.js" defer></script>
+<script src="js/sections.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/shop.js" defer></script>
+<script src="js/savia.js" defer></script>
+</body>
+</html>
